@@ -23,11 +23,14 @@ const App: () => React$Node = () => {
         <Image style={styles.ic_search} source={require('./asset/ic_search.png')}></Image>
         <Text style={styles.txt_search}>Search</Text>
       </View>
+<<<<<<< HEAD
+=======
       <View style={styles.header_block}>
         <Text style={styles.dating}>Dating</Text>
         <View style={styles.v_setting}>
-          <Image style={styles.img_setting} source={require('./asset/ic_setting.png')}></Image>
+          <Image style={styles.img_setting} source={require('./asset/ic_use.png')}></Image>
         </View>
+>>>>>>> cdb2704957664c60038ff6b7cb3a8af171318ddb
       </View>
       <View style={styles.v_action_block}>
         {_funcBlock(

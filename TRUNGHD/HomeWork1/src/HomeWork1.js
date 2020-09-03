@@ -18,7 +18,7 @@ export default class Rework extends Component {
             <SafeAreaView style={styles.container}>
                 <View style={styles.header_block}>
                     <Text style={styles.dating}>
-                        Dating
+                        Alo
                     </Text>
                     <View style={styles.v_setting}>
                         <Image
@@ -41,7 +41,6 @@ export default class Rework extends Component {
                         true,
                     )}
                     {_funcBlock(
-                        require('../assets/ic_match.png'),
                         'Matches',
                         _func_ClickToMatches,
                         true,
