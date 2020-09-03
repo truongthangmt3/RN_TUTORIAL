@@ -97,12 +97,6 @@ const App = () => {
         {_name('Pranpriya')}
       </View>
       <View style={styles.taskBarContainer}>
-        {/* <View style={styles.buttonsTaskBar}>
-          <Image
-            source={require('./assets/icon_home.png')}
-            style={styles.iconButtonsTaskBar}
-          />
-        </View> */}
         {_taskBarButtons(require('./assets/icon_home.png'))}
         {_taskBarButtons(require('./assets/icon_tv.png'))}
         {_taskBarButtons(require('./assets/icon_users.png'))}
@@ -245,9 +239,7 @@ const styles = StyleSheet.create({
     // marginLeft: 15,
   },
   stories: {
-    // backgroundColor: 'red',
     flex: 1,
-    flexDirection: 'column',
     width: 70,
     height: 70,
     borderWidth: 3,
@@ -259,8 +251,8 @@ const styles = StyleSheet.create({
   },
   nameContainer: {
     flexDirection: 'row',
-    marginLeft: 8,
-    marginTop: 7,
+    paddingLeft: 10,
+    paddingTop: 8,
   },
   imageStories: {
     width: 60,
