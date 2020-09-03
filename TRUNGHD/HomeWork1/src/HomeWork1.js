@@ -40,8 +40,7 @@ export default class Rework extends Component {
                         _func_ClickToLikedYou,
                         true,
                     )}
-                    {_funcBlock(
-                        require('../assets/ic_match.png'),
+                    {_funcBlock(DMtrung
                         'Matches',
                         _func_ClickToMatches,
                         true,
