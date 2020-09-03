@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     ScrollView,
     StyleSheet,
-    Dimensions
+    Dimensions,
 } from 'react-native';
 
 const scrwidth = Dimensions.get('window').width;
@@ -92,43 +92,22 @@ export default class Rework extends Component {
                                 'Name'
                             )}
 
-                            {_funcStory(
-                                require('../assets/ic_story2.png'),
-                                'Name'
-                            )}
-                            {_funcStory(
-                                require('../assets/ic_story3.png'),
-                                'Name'
-                            )}
-                            {_funcStory(
-                                require('../assets/ic_story4.png'),
-                                'Name'
-                            )}
+                            {_funcStory(require('../assets/thangprofile.png'), 'Name')}
+
+                            {_funcStory(require('../assets/ic_story2.png'), 'Name')}
+                            {_funcStory(require('../assets/ic_story3.png'), 'Name')}
+                            {_funcStory(require('../assets/ic_story4.png'), 'Name')}
                         </ScrollView>
                     </View>
                 </View>
                 <View style={styles.boder_line} />
                 <View style={styles.v_menu}>
-                    {_funcMenu
-                        (require('../assets/ic_home.png'),
-                    )}
-                    {_funcMenu
-                        (require('../assets/ic_video.png'),
-
-                    )}
-                    {_funcMenu
-                        (require('../assets/ic_group.png'),
-                    )}
-                    {_funcMenu
-                        (require('../assets/ic_likedyou.png'),
-                    )}
-                    {_funcMenu
-                        (require('../assets/ic_notification.png'),
-                            false
-                        )}
-                    {_funcMenu
-                        (require('../assets/ic_menu.png'),
-                    )}
+                    {_funcMenu(require('../assets/ic_home.png'))}
+                    {_funcMenu(require('../assets/ic_video.png'))}
+                    {_funcMenu(require('../assets/ic_group.png'))}
+                    {_funcMenu(require('../assets/ic_likedyou.png'))}
+                    {_funcMenu(require('../assets/ic_notification.png'), false)}
+                    {_funcMenu(require('../assets/ic_menu.png'))}
                 </View>
             </SafeAreaView>
         );
@@ -147,67 +126,47 @@ _func_ClickToMatches = () => {
     alert('Matches');
 };
 
-_funcBlock = (
-    img,
-    label,
-    action,
-    isNotification = false) => {
+_funcBlock = (img, label, action, isNotification = false) => {
     return (
         <TouchableOpacity
             onPress={() => {
                 action();
             }}>
             <View style={styles.action_block}>
-                <Image style={styles.img_user}
-                    source={img}
-                />
-                <Text style={styles.profile}>
-                    {label}
-                </Text>
-                {isNotification ? <View style={styles.notification}>
-                    <Text style={styles.no_text}>
-                        !
-                    </Text>
-                </View> : null}
+                <Image style={styles.img_user} source={img} />
+                <Text style={styles.profile}>{label}</Text>
+                {isNotification ? (
+                    <View style={styles.notification}>
+                        <Text style={styles.no_text}>!</Text>
+                    </View>
+                ) : null}
             </View>
         </TouchableOpacity>
     );
 };
 
-_funcStory = (
-    img,
-    name
-) => {
+_funcStory = (img, name) => {
     return (
         <View style={styles.story}>
             <View style={styles.v_ic_sotry}>
-                <Image style={styles.img_story}
-                    source={img} />
+                <Image style={styles.img_story} source={img} />
             </View>
-            <Text style={styles.story_name}>
-                {name}
-            </Text>
+            <Text style={styles.story_name}>{name}</Text>
         </View>
     );
 };
 
-_funcMenu = (
-    img,
-) => {
+_funcMenu = (img) => {
     return (
-        <TouchableOpacity onPress={() => {
-        }}>
+        <TouchableOpacity onPress={() => { }}>
             <View style={styles.menu_option}>
                 <View style={styles.ic_menuview}>
-                    <Image style={styles.ic_menu}
-                        source={img}
-                    />
+                    <Image style={styles.ic_menu} source={img} />
                 </View>
             </View>
         </TouchableOpacity>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -313,7 +272,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 3.84,
         elevation: 9,
-        marginTop: -30
+        marginTop: -30,
     },
     avatar_button: {
         width: 60,
@@ -327,10 +286,10 @@ const styles = StyleSheet.create({
     },
     text_nameavatar: {
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 30,
     },
     text_addressavatar: {
-        fontSize: 24
+        fontSize: 24,
     },
     v_stories: {
         flexDirection: 'column',
@@ -338,11 +297,11 @@ const styles = StyleSheet.create({
     sug_text: {
         fontWeight: 'bold',
         fontSize: 16,
-        marginBottom: 10
+        marginBottom: 10,
     },
     v_story: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     story: {
         alignItems: 'center',
@@ -353,7 +312,7 @@ const styles = StyleSheet.create({
     v_ic_sotry: {
         width: 55,
         height: 55,
-        borderRadius: (55 / 2),
+        borderRadius: 55 / 2,
         borderWidth: 2,
         borderColor: 'purple',
         justifyContent: 'center',
@@ -363,10 +322,10 @@ const styles = StyleSheet.create({
     img_story: {
         width: 50,
         height: 50,
-        borderRadius: (50 / 2),
+        borderRadius: 50 / 2,
     },
     story_name: {
-        marginTop: 5
+        marginTop: 5,
     },
     v_menu: {
         marginTop: 10,
@@ -378,7 +337,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     ic_menuview: {
-        marginTop: 10
+        marginTop: 10,
     },
     ic_menu: {
         width: 30,
