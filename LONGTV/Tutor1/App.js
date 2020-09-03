@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   View,
@@ -16,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const App = () => {
+const App = () =>{
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header_block}>
@@ -24,19 +16,19 @@ const App = () => {
         <View style={styles.v_setting}>
           <Image
             style={styles.img_setting}
-            source={require('./assets/avatar.jpg')}
+            source={require('./assets/ic_setting.png')}
           />
         </View>
       </View>
       <View style={styles.v_action_block}>
         {_funcBlock(
-          require('./assets/ic_user.png'),
+          require('./assets/ic_action/ic_Profile.png'),
           'Profile',
           _navToProfile,
           true,
         )}
-        {_funcBlock(require('./assets/ic_user.png'), 'Like you', _navToLikeYou)}
-        {_funcBlock(require('./assets/ic_user.png'), 'Match', _navToMatch)}
+        {_funcBlock(require('./assets/ic_action/ic_LikedYou.png'), 'Like you', _navToLikeYou)}
+        {_funcBlock(require('./assets/ic_action/ic_Matches.png'), 'Match', _navToMatch)}
       </View>
     </SafeAreaView>
   );
@@ -66,7 +58,7 @@ _funcBlock = (img, label, action, isWarning = false) => {
         {isWarning ? <View style={styles.warning}></View> : null}
       </View>
     </TouchableOpacity>
-  );
+  )
 };
 
 const styles = StyleSheet.create({
@@ -128,3 +120,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
