@@ -24,7 +24,7 @@ const App = () => {
         <View style={styles.v_setting}>
           <Image
             style={styles.img_setting}
-            source={require('./assets/img_dating.jpg')}
+            source={require('./assets/avatar.jpg')}
           />
         </View>
       </View>
