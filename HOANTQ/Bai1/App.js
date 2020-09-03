@@ -25,7 +25,9 @@ const App = () => {
         <View
           style={styles.v_setting}>
           <Image
+
             source={require('./img/img_girl.jpg')}
+
             style={styles.img_setting} />
         </View>
       </View>
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
     height: 440,
     borderRadius: 10,
     backgroundColor: 'white',
-    elevation:13
+    elevation: 13
   },
   v_body:
   {
