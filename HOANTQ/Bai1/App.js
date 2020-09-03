@@ -25,7 +25,7 @@ const App = () => {
         <View
           style={styles.v_setting}>
           <Image
-            source={require('./img/ic_setting.png')}
+            source={require('./img/img_girl.jpg')}
             style={styles.img_setting} />
         </View>
       </View>
