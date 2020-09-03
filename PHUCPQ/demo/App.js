@@ -26,7 +26,7 @@ const App: () => React$Node = () => {
       <View style={styles.header_block}>
         <Text style={styles.dating}>Dating</Text>
         <View style={styles.v_setting}>
-          <Image style={styles.img_setting} source={require('./asset/ic_setting.png')}></Image>
+          <Image style={styles.img_setting} source={require('./asset/ic_use.png')}></Image>
         </View>
       </View>
       <View style={styles.v_action_block}>
