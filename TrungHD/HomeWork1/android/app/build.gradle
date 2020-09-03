@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.homework1"
+        applicationId "com.demoresizemode"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
