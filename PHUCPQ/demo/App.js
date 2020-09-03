@@ -14,7 +14,6 @@ import {
   Text,
   Image,
   TouchableOpacity,
-  ImageBackground,
 } from 'react-native';
 const App: () => React$Node = () => {
   return (
@@ -26,7 +25,7 @@ const App: () => React$Node = () => {
       <View style={styles.header_block}>
         <Text style={styles.dating}>Dating</Text>
         <View style={styles.v_setting}>
-          <Image style={styles.img_setting} source={require('./asset/ic_use.png')}></Image>
+          <Image style={styles.img_setting} source={require('./asset/ic_setting.png')}></Image>
         </View>
       </View>
       <View style={styles.v_action_block}>
@@ -35,7 +34,7 @@ const App: () => React$Node = () => {
           'Profile',
           _navToProfile,
           true,
-          require('./asset/ic_exclamation_mark.png')
+          require('./asset/ic_exclamation_mark.png'),
         )}
         {_funcBlock(require('./asset/ic_user.png'), 'Like you', _navToLikeYou)}
         {_funcBlock(require('./asset/ic_user.png'), 'Match', _navToMatch)}
