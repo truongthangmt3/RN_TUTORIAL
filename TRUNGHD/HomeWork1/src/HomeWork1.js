@@ -35,7 +35,7 @@ export default class Rework extends Component {
                         true,
                     )}
                     {_funcBlock(
-                        require('../assets/ic_likedyou.png'),
+                        require('../assets/thangprofile.png'),
                         'Liked You',
                         _func_ClickToLikedYou,
                         true,
