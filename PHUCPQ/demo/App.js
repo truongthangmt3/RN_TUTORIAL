@@ -26,11 +26,7 @@ const App: () => React$Node = () => {
       <View style={styles.header_block}>
         <Text style={styles.dating}>Dating</Text>
         <View style={styles.v_setting}>
-<<<<<<< .merge_file_a09428
           <Image style={styles.img_setting} source={require('./asset/ic_use.png')}></Image>
-=======
-          <Image style={styles.img_setting} source={require('./asset/ic_search.png')}></Image>
->>>>>>> .merge_file_a02700
         </View>
       </View>
       <View style={styles.v_action_block}>
