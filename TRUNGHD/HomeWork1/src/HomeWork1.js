@@ -10,6 +10,8 @@ import {
     Dimensions,
 } from 'react-native';
 
+import image from '../assets/imagesAsset';
+
 const scrwidth = Dimensions.get('window').width;
 
 export default class Rework extends Component {
@@ -17,50 +19,50 @@ export default class Rework extends Component {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.header_block}>
-                    <Text style={styles.dating}>
-                        Alo
+                    <Text style={styles.text_dating}>
                     </Text>
                     <View style={styles.v_setting}>
                         <Image
                             style={styles.img_setting}
-                            source={require('../assets/ic_setting.png')}
+                            source={image.ic_setting}
                         />
                     </View>
                 </View>
                 <View style={styles.v_action_block}>
                     {_funcBlock(
-                        require('../assets/ic_profile.png'),
+                        image.ic_profile,
                         'Profile',
                         _func_ClickToProfile,
                         true,
                     )}
                     {_funcBlock(
-                        require('../assets/thangprofile.png'),
+                        image.ic_likedyou,
                         'Liked You',
                         _func_ClickToLikedYou,
                         true,
                     )}
                     {_funcBlock(
+                        image.ic_match,
                         'Matches',
                         _func_ClickToMatches,
                         true,
                     )}
                 </View>
-                <View style={styles.avatar_view}>
-                    <View style={styles.v_avatar}>
+                <View style={styles.v_avatar}>
+                    <View style={styles.v_avatar_profile}>
                         <Image style={styles.v_img_avatar}
-                            source={require('../assets/img_avatar.jpg')}
+                            source={image.img_avatar}
                         />
                         <View style={styles.v_avatar_button}>
                             <Image style={styles.avatar_button}
-                                source={require('../assets/ic_cancel.png')}
+                                source={image.ic_cancel}
                             />
                             <Image style={styles.avatar_button}
-                                source={require('../assets/ic_heart.png')}
+                                source={image.ic_heart}
                             />
                         </View>
                     </View>
-                    <View style={styles.v_avatar_infor}>
+                    <View style={styles.v_infor}>
                         <Text style={styles.text_nameavatar}>
                             Name, 18
                         </Text>
@@ -71,7 +73,7 @@ export default class Rework extends Component {
                 </View>
                 <View style={styles.boder_line} />
                 <View style={styles.v_stories}>
-                    <Text style={styles.sug_text}>
+                    <Text style={styles.text_suggested}>
                         Suggested Stories
                     </Text>
                     <View style={styles.v_story}>
@@ -79,35 +81,47 @@ export default class Rework extends Component {
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}>
                             {_funcStory(
-                                require('../assets/ic_addstory.png'),
+                                image.ic_addstory,
                                 'Add Stories'
                             )}
                             {_funcStory(
-                                require('../assets/ic_story_thinh.png'),
-                                'Thinh'
+                                image.ic_story_thinh,
+                                'Thịnh'
                             )}
 
                             {_funcStory(
-                                require('../assets/thangprofile.png'),
-                                'Name'
+                                image.ic_thinhProfile,
+                                'Thịnh'
                             )}
 
-                            {_funcStory(require('../assets/thangprofile.png'), 'Name')}
+                            {_funcStory(
+                                image.ic_thangprofile,
+                                'Thắng'
+                            )}
 
-                            {_funcStory(require('../assets/ic_story2.png'), 'Name')}
-                            {_funcStory(require('../assets/ic_story3.png'), 'Name')}
-                            {_funcStory(require('../assets/ic_story4.png'), 'Name')}
+                            {_funcStory(
+                                image.ic_story2,
+                                'Name'
+                            )}
+                            {_funcStory(
+                                image.ic_story3,
+                                'Name'
+                            )}
+                            {_funcStory(
+                                image.ic_story4,
+                                'Name'
+                            )}
                         </ScrollView>
                     </View>
                 </View>
                 <View style={styles.boder_line} />
                 <View style={styles.v_menu}>
-                    {_funcMenu(require('../assets/ic_home.png'))}
-                    {_funcMenu(require('../assets/ic_video.png'))}
-                    {_funcMenu(require('../assets/ic_group.png'))}
-                    {_funcMenu(require('../assets/ic_likedyou.png'))}
-                    {_funcMenu(require('../assets/ic_notification.png'), false)}
-                    {_funcMenu(require('../assets/ic_menu.png'))}
+                    {_funcMenu(image.ic_home)}
+                    {_funcMenu(image.ic_video)}
+                    {_funcMenu(image.ic_group)}
+                    {_funcMenu(image.ic_likedyou)}
+                    {_funcMenu(image.ic_notification)}
+                    {_funcMenu(image.ic_menu)}
                 </View>
             </SafeAreaView>
         );
@@ -134,9 +148,9 @@ _funcBlock = (img, label, action, isNotification = false) => {
             }}>
             <View style={styles.action_block}>
                 <Image style={styles.img_user} source={img} />
-                <Text style={styles.profile}>{label}</Text>
+                <Text style={styles.text_profile}>{label}</Text>
                 {isNotification ? (
-                    <View style={styles.notification}>
+                    <View style={styles.v_notification}>
                         <Text style={styles.no_text}>!</Text>
                     </View>
                 ) : null}
@@ -178,7 +192,7 @@ const styles = StyleSheet.create({
     header_block: {
         flexDirection: 'row',
     },
-    dating: {
+    text_dating: {
         flex: 1,
         fontSize: 28,
         fontWeight: 'bold',
@@ -206,7 +220,7 @@ const styles = StyleSheet.create({
         height: 20,
         marginHorizontal: 5,
     },
-    notification: {
+    v_notification: {
         top: -5,
         right: -3,
         width: 15,
@@ -228,12 +242,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: '#e4e5ea',
     },
-    profile: {
+    text_profile: {
         fontSize: 17,
         marginRight: 5,
         fontWeight: 'bold',
     },
-    avatar_view: {
+    v_avatar: {
         flex: 1,
         marginTop: 15,
         marginBottom: 15,
@@ -248,7 +262,7 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 9,
     },
-    v_avatar: {
+    v_avatar_profile: {
         flex: 6,
         marginTop: 50,
         marginBottom: 50,
@@ -280,7 +294,7 @@ const styles = StyleSheet.create({
         marginRight: 20,
         resizeMode: 'contain',
     },
-    v_avatar_infor: {
+    v_infor: {
         marginLeft: 20,
         marginBottom: 30,
     },
@@ -294,7 +308,7 @@ const styles = StyleSheet.create({
     v_stories: {
         flexDirection: 'column',
     },
-    sug_text: {
+    text_suggested: {
         fontWeight: 'bold',
         fontSize: 16,
         marginBottom: 10,
