@@ -86,17 +86,12 @@ const App = () => {
         <View>
           <Text style={styles.suggestedStoriesText}>Suggested Stories</Text>
         </View>
-        {/* {_addStory(require('./assets/icon_plus.png'))}
-        {_stories(require('./assets/elle.jpg'))}
-        {_stories(require('./assets/scarlett.jpg'))}
-        {_stories(require('./assets/olsen.jpg'))}
-        {_stories(require('./assets/lisa.jpg'))} */}
         <View>
           <ScrollView
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             style={{margin: 5}}>
-            {_stories(require('./assets/icon_plus.png'), 'Add Story')}
+            {_stories(require('./assets/icon_plus.png'), 'Add Story', true)}
             {_stories(require('./assets/elle.jpg'), 'Elle')}
             {_stories(require('./assets/scarlett.jpg'), 'Scarlett')}
             {_stories(require('./assets/olsen.jpg'), 'Olsen')}
@@ -124,12 +119,21 @@ _navToLikedYou = () => {
 _navToMatches = () => {
   alert('Nobody matches you');
 };
-_stories = (img, name) => {
+_stories = (img, name, isAddStory) => {
   return (
     <View style={styles.storiesContainer}>
-      <View style={styles.stories}>
+      {/* <View style={styles.stories}>
         <Image source={img} style={styles.imageStories} />
-      </View>
+      </View> */}
+      {isAddStory ? (
+        <View>
+          <Image source={img} style={styles.addStory} />
+        </View>
+      ) : (
+        <View style={styles.stories}>
+          <Image source={img} style={styles.imageStories} />
+        </View>
+      )}
       <Text style={styles.nameStories}>{name}</Text>
     </View>
   );
@@ -245,6 +249,12 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: 28,
+  },
+  addStory: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginHorizontal: 6,
   },
   storiesContainer: {
     justifyContent: 'center',
