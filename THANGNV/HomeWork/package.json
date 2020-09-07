@@ -7,11 +7,15 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "li": "node generateAssetResource.js"
   },
   "dependencies": {
     "react": "16.13.1",
-    "react-native": "0.63.2"
+    "react-i18next": "^9.0.10",
+    "react-native": "0.63.2",
+    "react-native-i18n": "^2.0.15",
+    "react-native-image-picker": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -19,8 +23,10 @@
     "@react-native-community/eslint-config": "^1.1.0",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
+    "hjson": "^3.2.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "react-native-image-picker": "^1.1.0",
     "react-test-renderer": "16.13.1"
   },
   "jest": {

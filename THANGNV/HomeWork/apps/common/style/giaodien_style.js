@@ -100,10 +100,10 @@ const giaodien_style = StyleSheet.create({
         height: '100%',
         position: 'relative',
         marginBottom: -35,
-        zIndex: 0,
+        //zIndex: 0,
     },
     v_ava_button: {
-        zIndex: 1,
+        //zIndex: 1,
         flexDirection: 'row',
         alignSelf: 'flex-end',
         shadowColor: '#000',
@@ -163,11 +163,17 @@ const giaodien_style = StyleSheet.create({
         borderTopWidth: 0.3,
         flexDirection: 'row',
     },
-    menu_choose: {
+    menu_choose1: {
         borderTopWidth: 2,
         width: icmenuWidth / 6,
         alignItems: 'center',
         borderColor: '#0078ff',
+    },
+    menu_choose2: {
+        borderTopWidth: 2,
+        width: icmenuWidth / 6,
+        alignItems: 'center',
+        borderColor: '#ffffff',
     },
     menuview_icon: {
         marginTop: 10
