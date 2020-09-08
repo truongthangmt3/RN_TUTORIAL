@@ -14,6 +14,7 @@ import {
   Text,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 
 import {
@@ -81,20 +82,22 @@ const App = () => {
           <Text style={{fontSize: 15}}>From Hanoi,Vietnam</Text>
         </View>
       </View>
-      <Text style={styles.suggestedStoriesText}>Suggested Stories</Text>
-      <View style={styles.storiesContainer}>
-        {_addStory(require('./assets/icon_plus.png'))}
-        {_stories(require('./assets/elle.jpg'))}
-        {_stories(require('./assets/scarlett.jpg'))}
-        {_stories(require('./assets/olsen.jpg'))}
-        {_stories(require('./assets/lisa.jpg'))}
-      </View>
-      <View style={styles.nameContainer}>
-        {_name('Add Story')}
-        {_name('Fanning')}
-        {_name('Scarlett')}
-        {_name('Elizabeth')}
-        {_name('Pranpriya')}
+      <View>
+        <View>
+          <Text style={styles.suggestedStoriesText}>Suggested Stories</Text>
+        </View>
+        <View>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            style={{margin: 5}}>
+            {_stories(require('./assets/icon_plus.png'), 'Add Story', true)}
+            {_stories(require('./assets/elle.jpg'), 'Elle')}
+            {_stories(require('./assets/scarlett.jpg'), 'Scarlett')}
+            {_stories(require('./assets/olsen.jpg'), 'Olsen')}
+            {_stories(require('./assets/lisa.jpg'), 'Lisa')}
+          </ScrollView>
+        </View>
       </View>
       <View style={styles.taskBarContainer}>
         {_taskBarButtons(require('./assets/icon_home.png'))}
@@ -116,17 +119,22 @@ _navToLikedYou = () => {
 _navToMatches = () => {
   alert('Nobody matches you');
 };
-_addStory = (img) => {
+_stories = (img, name, isAddStory) => {
   return (
-    <View style={styles.stories}>
-      <Image source={img} />
-    </View>
-  );
-};
-_stories = (img) => {
-  return (
-    <View style={styles.stories}>
-      <Image source={img} style={styles.imageStories} />
+    <View style={styles.storiesContainer}>
+      {/* <View style={styles.stories}>
+        <Image source={img} style={styles.imageStories} />
+      </View> */}
+      {isAddStory ? (
+        <View>
+          <Image source={img} style={styles.addStory} />
+        </View>
+      ) : (
+        <View style={styles.stories}>
+          <Image source={img} style={styles.imageStories} />
+        </View>
+      )}
+      <Text style={styles.nameStories}>{name}</Text>
     </View>
   );
 };
@@ -141,15 +149,12 @@ _buttons = (img, title, action, isWarning) => {
         <Text style={styles.textBlock}>{title}</Text>
         {isWarning ? (
           <View style={styles.isWarning}>
-            <Text style={{color: 'white'}}>!</Text>
+            <Text style={{color: 'white', fontWeight: 'bold'}}>!</Text>
           </View>
         ) : null}
       </View>
     </TouchableOpacity>
   );
-};
-_name = (name) => {
-  return <Text style={styles.nameStories}>{name}</Text>;
 };
 _taskBarButtons = (img) => {
   return (
@@ -227,43 +232,34 @@ const styles = StyleSheet.create({
   },
   suggestedStoriesText: {
     marginLeft: 20,
-    marginTop: 3,
     fontWeight: 'bold',
     fontSize: 23,
   },
-  storiesContainer: {
-    // backgroundColor: 'red',
-    flex: 1,
-    flexDirection: 'row',
-    marginVertical: 5,
-    // marginLeft: 15,
-  },
   stories: {
-    flex: 1,
-    width: 70,
-    height: 70,
+    width: 68,
+    height: 68,
     borderWidth: 3,
     borderColor: '#976AFF',
-    borderRadius: 35,
-    marginHorizontal: 5,
+    borderRadius: 34,
+    marginHorizontal: 7,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  nameContainer: {
-    flexDirection: 'row',
-    paddingLeft: 10,
-    paddingTop: 8,
   },
   imageStories: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+    width: 56,
+    height: 56,
+    borderRadius: 28,
   },
-  nameStories: {
-    flex: 1,
-    margin: 7,
+  addStory: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    marginHorizontal: 6,
+  },
+  storiesContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    fontSize: 15,
   },
   taskBarContainer: {flex: 1, flexDirection: 'row'},
   buttonsTaskBar: {
