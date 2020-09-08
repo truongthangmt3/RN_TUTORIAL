@@ -24,7 +24,7 @@ const App = () => {
         <View style={styles.v_setting}>
           <Image
             style={styles.img_setting}
-            source={require('./assets/avatar.jpg')}
+            source={require('./assets/settings.png')}
           />
         </View>
       </View>
@@ -34,6 +34,7 @@ const App = () => {
           'Profile',
           _navToProfile,
           true,
+          require('./assets/ic_exclamation_mark.png')
         )}
         {_funcBlock(require('./assets/ic_user.png'), 'Like you', _navToLikeYou)}
         {_funcBlock(require('./assets/ic_user.png'), 'Match', _navToMatch)}
@@ -54,7 +55,7 @@ _navToMatch = () => {
   alert('Match');
 };
 
-_funcBlock = (img, label, action, isWarning = false) => {
+_funcBlock = (img, label, action, isWarning = false, img1) => {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -63,7 +64,7 @@ _funcBlock = (img, label, action, isWarning = false) => {
       <View style={styles.action_block}>
         <Image style={styles.img_user} source={img} />
         <Text style={styles.profile}>{label}</Text>
-        {isWarning ? <View style={styles.warning}></View> : null}
+        {isWarning ? <View style={styles.warning}><Image style={styles.img_mark} source={img1} /></View> : null}
       </View>
     </TouchableOpacity>
   );
@@ -124,6 +125,10 @@ const styles = StyleSheet.create({
     right: -5,
     top: -8,
     borderRadius: 10,
+  },
+  img_mark: {
+    height: 24,
+    width: 24,
   },
 });
 
