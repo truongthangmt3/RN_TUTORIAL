@@ -5,7 +5,6 @@
  * @format
  * @flow strict-local
  */
-
 import React from 'react';
 import {
   SafeAreaView,
@@ -14,10 +13,11 @@ import {
   Text,
   Image,
   _Image,
+  TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {
 } from 'react-native/Libraries/NewAppScreen';
-
 
 const App = () => {
   return (
@@ -32,9 +32,9 @@ const App = () => {
         </View>
       </View>
       <View style={styles.action_block}>
-        {_funcBlock(require('./img/ic_user.png'), 'Profile')}
-        {_funcBlock(require('./img/ic_heart.png'), 'Liked You')}
-        {_funcBlock(require('./img/ic_messa.png'), 'Matches')}
+        {_funcBlock(require('./img/ic_user.png'), 'Profile', _navProfile,true)}
+        {_funcBlock(require('./img/ic_heart.png'), 'Liked You', _navLikedYou)}
+        {_funcBlock(require('./img/ic_messa.png'), 'Matches', _navMatches)}
       </View>
       <View style={styles.title_block}>
         <Image
@@ -55,11 +55,17 @@ const App = () => {
         style={styles.story}>
         <Text style={styles.text_story}>Suggested Stories</Text>
         <View style={{ flexDirection: 'row' }}>
+          <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={true}>
           {_bodyplus(require('./img/ic_plus.png'), 'Add Story')}
           {_bodygirl(require('./img/img_ly.jpg'), 'Ly')}
           {_bodygirl(require('./img/img_nguyet.jpg'), 'Nguyệt')}
           {_bodygirl(require('./img/img_trinh.jpg'), 'Trinh')}
           {_bodygirl(require('./img/img_hang.jpg'), 'Hằng')}
+          {_bodygirl(require('./img/img_trinh.jpg'), 'Thắm')}
+          {_bodygirl(require('./img/img_hang.jpg'), 'Nhung')}
+          </ScrollView>
         </View>
       </View>
 
@@ -74,13 +80,19 @@ const App = () => {
     </View>
   )
 };
-_funcBlock = (img, label) => {
+_funcBlock = (img, label, action,isWarning = false) => {
   return (
-    <View style={styles.v_action_block}>
-      <Image source={img} style={styles.img_user} />
-      <Text
-        style={styles.profile}>{label}</Text>
-    </View>
+    <TouchableOpacity
+      onPress={() => {
+        action()
+      }}>
+      <View style={styles.v_action_block}>
+        <Image source={img} style={styles.img_user} />
+        <Text
+          style={styles.profile}>{label}</Text>
+          {isWarning ? <View style={styles.warning}></View> :null}
+      </View>
+    </TouchableOpacity>
   )
 }
 _arrayClose = (img) => {
@@ -108,12 +120,20 @@ _bodygirl = (img, label) => {
     </View>
   )
 }
-_footerBlock = (img) => {
+_footerBlock = (img, isWarning = false) => {
   return (
     <Image source={img} style={styles.img_footer} />
   )
 };
-
+_navProfile = () => {
+  alert = ('Profile');
+}
+_navLikedYou = () => {
+  alert = ('Liked You');
+}
+_navMatches = () => {
+  alert = ('Matches');
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -164,6 +184,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginRight: 5
   },
+  warning:{
+    position:'absolute',
+    width:20,
+    height:20,
+    borderRadius:10,
+    backgroundColor:'red',
+    top:-7,
+    left:85
+  },
   title_block: {
     marginLeft: 20,
     width: 370,
@@ -190,14 +219,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginTop: 310,
     marginLeft: 240,
-    elevation:20
   },
   v_close: {
     backgroundColor: 'white',
     width: 50,
     height: 50,
     borderRadius: 100,
-    marginLeft: 6
+    marginLeft: 6,
+    elevation:20
+    
   },
   img_close: {
     width: 35,

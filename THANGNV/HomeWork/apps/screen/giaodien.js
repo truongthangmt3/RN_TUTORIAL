@@ -8,8 +8,14 @@ import {
     ScrollView
 } from 'react-native';
 
-import styles from '../common/giaodien_style.js'
+import styles from '../common/style/giaodien_style.js'
+import user_data from '../data/user'
+
 export default class GiaoDien extends Component {
+
+    state = {
+        name: 'giaodien'
+    }
     render() {
         return (
             <SafeAreaView style={styles.container}>
@@ -47,20 +53,26 @@ export default class GiaoDien extends Component {
                 <View style={styles.avatar_view}>
                     <View style={styles.v_avatar}>
                         <Image style={styles.avatar}
-                            source={require('../assets/img/image/Hoa.jpg')}
+                            source={require('../assets/img/image/Nhien.jpg')}
                         />
                         <View style={styles.v_ava_button}>
-                            <Image style={styles.ava_button}
-                                source={require('../assets/img/ic_cancel.png')}
-                            />
-                            <Image style={styles.ava_button}
-                                source={require('../assets/img/ic_liked.png')}
-                            />
+                            {_funcAvaButton(
+                                require('../assets/img/ic_cancel.png'),
+                                () =>
+                                    this.setState({
+                                        name: "Mot em xinh tuoi khac"
+                                    })
+
+                            )}
+                            {_funcAvaButton(
+                                require('../assets/img/ic_liked.png'),
+                                _pressLiked
+                            )}
                         </View>
                     </View>
                     <View style={styles.v_ava_infor}>
                         <Text style={styles.avatar_name}>
-                            Hoa Nguyen Bui, 22
+                            {this.state.name}
                         </Text>
                         <Text style={styles.avatar_adds}>
                             Hai Duong
@@ -155,6 +167,8 @@ export default class GiaoDien extends Component {
             </SafeAreaView>
         );
     }
+
+
 }
 
 _navToProfile = () => {
@@ -196,15 +210,26 @@ _funcBlock = (
     );
 };
 
-_funcAvaButton = () => {
+_funcAvaButton = (
+    img,
+    ab_action,
+) => {
     return (
         <TouchableOpacity onPress={() => {
             ab_action();
         }}>
-
+            {/* <View style={styles.v_ava_button}> */}
+            <Image style={styles.ava_button}
+                source={img} />
+            {/* </View> */}
         </TouchableOpacity>
     )
 }
+
+
+_pressLiked = () => {
+    alert('Next');
+};
 
 _funcStory = (
     img,
@@ -231,24 +256,25 @@ _funcMenu = (
     img,
     actionMenu,
     isNotices = false,
-    isChoosed = false,
 ) => {
     return (
         <TouchableOpacity onPress={() => {
             actionMenu();
         }}>
-            <View style={styles.menu_choose}>
-                <View style={styles.menuview_icon}>
-                    <Image style={styles.menu_icon}
-                        source={img}
-                    />
-                </View>
-                {isNotices ? <View style={styles.noti}>
-                    <Text style={styles.noti_text}>
-                        9
+            {
+                <View style={styles.menu_choose1}>
+                    <View style={styles.menuview_icon}>
+                        <Image style={styles.menu_icon}
+                            source={img}
+                        />
+                    </View>
+                    {isNotices ? <View style={styles.noti}>
+                        <Text style={styles.noti_text}>
+                            9
                     </Text>
-                </View> : null}
-            </View>
+                    </View> : null}
+                </View>
+            }
         </TouchableOpacity>
     );
 };
