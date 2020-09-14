@@ -77,7 +77,7 @@ const App: () => React$Node = () => {
         <Text style={styles.txt_SSG}>Suggested Stories</Text>
       </View>
       <View style={styles.boder_avatar}>
-        <ScrollView horizontal>
+        <ScrollView horizontal={true}>
           {_scrollView(require('./assets/plus1.png'), 'Add Story')}
           {_scrollView(require('./assets/vk.jpg'), 'Quỳnh Như')}
           {_scrollView(require('./assets/banthan.jpg'), 'Quang Phúc')}
@@ -86,7 +86,6 @@ const App: () => React$Node = () => {
           {_scrollView(require('./assets/plus1.png'), 'Add Story')}
           {_scrollView(require('./assets/plus1.png'), 'Add Story')}
           {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-
         </ScrollView>
       </View>
       <View style={styles.boder_taskbar}>
@@ -143,7 +142,9 @@ _scrollView = (img, label) => {
   return (
     <TouchableOpacity>
       <View style={styles.heart_avatar}>
-        <Image style={styles.img_scrollView} source={img} />
+        <View style={styles.heart_imgavatar}>
+          <Image style={styles.img_scrollView} source={img} />
+        </View>
         <Text style={styles.txt_scrollView}>{label}</Text>
       </View>
     </TouchableOpacity>
@@ -155,9 +156,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   block_search: {
-    flex: 0.03,
+    flex: 0.09,
     flexDirection: 'row',
     backgroundColor: 'white',
+    marginLeft: 8,
   },
   img_search: {
     width: 13,
@@ -192,7 +194,7 @@ const styles = StyleSheet.create({
   },
   v_action_block: {
     flexDirection: 'row',
-    margin: 20,
+    margin: 10,
   },
   img_user: {
     width: 24,
@@ -226,8 +228,7 @@ const styles = StyleSheet.create({
     height: 22,
   },
   background: {
-    flex: 0.8,
-    height: '100%',
+    flex: 2,
     width: '90%',
     borderRadius: 15,
     marginBottom: 15,
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
   },
   boder_background: {
     backgroundColor: 'white',
-    flex: 0.8,
+    flex: 0.9,
     height: '80%',
     width: '100%',
     marginTop: 30,
@@ -274,7 +275,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     position: 'absolute',
     backgroundColor: 'white',
-    marginTop: 280,
+    marginTop: 330,
     marginLeft: 300,
     alignItems: 'center',
     justifyContent: 'center',
@@ -290,7 +291,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     position: 'absolute',
     backgroundColor: 'white',
-    marginTop: 280,
+    marginTop: 330,
     marginLeft: 240,
     alignItems: 'center',
     justifyContent: 'center',
@@ -300,7 +301,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   boder_SSG: {
-    flex: 0.05,
+    flex: 0.1,
     backgroundColor: 'white',
   },
   txt_SSG: {
@@ -308,24 +309,55 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     borderTopWidth: 0.5,
-    marginLeft: 18,
-    marginRight: 18,
+    marginLeft: 22,
+    marginRight: 22,
   },
   boder_avatar: {
-    flex: 0.1,
+    flex: 0.3,
     backgroundColor: 'white',
     flexDirection: 'row',
-    marginBottom: 7,
     borderBottomWidth: 0.5,
-    marginLeft: 18,
-    marginRight: 18,
+    marginBottom: 5,
+    marginLeft: 22,
+    marginRight: 22,
+  },
+  heart_avatar: {
+    backgroundColor: 'white',
+    width: 78,
+    height: '100%',
+  },
+  heart_imgavatar: {
+    flex: 0.01,
+    width: 55,
+    height: 55,
+    borderRadius: 40,
+    position: 'absolute',
+    backgroundColor: 'white',
+    borderColor: 'blue',
+    borderWidth: 1,
+    alignItems: 'center',
     justifyContent: 'center',
   },
+  img_scrollView: {
+    flex: 0.01,
+    width: 50,
+    height: 50,
+    borderRadius: 40,
+    position: 'absolute',
+    backgroundColor: 'white',
+  },
+  txt_scrollView: {
+    fontSize: 10,
+    color: 'black',
+    marginTop: 55,
+    fontWeight: 'bold',
+    marginLeft: 5,
+  },
   boder_taskbar: {
-    flex: 0.04,
+    flex: 0.07,
     backgroundColor: 'white',
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: 15,
     borderTopWidth: 0.2,
   },
   heart_Taskbar: {
@@ -341,29 +373,6 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     backgroundColor: 'white',
-  },
-  heart_avatar: {
-    flex: 0.2,
-    backgroundColor: 'white',
-    width: 100,
-    height: '100%',
-    flexDirection: 'column',
-    marginHorizontal: 1,
-  },
-  img_scrollView: {
-    width: 55,
-    height: 55,
-    borderRadius: 40,
-    position: 'absolute',
-    backgroundColor: 'white',
-    marginBottom: 40,
-  },
-  txt_scrollView: {
-    fontSize: 10,
-    color: 'black',
-    marginTop: 50,
-    fontWeight: 'bold',
-    marginLeft: 5,
   },
 });
 
