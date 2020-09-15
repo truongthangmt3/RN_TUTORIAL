@@ -15,6 +15,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import img from './assets/imagesAsset';
 
 const App = () => {
   return (
@@ -22,22 +23,13 @@ const App = () => {
       <View style={styles.header_block}>
         <Text style={styles.dating}>Dating</Text>
         <View style={styles.v_setting}>
-          <Image
-            style={styles.img_setting}
-            source={require('./assets/settings.png')}
-          />
+          <Image style={styles.img_setting} source={img.ic_user} />
         </View>
       </View>
       <View style={styles.v_action_block}>
-        {_funcBlock(
-          require('./assets/ic_user.png'),
-          'Profile',
-          _navToProfile,
-          true,
-          require('./assets/ic_exclamation_mark.png')
-        )}
-        {_funcBlock(require('./assets/ic_user.png'), 'Like you', _navToLikeYou)}
-        {_funcBlock(require('./assets/ic_user.png'), 'Match', _navToMatch)}
+        {_funcBlock(img.ic_user, 'Profile', _navToProfile, true)}
+        {_funcBlock(img.ic_user, 'Like you', _navToLikeYou)}
+        {_funcBlock(img.ic_user, 'Match', _navToMatch)}
       </View>
     </SafeAreaView>
   );
@@ -55,7 +47,7 @@ _navToMatch = () => {
   alert('Match');
 };
 
-_funcBlock = (img, label, action, isWarning = false, img1) => {
+_funcBlock = (img, label, action, isWarning = false) => {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -64,7 +56,7 @@ _funcBlock = (img, label, action, isWarning = false, img1) => {
       <View style={styles.action_block}>
         <Image style={styles.img_user} source={img} />
         <Text style={styles.profile}>{label}</Text>
-        {isWarning ? <View style={styles.warning}><Image style={styles.img_mark} source={img1} /></View> : null}
+        {isWarning ? <View style={styles.warning}></View> : null}
       </View>
     </TouchableOpacity>
   );
@@ -125,10 +117,6 @@ const styles = StyleSheet.create({
     right: -5,
     top: -8,
     borderRadius: 10,
-  },
-  img_mark: {
-    height: 24,
-    width: 24,
   },
 });
 
