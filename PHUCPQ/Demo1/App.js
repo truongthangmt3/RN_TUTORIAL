@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,27 +17,38 @@ import {
   ImageBackground,
   ScrollView,
 } from 'react-native';
-const App: () => React$Node = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.block_search}>
-        <Image
-          source={require('./assets/ic_search.png')}
-          style={styles.img_search}
-        />
-        <Text style={styles.txt_search}>Search</Text>
-      </View>
-      <View style={styles.block_Datting}>
-        <Text style={styles.dating}>Dating</Text>
-        <View style={styles.v_setting}>
+import CustomButton from './src/Component/CustomButton';
+class App extends Component {
+  state = {
+    current: 0,
+    girl_imgs: [
+      'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/79293454_178967619969727_3230712943087714304_o.jpg?_nc_cat=110&_nc_sid=85a577&_nc_ohc=QWlGa2gJybcAX8Y0OMy&_nc_ht=scontent.fhan3-1.fna&oh=16a85ba4013de21751ca5cacb78fedea&oe=5F85D2A7',
+      'https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_27_180_32720619/80df5ec1f5811cdf4590.jpg',
+      'https://images.kienthuc.net.vn/zoom/800/uploaded/trucchinh2/2020_03_28/lo-anh-mat-kem-xinh-cua-hot-girl-trung-ran-can-mo-hinh-2.jpg'
+    ]
+  }
+  render() {
+    const { current, girl_imgs } = this.props
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.block_search}>
           <Image
-            style={styles.img_setting}
-            source={require('./assets/ic_settings.png')}
+            source={require('./assets/ic_search.png')}
+            style={styles.img_search}
           />
+          <Text style={styles.txt_search}>Search</Text>
         </View>
-      </View>
-      <View style={styles.v_action_block}>
-        {_funcBlock(
+        <View style={styles.block_Datting}>
+          <Text style={styles.dating}>Dating</Text>
+          <View style={styles.v_setting}>
+            <Image
+              style={styles.img_setting}
+              source={require('./assets/ic_settings.png')}
+            />
+          </View>
+        </View>
+        <View style={styles.v_action_block}>
+          {/* {_funcBlock(
           require('./assets/ic_user.png'),
           'Profile',
           _navToProfile,
@@ -49,56 +60,88 @@ const App: () => React$Node = () => {
           'Like you',
           _navToLikeYou,
         )}
-        {_funcBlock(require('./assets/ic_mesenger.png'), 'Matches', _navToMatch)}
-      </View>
-      <View style={styles.background}>
-        <View style={styles.boder_background}>
-          <ImageBackground
-            style={styles.img_backgruond}
-            source={require('./assets/ic_background.jpg')}>
-            <View style={styles.img_backgrounds}>
-              <Image
-                style={styles.txt_backgrounds}
-                source={require('./assets/ic_heart_64.png')}
-              />
-            </View>
-            <View style={styles.img_backgroundss}>
-              <Image
-                style={styles.txt_backgroundss}
-                source={require('./assets/ic_multiply.png')}
-              />
-            </View>
-          </ImageBackground>
+        {_funcBlock(require('./assets/ic_mesenger.png'), 'Matches', _navToMatch)} */}
+          <CustomButton
+            img={require('./assets/ic_user.png')}
+            label='Profile'
+            action={_navToProfile}
+            isWarning={true}
+            img1={require('./assets/ic_exclamation_mark.png')}
+          />
+          <CustomButton
+            img={require('./assets/ic_heart.png')}
+            label='Like you'
+            action={_navToLikeYou}
+          />
+          <CustomButton
+            img={require('./assets/ic_mesenger.png')}
+            label='Matches'
+            action={_navToMatch}
+          />
         </View>
-        <Text style={styles.txt_size}>Name, 21 </Text>
-        <Text style={styles.txt_sizes}>From Hanoi, Vietnam</Text>
-      </View>
-      <View style={styles.boder_SSG}>
-        <Text style={styles.txt_SSG}>Suggested Stories</Text>
-      </View>
-      <View style={styles.boder_avatar}>
-        <ScrollView horizontal={true}>
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-          {_scrollView(require('./assets/vk.jpg'), 'Quỳnh Như')}
-          {_scrollView(require('./assets/banthan.jpg'), 'Quang Phúc')}
-          {_scrollView(require('./assets/anhchoi.jpg'), 'My Love')}
-          {_scrollView(require('./assets/hinhanh.jpg'), 'Mark ZucK')}
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-        </ScrollView>
-      </View>
-      <View style={styles.boder_taskbar}>
-        {_Tasbar(require('./assets/ic_home.png'))}
-        {_Tasbar(require('./assets/ic_tv1.png'))}
-        {_Tasbar(require('./assets/ic_usergroups.png'))}
-        {_Tasbar(require('./assets/ic_hear2.png'))}
-        {_Tasbar(require('./assets/ic_bell.png'))}
-        {_Tasbar(require('./assets/ic_menu.png'))}
-      </View>
-    </SafeAreaView>
-  );
-};
+        <View style={styles.background}>
+          <View style={styles.boder_background}>
+            <ImageBackground
+              style={styles.img_backgruond}
+              source={{ uri: girl_imgs[current] }}>
+              <TouchableOpacity>
+                onPress={() => {
+                  let tmpCurrent = current;
+                  if (tmpCurrent < girl_imgs.length - 1) {
+                    tmpCurrent++;
+
+                  } else {
+                    tmpCurrent = 0;
+                  }
+                  this.setState({
+                    current: tmpCurrent
+                  })
+                }}
+                <View style={styles.img_backgroundss}>
+                  <Image
+                    style={styles.txt_backgroundss}
+                    source={require('./assets/ic_multiply.png')}
+                  />
+                </View>
+              </TouchableOpacity>
+              <View style={styles.img_backgrounds}>
+                <Image
+                  style={styles.txt_backgrounds}
+                  source={require('./assets/ic_heart_64.png')}
+                />
+              </View>
+            </ImageBackground>
+          </View>
+          <Text style={styles.txt_size}>Name, 21 </Text>
+          <Text style={styles.txt_sizes}>From Hanoi, Vietnam</Text>
+        </View>
+        <View style={styles.boder_SSG}>
+          <Text style={styles.txt_SSG}>Suggested Stories</Text>
+        </View>
+        <View style={styles.boder_avatar}>
+          <ScrollView horizontal={true}>
+            {_scrollView(require('./assets/plus1.png'), 'Add Story')}
+            {_scrollView(require('./assets/vk.jpg'), 'Quỳnh Như')}
+            {_scrollView(require('./assets/banthan.jpg'), 'Quang Phúc')}
+            {_scrollView(require('./assets/anhchoi.jpg'), 'My Love')}
+            {_scrollView(require('./assets/hinhanh.jpg'), 'Mark ZucK')}
+            {_scrollView(require('./assets/plus1.png'), 'Add Story')}
+            {_scrollView(require('./assets/plus1.png'), 'Add Story')}
+            {_scrollView(require('./assets/plus1.png'), 'Add Story')}
+          </ScrollView>
+        </View>
+        <View style={styles.boder_taskbar}>
+          {_Tasbar(require('./assets/ic_home.png'))}
+          {_Tasbar(require('./assets/ic_tv1.png'))}
+          {_Tasbar(require('./assets/ic_usergroups.png'))}
+          {_Tasbar(require('./assets/ic_hear2.png'))}
+          {_Tasbar(require('./assets/ic_bell.png'))}
+          {_Tasbar(require('./assets/ic_menu.png'))}
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
 
 _navToProfile = () => {
   alert('Profile');
