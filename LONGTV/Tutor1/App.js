@@ -7,8 +7,9 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import CustomBottom from "./src/components/CustomBottom.js";
 
-const App = () =>{
+const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header_block}>
@@ -21,30 +22,42 @@ const App = () =>{
         </View>
       </View>
       <View style={styles.v_action_block}>
-        {_funcBlock(
-          require('./assets/ic_action/ic_Profile.png'),
-          'Profile',
-          _navToProfile,
-          true,
-        )}
-        {_funcBlock(require('./assets/ic_action/ic_LikedYou.png'), 'Like you', _navToLikeYou)}
-        {_funcBlock(require('./assets/ic_action/ic_Matches.png'), 'Match', _navToMatch)}
+
+        <CustomBottom
+          img={require('./assets/ic_action/ic_Profile.png')}
+          label='Profile'
+          action={this._navToProfile}
+          isWarning={true}
+        />
+        <CustomBottom
+          img={require('./assets/ic_action/ic_LikedYou.png')}
+          label='Like You'
+          action={this._navToLikeYou}
+          isWarning={true}
+        />
+        <CustomBottom
+          img={require('./assets/ic_action/ic_Matches.png')}
+          label='Match'
+          action={this._navToMatch}
+          isWarning={true}
+        />
+
       </View>
       <View style={styles.profile}>
-        <View> 
+        <View>
           <Image style={styles.mainImage}
-          source={require('./assets/image/profile.jpg')}
-          resizeMode = 'cover'/>
+            source={require('./assets/image/profile.jpg')}
+            resizeMode='cover' />
         </View>
         <View style={styles.IC_ON_PROFILE}>
           <Image source={require('./assets/ic_image/icon_close.png')}
-          style={{marginRight : 10 }} />
+            style={{ marginRight: 10 }} />
           <Image source={require('./assets/ic_image/icon_heart-line.png')}
-          style={{marginRight : 5}}/>
+            style={{ marginRight: 5 }} />
         </View>
-        <View style={{margin: 20}}>
-          <Text style={{fontWeight: 'bold', fontSize: 25}}>Hoàng Thị Thuỳ Dương</Text>
-          <Text style={{fontSize: 15}}>From Hanoi,Vietnam</Text>
+        <View style={{ margin: 20 }}>
+          <Text style={{ fontWeight: 'bold', fontSize: 25 }}>Hoàng Thị Thuỳ Dương</Text>
+          <Text style={{ fontSize: 15 }}>From Hanoi,Vietnam</Text>
         </View>
       </View>
       <Text style={styles.suggestedStoriesText}>Suggested Stories</Text>
@@ -84,21 +97,6 @@ _navToLikeYou = () => {
 
 _navToMatch = () => {
   alert('Match');
-};
-
-_funcBlock = (img, label, action, isWarning = false) => {
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        action();
-      }}>
-      <View style={styles.action_block}>
-        <Image style={styles.img_user} source={img} />
-        <Text style={styles.profile}>{label}</Text>
-        {isWarning ? <View style={styles.warning}></View> : null}
-      </View>
-    </TouchableOpacity>
-  )
 };
 
 _addStory = (img) => {
@@ -187,11 +185,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA',
     shadowColor: 'black',
     shadowOffset: {
-      width : 0,
-      height : 0}
+      width: 0,
+      height: 0
+    }
   },
   mainImage: {
-   width: 380, height: 370, margin: 18
+    width: 380, height: 370, margin: 18
   },
   IC_ON_PROFILE: {
     flexDirection: 'row',
@@ -238,7 +237,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  taskBarBlock: {flex: 1, flexDirection: 'row'},
+  taskBarBlock: { flex: 1, flexDirection: 'row' },
   buttonsTaskBar: {
     justifyContent: 'center',
     alignItems: 'center',
