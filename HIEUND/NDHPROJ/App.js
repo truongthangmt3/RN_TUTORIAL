@@ -25,6 +25,7 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import HomeScreen from './screens/HomeScreen';
 
 class App extends Component {
   state = {
@@ -40,113 +41,114 @@ class App extends Component {
   render() {
     const {current, girl_imgs} = this.state;
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={styles.search}>
-          <Image
-            source={require('./assets/icon_search.png')}
-            style={styles.searchImage}
-          />
-          <Text style={styles.searchText}>Search</Text>
-        </View>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Dating</Text>
-          <View style={styles.iconSetting}>
-            <Image
-              style={styles.imageSetting}
-              source={require('./assets/icon_setting.png')}
-            />
-          </View>
-        </View>
-        <View style={styles.container_action_block}>
-          <CustomButtons
-            img={require('./assets/icon_user.png')}
-            title="Profile"
-            action={_navToProfile}
-            isWarning={true}
-          />
-          <CustomButtons
-            img={require('./assets/icon_heart.png')}
-            title="Liked you"
-            action={_navToLikedYou}
-          />
-          <CustomButtons
-            img={require('./assets/icon_message.png')}
-            title="Matches"
-            action={_navToMatches}
-          />
-        </View>
-        <View style={styles.profileContainer}>
-          <View>
-            <Image
-              style={styles.mainImage}
-              source={{uri: girl_imgs[current]}}
-              resizeMode="cover"
-            />
-          </View>
-          <View style={styles.reaction}>
-            <TouchableOpacity
-              onPress={() => {
-                let tmpCurrent = current;
-                if (tmpCurrent < girl_imgs.length - 1) {
-                  tmpCurrent++;
-                } else {
-                  tmpCurrent = 0;
-                }
-                this.setState({current: tmpCurrent});
-              }}>
-              <Image
-                source={require('./assets/icon_close.png')}
-                style={{marginRight: 10}}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                let tmpCurrent = current;
-                if (tmpCurrent < girl_imgs.length - 1) {
-                  tmpCurrent++;
-                } else {
-                  tmpCurrent = 0;
-                }
-                this.setState({current: tmpCurrent});
-              }}>
-              <Image source={require('./assets/icon_heart-line.png')} />
-            </TouchableOpacity>
-          </View>
-          <View style={{margin: 20}}>
-            <Text style={{fontWeight: 'bold', fontSize: 25}}>Hân,22</Text>
-            <Text style={{fontSize: 15}}>From Hanoi,Vietnam</Text>
-          </View>
-        </View>
-        <View>
-          <View>
-            <Text style={styles.suggestedStoriesText}>Suggested Stories</Text>
-          </View>
-          <View>
-            <ScrollView
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              style={{margin: 5}}>
-              <Stories
-                isAddStory={true}
-                img={require('./assets/icon_plus.png')}
-                name="Add Story"
-              />
-              <Stories img={require('./assets/elle.jpg')} name="Elle" />
-              <Stories img={require('./assets/scarlett.jpg')} name="Scarlett" />
-              <Stories img={require('./assets/olsen.jpg')} name="Olsen" />
-              <Stories img={require('./assets/lisa.jpg')} name="Lisa" />
-            </ScrollView>
-          </View>
-        </View>
-        <View style={styles.taskBarContainer}>
-          {_taskBarButtons(require('./assets/icon_home.png'))}
-          {_taskBarButtons(require('./assets/icon_tv.png'))}
-          {_taskBarButtons(require('./assets/icon_users.png'))}
-          {_taskBarButtons(require('./assets/icon_heart_taskbar.png'))}
-          {_taskBarButtons(require('./assets/icon_noti.png'))}
-          {_taskBarButtons(require('./assets/icon_bar.png'))}
-        </View>
-      </SafeAreaView>
+      <HomeScreen />
+      // <SafeAreaView style={styles.container}>
+      //   <View style={styles.search}>
+      //     <Image
+      //       source={require('./assets/icon_search.png')}
+      //       style={styles.searchImage}
+      //     />
+      //     <Text style={styles.searchText}>Search</Text>
+      //   </View>
+      //   <View style={styles.header}>
+      //     <Text style={styles.headerText}>Dating</Text>
+      //     <View style={styles.iconSetting}>
+      //       <Image
+      //         style={styles.imageSetting}
+      //         source={require('./assets/icon_setting.png')}
+      //       />
+      //     </View>
+      //   </View>
+      //   <View style={styles.container_action_block}>
+      //     <CustomButtons
+      //       img={require('./assets/icon_user.png')}
+      //       title="Profile"
+      //       action={_navToProfile}
+      //       isWarning={true}
+      //     />
+      //     <CustomButtons
+      //       img={require('./assets/icon_heart.png')}
+      //       title="Liked you"
+      //       action={_navToLikedYou}
+      //     />
+      //     <CustomButtons
+      //       img={require('./assets/icon_message.png')}
+      //       title="Matches"
+      //       action={_navToMatches}
+      //     />
+      //   </View>
+      //   <View style={styles.profileContainer}>
+      //     <View>
+      //       <Image
+      //         style={styles.mainImage}
+      //         source={{uri: girl_imgs[current]}}
+      //         resizeMode="cover"
+      //       />
+      //     </View>
+      //     <View style={styles.reaction}>
+      //       <TouchableOpacity
+      //         onPress={() => {
+      //           let tmpCurrent = current;
+      //           if (tmpCurrent < girl_imgs.length - 1) {
+      //             tmpCurrent++;
+      //           } else {
+      //             tmpCurrent = 0;
+      //           }
+      //           this.setState({current: tmpCurrent});
+      //         }}>
+      //         <Image
+      //           source={require('./assets/icon_close.png')}
+      //           style={{marginRight: 10}}
+      //         />
+      //       </TouchableOpacity>
+      //       <TouchableOpacity
+      //         onPress={() => {
+      //           let tmpCurrent = current;
+      //           if (tmpCurrent < girl_imgs.length - 1) {
+      //             tmpCurrent++;
+      //           } else {
+      //             tmpCurrent = 0;
+      //           }
+      //           this.setState({current: tmpCurrent});
+      //         }}>
+      //         <Image source={require('./assets/icon_heart-line.png')} />
+      //       </TouchableOpacity>
+      //     </View>
+      //     <View style={{margin: 20}}>
+      //       <Text style={{fontWeight: 'bold', fontSize: 25}}>Hân,22</Text>
+      //       <Text style={{fontSize: 15}}>From Hanoi,Vietnam</Text>
+      //     </View>
+      //   </View>
+      //   <View>
+      //     <View>
+      //       <Text style={styles.suggestedStoriesText}>Suggested Stories</Text>
+      //     </View>
+      //     <View>
+      //       <ScrollView
+      //         horizontal={true}
+      //         showsHorizontalScrollIndicator={false}
+      //         style={{margin: 5}}>
+      //         <Stories
+      //           isAddStory={true}
+      //           img={require('./assets/icon_plus.png')}
+      //           name="Add Story"
+      //         />
+      //         <Stories img={require('./assets/elle.jpg')} name="Elle" />
+      //         <Stories img={require('./assets/scarlett.jpg')} name="Scarlett" />
+      //         <Stories img={require('./assets/olsen.jpg')} name="Olsen" />
+      //         <Stories img={require('./assets/lisa.jpg')} name="Lisa" />
+      //       </ScrollView>
+      //     </View>
+      //   </View>
+      //   <View style={styles.taskBarContainer}>
+      //     {_taskBarButtons(require('./assets/icon_home.png'))}
+      //     {_taskBarButtons(require('./assets/icon_tv.png'))}
+      //     {_taskBarButtons(require('./assets/icon_users.png'))}
+      //     {_taskBarButtons(require('./assets/icon_heart_taskbar.png'))}
+      //     {_taskBarButtons(require('./assets/icon_noti.png'))}
+      //     {_taskBarButtons(require('./assets/icon_bar.png'))}
+      //   </View>
+      // </SafeAreaView>
     );
   }
 }
@@ -162,9 +164,6 @@ _navToMatches = () => {
 _stories = (img, name, isAddStory) => {
   return (
     <View style={styles.storiesContainer}>
-      {/* <View style={styles.stories}>
-        <Image source={img} style={styles.imageStories} />
-      </View> */}
       {isAddStory ? (
         <View>
           <Image source={img} style={styles.addStory} />

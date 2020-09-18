@@ -11,8 +11,6 @@ import {
 import styles from '../common/style/giaodien_style';
 import CustomButton from '../component/CustomButton';
 
-import user_data from '../data/user';
-
 export default class GiaoDien extends Component {
     state = {
         current: 0,
