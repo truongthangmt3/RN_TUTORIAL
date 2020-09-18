@@ -17,6 +17,8 @@ import {
 } from 'react-native';
 import img from './assets/imagesAsset';
 import CustomButton from './src/components/CustomButton'
+import HomeScreen from './src/screens/HomeScreen.js'
+import data from './mockData.json'
 
 // https://gamek.mediacdn.vn/thumb_w/690/2019/7/8/1-15625474669018688730.jpg
 
@@ -27,66 +29,105 @@ class App extends Component {
   state = {
     isWarning : true,
     current: 0,
+    single : true,
     girl_imgs: [
-        'https://vanhienblog.info/wp-content/uploads/2019/02/anh-gai-xinh-dep-hot-girl-3.jpg',
-       'https://gamek.mediacdn.vn/thumb_w/690/2019/7/8/1-15625474669018688730.jpg',
-       'https://thegioicacuocbongda.com/wp-content/uploads/2019/07/ngam-dan-gai-xinh-rmit-nong-bong-mat-9.jpg',
-       'https://media.doisongphapluat.com/684/2020/7/21/gai-xinh-tha-thinh-bang-nu-hon-ngot-ngao-nhieu-nam-sinh-hi-hung-cho-doi-va-cai-ket-cuoi-ra-nuoc-mat-dspl-1.jpg'
+      {
+        img_url : 'https://vanhienblog.info/wp-content/uploads/2019/02/anh-gai-xinh-dep-hot-girl-3.jpg',
+        name : 'Khả Ngân'
+      },     
+       {
+        img_url : 'https://gamek.mediacdn.vn/thumb_w/690/2019/7/8/1-15625474669018688730.jpg',
+        name : 'Khả Ngân'
+      },      {
+        img_url : 'https://vanhienblog.info/wp-content/uploads/2019/02/anh-gai-xinh-dep-hot-girl-3.jpg',
+        name : 'Khả Ngân'
+      },      
+      {
+        img_url : 'https://thegioicacuocbongda.com/wp-content/uploads/2019/07/ngam-dan-gai-xinh-rmit-nong-bong-mat-9.jpg',
+        name : 'Khả Ngân'
+      },     
+      {
+        img_url :  'https://media.doisongphapluat.com/684/2020/7/21/gai-xinh-tha-thinh-bang-nu-hon-ngot-ngao-nhieu-nam-sinh-hi-hung-cho-doi-va-cai-ket-cuoi-ra-nuoc-mat-dspl-1.jpg',
+        name : 'Khả Ngân'
+      }   
     ]
   }
 
   render() {
     const {current, girl_imgs, isWarning} = this.state
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header_block}>
-        <Text style={styles.dating}>Dating</Text>
-        <View style={styles.v_setting}>
-          <Image style={styles.img_setting} source={img.ic_user} />
-        </View>
-      </View>
-      <View style={styles.v_action_block}>
-          <CustomButton
-             img = {img.ic_user}
-             label = 'Profile'
-             action ={this._navToProfile}
-             isWarning = {isWarning}
-           />
-           <CustomButton
-           img = {img.ic_user}
-           label = 'Like you'
-           action ={_navToLikeYou}
-           isWarning = {false}
-         />
-         <CustomButton
-         img = {img.ic_user}
-         label = 'Match'
-         action ={_navToMatch}
-         isWarning = {false}
-       />
-      </View>
-      <Image
-        style={styles.avatar}
-        source={{uri:girl_imgs[current]}}
-      />
-      <TouchableOpacity
-        onPress={() => {
-          let tmpCurrent = current
-          if (tmpCurrent < girl_imgs.length - 1){
-              tmpCurrent ++;
-          }else{
-            tmpCurrent = 0;
-          }
+    <HomeScreen/>
+    // <SafeAreaView style={styles.container}>
+    //   <View style={styles.header_block}>
+    //     <Text style={styles.dating}>Dating</Text>
+    //     <View style={styles.v_setting}>
+    //       <Image style={styles.img_setting} source={img.ic_user} />
+    //     </View>
+    //   </View>
+    //   <View style={styles.v_action_block}>
+    //       <CustomButton
+    //          img = {img.ic_user}
+    //          label = 'Profile'
+    //          action ={this._navToProfile}
+    //          isWarning = {isWarning}
+    //        />
+    //        <CustomButton
+    //        img = {img.ic_user}
+    //        label = 'Like you'
+    //        action ={_navToLikeYou}
+    //        isWarning = {false}
+    //      />
+    //      <CustomButton
+    //      img = {img.ic_user}
+    //      label = 'Match'
+    //      action ={_navToMatch}
+    //      isWarning = {false}
+    //    />
+    //   </View>
+    //   <Image
+    //     style={styles.avatar}
+    //     source={{uri:girl_imgs[current].img_url}}
+    //   />
 
-          this.setState({
-            current : tmpCurrent
-          })
-        }}
-      >
-        <Text>Next</Text>
-      </TouchableOpacity>
+
+    //   <Text style={{
+    //     fontSize: 30
+    //   }}>
+    //   {girl_imgs[current].name}
+    //   </Text>
+    //   <TouchableOpacity
+    //     onPress={() => {
+    //       let tmpCurrent = current
+    //       if (tmpCurrent < girl_imgs.length - 1){
+    //           tmpCurrent ++;
+    //       }else{
+    //         tmpCurrent = 0;
+    //       }
+    //       this.setState({
+    //         current : tmpCurrent
+    //       })
+    //     }}
+    //   >
+    //     <Text>Next</Text>
+    //   </TouchableOpacity>
+
+
+    //   <TouchableOpacity
+    //   onPress={() => {
+    //      let tmpGirlUrl = girl_imgs
+    //      tmpGirlUrl[current].name = "Thắng"
+    //      this.setState({
+    //        ...this.state,
+    //       girl_imgs : tmpGirlUrl
+    //     })
+
+    //   }}
+    // >
+    //   <Text>Sửa tên</Text>
+    // </TouchableOpacity>
+
     
-      </SafeAreaView>
+    //   </SafeAreaView>
   );
   }
 
