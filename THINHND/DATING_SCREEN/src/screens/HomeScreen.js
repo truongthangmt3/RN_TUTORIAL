@@ -11,7 +11,8 @@ import {
     Dimensions
 } from 'react-native';
 import mockData from '../../mockData.json'
-
+import axios from 'axios'
+import Loading from '../../Loading.tsx'
 export default class HomeScreen extends Component {
     state = {
         isLoading: true,
@@ -19,28 +20,73 @@ export default class HomeScreen extends Component {
         data: {},
 
     }
-    componentDidMount() {
-        setTimeout(() => {
+    componentDidMount = async () => {
+        // gọi api và chờ dữ liệu trả về
+
+        // //cách co dien
+        // fetch('http://3.0.209.176/api/GetHome')
+        //     .then((response) => response.json())
+        //     .then(res => {
+        //         // this.setState({
+        //         //     data: res.data
+        //         // })
+        //          alert(JSON.stringify(res))
+        //     })
+
+        // cach hien dai tu es6 dùng async await
+
+
+        //   alert(JSON.stringify(jsonResponse)) 
+
+        try {
+            // const response = await fetch('http://3.0.209.176/api/GetHome');
+            // const jsonResponse = await response.json();
+            const response = await axios.get('http://3.0.209.176/api/GetHome');
+            const jsonResponse = await response.data;
+            this.setState({
+                isLoading: true,
+                isError: false,
+                data: jsonResponse.data
+            })
+        } catch (error) {
             this.setState({
                 isLoading: false,
-                isError: false,
-                data: mockData.homeData.data
+                isError: true,
+                data: {}
             })
-        }, 1000)
+        }
+
+        //Tùy vào dữ liệu trả về mà set err hay là data
+
+
+
+        // setTimeout(() => {
+        //     this.setState({
+        //         isLoading: false,
+        //         isError: false,
+        //         data: mockData.homeData.data
+        //     })
+        // }, 1000)
     }
     render() {
         const { data, isLoading, isError } = this.state
         if (isLoading) {
             return (
-                <View style={styles.container}>
-                    <ActivityIndicator
-                        color='red' />
-                </View>
+                <Loading />
+                // <View style={styles.container}>
+                //     <ActivityIndicator
+                //         color='red' />
+                // </View>
             )
         }
         if (isError) {
             return (
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: 'red'
+                }}>
                     <Text>Lỗi</Text>
                 </View>
             )
@@ -89,8 +135,22 @@ export default class HomeScreen extends Component {
                             )
                         }}
                     />
-                    <Text style={styles.txt_list}>Danh mục sản phẩm cẩn mua</Text>
-
+                    <View >
+                        <Text style={styles.txt_list}>Danh mục sản phẩm cẩn mua</Text>
+                    </View>
+                    {/* <FlatList
+                        contentContainerStyle={{ alignSelf: 'flex-start' }}
+                        numColumns={this.state.data.listpost.length / 4}
+                        style={styles.list_post}
+                        data={this.state.data.listpost}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <FlatListItem2
+                                    item={item} index={index} />
+                                // <Text>{item.namekey}</Text>
+                            )
+                        }}
+                    /> */}
                 </View>
                 {/* <FlatList
                     style={styles.list_post}
@@ -109,27 +169,16 @@ export default class HomeScreen extends Component {
 class FlatListItem extends Component {
     render() {
         return (
-            <View style={{
-                flexDirection: 'row',
-
-            }}>
-                <View style={{
-                    marginVertical: 10,
-                    marginHorizontal: 10,
-                    backgroundColor: 'white',
-                    borderColor: '#8F929E',
-                    borderWidth: 1,
-                    borderRadius: 10,
-                }}>
-                    <Text
-                        style={{ marginVertical: 10, marginHorizontal: 10 }}
-                    >#{this.props.item.namekey}</Text>
+            <View style={{ flexDirection: 'row' }}>
+                <View style={styles.v_item_search}>
+                    <Text style={{ marginVertical: 10, marginHorizontal: 10 }}>
+                        #{this.props.item.namekey}</Text>
                 </View>
             </View>
         )
     }
-
 }
+
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
@@ -211,6 +260,13 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: '#141414',
         fontWeight: '500'
-
+    },
+    v_item_search: {
+        marginVertical: 10,
+        marginHorizontal: 10,
+        backgroundColor: 'white',
+        borderColor: '#8F929E',
+        borderWidth: 1,
+        borderRadius: 10,
     }
 })
