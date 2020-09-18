@@ -8,15 +8,36 @@ import {
     ScrollView
 } from 'react-native';
 
-import styles from '../common/style/giaodien_style.js'
-import user_data from '../data/user'
+import styles from '../common/style/giaodien_style';
+import CustomButton from '../component/CustomButton';
+
+import user_data from '../data/user';
 
 export default class GiaoDien extends Component {
-
     state = {
-        name: 'giaodien'
+        current: 0,
+        user_image: [
+            require('../assets/img/image/Annie.jpg'),
+            require('../assets/img/image/Hoa.jpg'),
+            require('../assets/img/image/Hoai.jpg'),
+            require('../assets/img/image/Nhien.jpg'),
+            require('../assets/img/image/Huyen.jpg'),
+            require('../assets/img/image/Huong.jpg'),
+            require('../assets/img/image/Phuong.jpg'),
+            require('../assets/img/image/Trongveostudio.jpg')
+        ],
+        user_name: [
+            'Annie', 'Hoa', 'Hoai', 'Nhien', 'Huyen', 'Huong', 'Phuong', 'Trongveostudio',
+        ],
+        user_age: [
+            '22', '23', '24', '25', '26', '27', '28', '29'
+        ],
+        user_adds: [
+            'Ho Chi Minh', 'Hai Duong', 'Nghe An', 'Gia Lai', 'Thanh Hoa', 'Ha Noi', 'Hai Duong', 'Da Nang'
+        ]
     }
     render() {
+        const { current, user_image, user_name, user_adds, user_data, user_age } = this.state
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.header_block}>
@@ -31,51 +52,62 @@ export default class GiaoDien extends Component {
                     </View>
                 </View>
                 <View style={styles.v_action_block}>
-                    {_funcBlock(
-                        require('../assets/img/ic_action/ic_Profile.png'),
-                        'Profile',
-                        _navToProfile,
-                        true,
-                    )}
-                    {_funcBlock(
-                        require('../assets/img/ic_action/ic_LikedYou.png'),
-                        'Liked You',
-                        _navToLikedYou,
-                        false
-                    )}
-                    {_funcBlock(
-                        require('../assets/img/ic_action/ic_Matches.png'),
-                        'Matches',
-                        _navToMatches,
-                        false
-                    )}
+                    <CustomButton img={require('../assets/img/ic_action/ic_Profile.png')}
+                        label='Profile'
+                        action={_navToProfile}
+                        isWarning={true}
+                    />
+                    <CustomButton img={require('../assets/img/ic_action/ic_LikedYou.png')}
+                        label='Liked You'
+                        action={_navToLikedYou}
+                        isWarning={false}
+                    />
+                    <CustomButton img={require('../assets/img/ic_action/ic_Matches.png')}
+                        label='Matches'
+                        action={_navToMatches}
+                        isWarning={false}
+                    />
                 </View>
                 <View style={styles.avatar_view}>
                     <View style={styles.v_avatar}>
                         <Image style={styles.avatar}
-                            source={require('../assets/img/image/Nhien.jpg')}
+                            source={user_image[current]}
                         />
                         <View style={styles.v_ava_button}>
-                            {_funcAvaButton(
-                                require('../assets/img/ic_cancel.png'),
-                                () =>
-                                    this.setState({
-                                        name: "Mot em xinh tuoi khac"
-                                    })
+                            <TouchableOpacity onPress={() => {
+                                let tmpCurrent = current
+                                if (tmpCurrent < user_image.length - 1) {
+                                    tmpCurrent++;
+                                } else {
+                                    tmpCurrent = 0;
+                                }
+                                this.setState({
+                                    current: tmpCurrent
+                                })
+                            }}>
+                                {_funcAvaButton(
+                                    require('../assets/img/ic_cancel.png'),
+                                )}
+                            </TouchableOpacity>
 
-                            )}
                             {_funcAvaButton(
                                 require('../assets/img/ic_liked.png'),
                                 _pressLiked
                             )}
                         </View>
+                        {/* <Text style={styles.avatar_name}>
+                            {user_name[current]}, {user_age[current]}
+                        </Text>
+                        <Text style={styles.avatar_adds}>
+                            {user_adds[current]}
+                        </Text> */}
                     </View>
                     <View style={styles.v_ava_infor}>
                         <Text style={styles.avatar_name}>
-                            {this.state.name}
+                            {user_name[current]}, {user_age[current]}
                         </Text>
                         <Text style={styles.avatar_adds}>
-                            Hai Duong
+                            {user_adds[current]}
                         </Text>
                     </View>
                 </View>
@@ -167,21 +199,7 @@ export default class GiaoDien extends Component {
             </SafeAreaView>
         );
     }
-
-
 }
-
-_navToProfile = () => {
-    alert('Profile');
-};
-
-_navToLikedYou = () => {
-    alert('Liked You');
-};
-
-_navToMatches = () => {
-    alert('Matches');
-};
 
 _funcBlock = (
     img,
@@ -210,22 +228,26 @@ _funcBlock = (
     );
 };
 
+_navToProfile = () => {
+    alert('Profile');
+};
+
+_navToLikedYou = () => {
+    alert('Liked You');
+};
+
+_navToMatches = () => {
+    alert('Matches');
+};
+
 _funcAvaButton = (
     img,
-    ab_action,
 ) => {
     return (
-        <TouchableOpacity onPress={() => {
-            ab_action();
-        }}>
-            {/* <View style={styles.v_ava_button}> */}
-            <Image style={styles.ava_button}
-                source={img} />
-            {/* </View> */}
-        </TouchableOpacity>
+        <Image style={styles.ava_button}
+            source={img} />
     )
 }
-
 
 _pressLiked = () => {
     alert('Next');
@@ -234,13 +256,8 @@ _pressLiked = () => {
 _funcStory = (
     img,
     name,
-    //actionStory
 ) => {
     return (
-        // <TouchableOpacity
-        //     onPress={() => {
-        //         actionStory();
-        //     }}>
         <View style={styles.story}>
             <Image style={styles.story_image}
                 source={img} />
@@ -248,7 +265,6 @@ _funcStory = (
                 {name}
             </Text>
         </View>
-        //</TouchableOpacity>
     );
 };
 
@@ -289,11 +305,11 @@ _pressGroup = () => {
     alert('Group');
 };
 _pressLike = () => {
-    alert('Like');
+    alert('Home');
 };
 _pressNoti = () => {
-    alert('Noti');
+    alert('Watch');
 };
 _pressMenu = () => {
-    alert('Menu');
-}
+    alert('Group');
+};
