@@ -8,8 +8,10 @@ import {
     FlatList,
     Image,
     TouchableOpacity
-} from 'react-native'
-import mockData from '../../mockData.json'
+} from 'react-native';
+import mockData from '../../mockData.json';
+import axios from 'axios';
+import Loading from '../components/Loading';
 
 
 
@@ -17,34 +19,94 @@ export default class HomeScreen extends Component {
     state = {
         isLoading: true,
         isError: false,
+        // data: mockData.homeData.data,
         data: {},
     }
-    componentDidMount() {
+    componentDidMount = async () => {
 
-        setTimeout(() => {
+        //lấy api  và chờ dữ liệu trả về  
+        //cách cổ điển
+        // fetch('http://3.0.209.176/api/GetHome')
+        //     .then((response) => response.json())
+        //     .then(res => {
+        //         alert(JSON.stringify(res))
+        //     })
+
+
+        //cách hiện đại dùng async await(thay  doi ham thành async mới dung dk )
+        //khi nào hàm trả về cái j thì dùng promise hoặc .then
+
+
+
+        // try {
+        //     const response = await fetch('http://3.0.209.176/api/GetHome');
+        //     const jsonResponse = await response.json();
+        //     this.setState({
+        //         isLoading: false,
+        //         isError: false,
+        //         data: jsonResponse.data
+        //     })
+        // } catch (error) {
+
+        //     this.setState({
+        //         isLoading: false,
+        //         isError: true,
+        //         data: {},
+        //     })
+
+        // }
+
+
+        //Dung Aixos
+        try {
+            const response = await axios.get('http://3.0.209.176/api/GetHome');
+            const jsonResponse = response.data
             this.setState({
                 isLoading: false,
                 isError: false,
-                data: mockData.homeData.data,
+                data: jsonResponse.data
             })
-        }, 100)
+        } catch (error) {
+            alert(JSON.stringify(error))
+            this.setState({
+                isLoading: true,
+                isError: true,
+                data: {},
+            })
+
+        }
+
+
+
+
+
+        // setTimeout(() => {
+        //     this.setState({
+        //         isLoading: false,
+        //         isError: false,
+        //         data: mockData.homeData.data,
+        //     })
+        // }, 100)
 
     }
 
 
     render() {
         const { isLoading, isError, data } = this.state
+
+
         if (isLoading) {
             return (
-                <View style={styles.container} >
-                    {<ActivityIndicator color='pink' />}
-                </View>
+                // <View style={styles.isLoad} >
+                //     {<ActivityIndicator color='pink' />}
+                // </View>
+                <Loading />
             );
         }
 
         if (isError) {
             return (
-                <View style={styles.container}>
+                <View style={styles.isLoad}>
                     <Text>da co loi</Text>
                 </View>
             );
@@ -76,7 +138,6 @@ export default class HomeScreen extends Component {
                                 <RenDerItem item={item} index={index} />
                             );
                         }}
-
                     />
                 </View>
 
@@ -141,6 +202,12 @@ class RenDerItem extends Component {
 }
 
 const styles = StyleSheet.create({
+
+    isLoad: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     container: {
         flex: 1,
         backgroundColor: '#D3D3D3',
