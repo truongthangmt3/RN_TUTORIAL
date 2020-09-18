@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -19,24 +19,86 @@ import {
   Dimensions
 } from 'react-native';
 
-const App = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header_block}>
-        <Text style={styles.text_header}>Dating</Text>
-        <View style={styles.v_setting}>
-          <Image
-            source={require('./assets/images/settings.png')}
-            style={styles.img_setting} />
+import CustomButton from './src/components/CustomButton'
+
+class App extends Component {
+
+  state = {
+    current: 0,
+    user: [
+      {
+        name: 'Hương',
+        img_url: 'https://tiasang.com.vn/Portals/0/14-astronomersd.jpg'
+      },
+      {
+        name: 'Hoa',
+        img_url: 'https://tranhvietad.com/wp-content/uploads/2020/02/Tranh-dan-tuong-truu-tuong-phong-canh-VIETAD-1267.jpg'
+      },
+      {
+        name: 'Quỳnh',
+        img_url: 'https://tiasang.com.vn/Portals/0/14-astronomersd.jpg'
+      },
+      {
+        name: 'Dương',
+        img_url: 'https://tiasang.com.vn/Portals/0/14-astronomersd.jpg'
+      },
+
+    ],
+    girl_imgs: [
+      'https://tranhvietad.com/wp-content/uploads/2020/02/Tranh-dan-tuong-truu-tuong-phong-canh-VIETAD-1267.jpg',
+      'https://vcdn-vnexpress.vnecdn.net/2020/06/16/VNE-36-8552-1592283257.jpg',
+      'https://i.khoahoc.tv/photos/image/2009/11/04/milkyway.jpg',
+      'https://tiasang.com.vn/Portals/0/14-astronomersd.jpg',
+    ],
+    name: [
+      'Quỳnh',
+      'Hoa',
+      'Hương',
+      'Lan Anh'
+    ],
+    isWarning: true,
+
+  }
+  render() {
+    const { current, user, isWarning, name } = this.state
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.header_block}>
+          <Text style={styles.text_header}>Dating</Text>
+          <View style={styles.v_setting}>
+            <Image
+              source={require('./assets/images/settings.png')}
+              style={styles.img_setting} />
+          </View>
         </View>
-      </View>
-      <View style={styles.v_action_block}>
-        {_funcBlock(
+        <View style={styles.v_action_block}>
+          <CustomButton
+            img={require('./assets/images/user.png')}
+            label="Profile"
+            action={this._navToProfile}
+            isWarning={isWarning}
+          />
+
+          <CustomButton
+            img={require('./assets/images/heart.png')}
+            label="Liked you"
+            action={_navToLikeYou}
+
+          />
+
+          <CustomButton
+            img={require('./assets/images/message.png')}
+            label="Macthes"
+            action={_navToMatch}
+
+          />
+
+          {/* {_funcBlock(
           require('./assets/images/user.png'),
           'Proflie',
           _navToProfile,
           true,
-        )}
+        )} 
         {_funcBlock(
           require('./assets/images/heart.png'),
           'Liked you',
@@ -47,129 +109,118 @@ const App = () => {
           'Matches',
           _navToProfile,
 
-        )}
-      </View>
-      <View style={styles.v_image}>
-        <Image
-          resizeMode='cover'
-          source={require('./assets/images/girl.jpg')}
-          style={styles.img_avatar}
-        ></Image>
-        <View style={styles.v_2circle}>
-          {_funcCircle(
-            require('./assets/images/circle_heart.png')
-          )}
-          {_funcCircle(
-            require('./assets/images/delete.png')
-          )}
+        )} */}
         </View>
-        <Text style={styles.txt_name}>Quỳnh, 20</Text>
-        <Text style={styles.txt_address}>From HaNoi, Vietnam</Text>
-      </View>
-      <View style={styles.line} />
-      <Text style={styles.txt_sugs}>Suggested Stories</Text>
-      <View
-        style={styles.v_container}>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}>
-          {_funcStory(
-            require('./assets/images/stories.png'),
-            "Add Story"
-
-          )}
-          {_funcStory(
-            require('./assets/images/girl.jpg'),
-            "Quỳnh"
-
-          )}
-          {_funcStory(
-            require('./assets/images/girl.jpg'),
-            "Quỳnh"
-
-          )}
-          {_funcStory(
-            require('./assets/images/girl.jpg'),
-            "Quỳnh"
-
-          )}
-          {_funcStory(
-            require('./assets/images/girl.jpg'),
-            "Quỳnh"
-
-          )}
-          {_funcStory(
-            require('./assets/images/girl.jpg'),
-            "Quỳnh"
-
-          )}
-          {_funcStory(
-            require('./assets/images/girl.jpg'),
-            "Quỳnh"
-
-          )}
-          {_funcStory(
-            require('./assets/images/girl.jpg'),
-            "Quỳnh"
-
-          )}
-        </ScrollView>
-      </View>
-      <View style={styles.line} />
-      <View style={styles.line2} />
-      <View style={{ flexDirection: 'row', marginLeft: 20 }}>
-        {_funTab(
-          require('./assets/images/home.png')
-        )}
-        {_funTab(
-          require('./assets/images/video.png')
-        )}
-        {_funTab(
-          require('./assets/images/people.png')
-        )}
-        {_funTab(
-          require('./assets/images/black_heart.png')
-        )}
-        {_funTab(
-          require('./assets/images/bell.png')
-        )}
-        {_funTab(
-          require('./assets/images/menu.png')
-        )}
-
-      </View>
-    </SafeAreaView >
-  )
-}
-_funTab = (img) => {
-  return (
-    <Image
-      resizeMode='contain'
-      style={{ width: 25, height: 25, marginTop: 10, marginRight: 45 }}
-      source={img}>
-
-    </Image>
-  )
-}
-_funcStory = (img, label) => {
-  return (
-    <TouchableOpacity>
-      <View style={styles.v_story}>
-        <View style={styles.v_story2
-        }>
+        <View style={styles.v_image}>
           <Image
-
-            source={img}
-            style={styles.img_story}>
-          </Image>
+            resizeMode='cover'
+            source={{ uri: user[current].img_url }}
+            style={styles.img_avatar}
+          />
+          <View style={styles.v_2circle}>
+            {_funcCircle(
+              require('./assets/images/circle_heart.png')
+            )}
+            <TouchableOpacity
+              onPress={() => {
+                let tmpCurrent = current
+                if (tmpCurrent < user.length - 1) {
+                  tmpCurrent++;
+                } else {
+                  tmpCurrent = 0
+                }
+                this.setState({ current: tmpCurrent })
+              }}>
+              {_funcCircle(
+                require('./assets/images/delete.png')
+              )}
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.txt_name}>{user[current].name}, 20</Text>
+          <Text style={styles.txt_address}>From HaNoi, Vietnam</Text>
         </View>
-        <Text style={styles.txt_story}>{label}</Text>
-      </View>
-    </TouchableOpacity>
-  )
-};
-_navToProfile = () => {
-  alert('Profile');
+        <View style={styles.line} />
+        <Text style={styles.txt_sugs}>Suggested Stories</Text>
+        <View
+          style={styles.v_container}>
+          <ScrollView
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}>
+            {_funcStory(
+              require('./assets/images/stories.png'),
+              "Add Story"
+
+            )}
+            {_funcStory(
+              require('./assets/images/girl.jpg'),
+              "Quỳnh"
+
+            )}
+            {_funcStory(
+              require('./assets/images/girl.jpg'),
+              "Quỳnh"
+
+            )}
+            {_funcStory(
+              require('./assets/images/girl.jpg'),
+              "Quỳnh"
+
+            )}
+            {_funcStory(
+              require('./assets/images/girl.jpg'),
+              "Quỳnh"
+
+            )}
+            {_funcStory(
+              require('./assets/images/girl.jpg'),
+              "Quỳnh"
+
+            )}
+            {_funcStory(
+              require('./assets/images/girl.jpg'),
+              "Quỳnh"
+
+            )}
+            {_funcStory(
+              require('./assets/images/girl.jpg'),
+              "Quỳnh"
+
+            )}
+          </ScrollView>
+        </View>
+        <View style={styles.line} />
+        <View style={styles.line2} />
+        <View style={{ flexDirection: 'row', marginLeft: 20 }}>
+          {_funTab(
+            require('./assets/images/home.png')
+          )}
+          {_funTab(
+            require('./assets/images/video.png')
+          )}
+          {_funTab(
+            require('./assets/images/people.png')
+          )}
+          {_funTab(
+            require('./assets/images/black_heart.png')
+          )}
+          {_funTab(
+            require('./assets/images/bell.png')
+          )}
+          {_funTab(
+            require('./assets/images/menu.png')
+          )}
+
+        </View>
+      </SafeAreaView >
+    );
+  }
+
+  _navToProfile = () => {
+    alert('Profile');
+    this.setState({
+      isWarning: false
+    })
+  };
 };
 
 _navToLikeYou = () => {
@@ -179,6 +230,7 @@ _navToLikeYou = () => {
 _navToMatch = () => {
   alert('Match');
 };
+
 _funcBlock = (img, label, action, isWarning = false) => {
   return (
     <TouchableOpacity
@@ -204,6 +256,35 @@ _funcCircle = (img) => {
       style={styles.img_circle} />
   )
 }
+_funTab = (img) => {
+  return (
+    <Image
+      resizeMode='contain'
+      style={{ width: 25, height: 25, marginTop: 10, marginRight: 45 }}
+      source={img}>
+
+    </Image>
+  )
+};
+
+_funcStory = (img, label) => {
+  return (
+    <TouchableOpacity>
+      <View style={styles.v_story}>
+        <View style={styles.v_story2
+        }>
+          <Image
+
+            source={img}
+            style={styles.img_story}>
+          </Image>
+        </View>
+        <Text style={styles.txt_story}>{label}</Text>
+      </View>
+    </TouchableOpacity>
+  )
+};
+
 const { height, width } = Dimensions.get('window');
 const imgWidth = width - 30;
 const styles = StyleSheet.create({
