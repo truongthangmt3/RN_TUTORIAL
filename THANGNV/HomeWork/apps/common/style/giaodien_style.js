@@ -89,10 +89,9 @@ const giaodien_style = StyleSheet.create({
         elevation: 5,
     },
     v_avatar: {
-        flex: 6,
+        flex: 2,
         marginTop: 50,
-        marginBottom: 50,
-        alignItems: 'center',
+        marginBottom: 30,
     },
     avatar: {
         resizeMode: 'cover',
@@ -100,10 +99,8 @@ const giaodien_style = StyleSheet.create({
         height: '100%',
         position: 'relative',
         marginBottom: -35,
-        //zIndex: 0,
     },
     v_ava_button: {
-        //zIndex: 1,
         flexDirection: 'row',
         alignSelf: 'flex-end',
         shadowColor: '#000',
@@ -123,14 +120,20 @@ const giaodien_style = StyleSheet.create({
     },
     v_ava_infor: {
         marginLeft: 20,
-        marginBottom: 30,
+        marginRight: 20,
+        marginBottom: 20,
+        //backgroundColor: 'red'
     },
     avatar_name: {
         fontWeight: 'bold',
-        fontSize: 30
+        fontSize: 30,
+        //marginLeft: 20,
+        position: 'relative',
     },
     avatar_adds: {
-        fontSize: 24
+        fontSize: 24,
+        //marginLeft: 20,
+        position: 'relative',
     },
     v_stories: {
         flexDirection: 'column',

@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,89 +17,118 @@ import {
   ImageBackground,
   ScrollView,
 } from 'react-native';
-const App: () => React$Node = () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.block_search}>
-        <Image
-          source={require('./assets/ic_search.png')}
-          style={styles.img_search}
-        />
-        <Text style={styles.txt_search}>Search</Text>
-      </View>
-      <View style={styles.block_Datting}>
-        <Text style={styles.dating}>Dating</Text>
-        <View style={styles.v_setting}>
+import CustomButton from './src/Component/CustomButton';
+import imagesAsset from './assets/imagesAsset'
+class App extends Component {
+  state = {
+    current: 0,
+    girl_imgs: [
+      'https://scontent.fhan3-1.fna.fbcdn.net/v/t1.0-9/79293454_178967619969727_3230712943087714304_o.jpg?_nc_cat=110&_nc_sid=85a577&_nc_ohc=QWlGa2gJybcAX8Y0OMy&_nc_ht=scontent.fhan3-1.fna&oh=16a85ba4013de21751ca5cacb78fedea&oe=5F85D2A7',
+      'https://photo-1-baomoi.zadn.vn/w1000_r1/2019_10_27_180_32720619/80df5ec1f5811cdf4590.jpg',
+      'https://1.bp.blogspot.com/-4TgBUPlEtnI/XK7tFFsiuSI/AAAAAAAABhQ/yws_XM0EmkMbrMQkoYnlJjZP-37_q9olQCLcBGAs/s1600/EmXinh2k__anh-girl-xinh%2B%25281%2529.jpg'
+    ],
+  };
+  render() {
+    const { current, girl_imgs } = this.state;
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.block_search}>
           <Image
-            style={styles.img_setting}
-            source={require('./assets/ic_settings.png')}
+            source={imagesAsset.ic_search}
+            style={styles.img_search}
+          />
+          <Text style={styles.txt_search}>Search</Text>
+        </View>
+        <View style={styles.block_Datting}>
+          <Text style={styles.dating}>Dating</Text>
+          <View style={styles.v_setting}>
+            <Image
+              style={styles.img_setting}
+              source={imagesAsset.ic_setting}
+            />
+          </View>
+        </View>
+        <View style={styles.v_action_block}>
+          <CustomButton
+            img={imagesAsset.ic_user}
+            label='Profile'
+            action={_navToProfile}
+            isWarning={true}
+            img1={imagesAsset.ic_exclamation_mark}
+          />
+          <CustomButton
+            img={imagesAsset.ic_heart}
+            label='Like you'
+            action={_navToLikeYou}
+          />
+          <CustomButton
+            img={imagesAsset.ic_message}
+            label='Matches'
+            action={_navToMatch}
           />
         </View>
-      </View>
-      <View style={styles.v_action_block}>
-        {_funcBlock(
-          require('./assets/ic_user.png'),
-          'Profile',
-          _navToProfile,
-          true,
-          require('./assets/ic_exclamation_mark.png'),
-        )}
-        {_funcBlock(
-          require('./assets/ic_heart.png'),
-          'Like you',
-          _navToLikeYou,
-        )}
-        {_funcBlock(require('./assets/ic_mesenger.png'), 'Matches', _navToMatch)}
-      </View>
-      <View style={styles.background}>
-        <View style={styles.boder_background}>
-          <ImageBackground
-            style={styles.img_backgruond}
-            source={require('./assets/ic_background.jpg')}>
-            <View style={styles.img_backgrounds}>
-              <Image
-                style={styles.txt_backgrounds}
-                source={require('./assets/ic_heart_64.png')}
-              />
-            </View>
-            <View style={styles.img_backgroundss}>
-              <Image
-                style={styles.txt_backgroundss}
-                source={require('./assets/ic_multiply.png')}
-              />
-            </View>
-          </ImageBackground>
+        <View style={styles.background}>
+          <View style={styles.boder_background}>
+            <ImageBackground
+              style={styles.img_backgruond}
+              source={{ uri: girl_imgs[current] }}>
+              <View style={styles.img_backgroundss}>
+                <Image
+                  style={styles.txt_backgroundss}
+                  source={imagesAsset.ic_multiply}
+                />
+              </View>
+              <View style={styles.img_backgrounds}>
+                <TouchableOpacity
+                  onPress={() => {
+                    let tmpCurrent = current;
+                    if (tmpCurrent < girl_imgs.length - 1) {
+                      tmpCurrent++;
+                    } else {
+                      tmpCurrent = 0;
+                    }
+                    this.setState({
+                      current: tmpCurrent,
+                    });
+                  }}>
+                  <Image
+                    style={styles.txt_backgrounds}
+                    source={imagesAsset.ic_heart_64}
+                  />
+                </TouchableOpacity>
+              </View>
+            </ImageBackground>
+          </View>
+          <Text style={styles.txt_size}>Name, 21 </Text>
+          <Text style={styles.txt_sizes}>From Hanoi, Vietnam</Text>
         </View>
-        <Text style={styles.txt_size}>Name, 21 </Text>
-        <Text style={styles.txt_sizes}>From Hanoi, Vietnam</Text>
-      </View>
-      <View style={styles.boder_SSG}>
-        <Text style={styles.txt_SSG}>Suggested Stories</Text>
-      </View>
-      <View style={styles.boder_avatar}>
-        <ScrollView horizontal>
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-          {_scrollView(require('./assets/vk.jpg'), 'Quỳnh Như')}
-          {_scrollView(require('./assets/banthan.jpg'), 'Quang Phúc')}
-          {_scrollView(require('./assets/anhchoi.jpg'), 'My Love')}
-          {_scrollView(require('./assets/hinhanh.jpg'), 'Mark ZucK')}
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-          {_scrollView(require('./assets/plus1.png'), 'Add Story')}
-
-        </ScrollView>
-      </View>
-      <View style={styles.boder_taskbar}>
-        {_Tasbar(require('./assets/ic_home.png'))}
-        {_Tasbar(require('./assets/ic_tv1.png'))}
-        {_Tasbar(require('./assets/ic_usergroups.png'))}
-        {_Tasbar(require('./assets/ic_hear2.png'))}
-        {_Tasbar(require('./assets/ic_bell.png'))}
-        {_Tasbar(require('./assets/ic_menu.png'))}
-      </View>
-    </SafeAreaView>
-  );
-};
+        <View style={styles.boder_SSG}>
+          <Text style={styles.txt_SSG}>Suggested Stories</Text>
+        </View>
+        <View style={styles.boder_avatar}>
+          <ScrollView horizontal={true}>
+            {_scrollView(imagesAsset.ic_plus1, 'Add Story')}
+            {_scrollView(imagesAsset.img_vk, 'Quỳnh Như')}
+            {_scrollView(imagesAsset.img_banthan, 'Quang Phúc')}
+            {_scrollView(imagesAsset.img_anhchoi, 'My Love')}
+            {_scrollView(imagesAsset.img_hinhanh, 'Mark ZucK')}
+            {_scrollView(imagesAsset.ic_plus1, 'Add Story')}
+            {_scrollView(imagesAsset.ic_plus1, 'Add Story')}
+            {_scrollView(imagesAsset.ic_plus1, 'Add Story')}
+          </ScrollView>
+        </View>
+        <View style={styles.boder_taskbar}>
+          {_Tasbar(imagesAsset.ic_home)}
+          {_Tasbar(imagesAsset.ic_tv1)}
+          {_Tasbar(imagesAsset.ic_usergroups)}
+          {_Tasbar(imagesAsset.ic_hear2)}
+          {_Tasbar(imagesAsset.ic_bell)}
+          {_Tasbar(imagesAsset.ic_menu)}
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
 
 _navToProfile = () => {
   alert('Profile');
@@ -111,24 +140,6 @@ _navToLikeYou = () => {
 
 _navToMatch = () => {
   alert('Matches');
-};
-
-_funcBlock = (img, label, action, isWarning = false, img1) => {
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        action();
-      }}>
-      <View style={styles.action_block}>
-        <Image style={styles.img_user} source={img} />
-        <Text style={styles.profile}>{label}</Text>
-        {isWarning
-          ? <View style={styles.warning}><Image style={styles.img_mark} source={img1} /></View>
-          : null
-        }
-      </View>
-    </TouchableOpacity>
-  );
 };
 _Tasbar = (img) => {
   return (
@@ -143,7 +154,9 @@ _scrollView = (img, label) => {
   return (
     <TouchableOpacity>
       <View style={styles.heart_avatar}>
-        <Image style={styles.img_scrollView} source={img} />
+        <View style={styles.heart_imgavatar}>
+          <Image style={styles.img_scrollView} source={img} />
+        </View>
         <Text style={styles.txt_scrollView}>{label}</Text>
       </View>
     </TouchableOpacity>
@@ -155,9 +168,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   block_search: {
-    flex: 0.03,
+    flex: 0.09,
     flexDirection: 'row',
     backgroundColor: 'white',
+    marginLeft: 8,
   },
   img_search: {
     width: 13,
@@ -192,7 +206,7 @@ const styles = StyleSheet.create({
   },
   v_action_block: {
     flexDirection: 'row',
-    margin: 20,
+    margin: 10,
   },
   img_user: {
     width: 24,
@@ -226,8 +240,7 @@ const styles = StyleSheet.create({
     height: 22,
   },
   background: {
-    flex: 0.8,
-    height: '100%',
+    flex: 2,
     width: '90%',
     borderRadius: 15,
     marginBottom: 15,
@@ -238,7 +251,7 @@ const styles = StyleSheet.create({
   },
   boder_background: {
     backgroundColor: 'white',
-    flex: 0.8,
+    flex: 0.9,
     height: '80%',
     width: '100%',
     marginTop: 30,
@@ -274,7 +287,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     position: 'absolute',
     backgroundColor: 'white',
-    marginTop: 280,
+    marginTop: 330,
     marginLeft: 300,
     alignItems: 'center',
     justifyContent: 'center',
@@ -290,7 +303,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     position: 'absolute',
     backgroundColor: 'white',
-    marginTop: 280,
+    marginTop: 330,
     marginLeft: 240,
     alignItems: 'center',
     justifyContent: 'center',
@@ -300,7 +313,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   boder_SSG: {
-    flex: 0.05,
+    flex: 0.1,
     backgroundColor: 'white',
   },
   txt_SSG: {
@@ -308,24 +321,55 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     borderTopWidth: 0.5,
-    marginLeft: 18,
-    marginRight: 18,
+    marginLeft: 22,
+    marginRight: 22,
   },
   boder_avatar: {
-    flex: 0.1,
+    flex: 0.3,
     backgroundColor: 'white',
     flexDirection: 'row',
-    marginBottom: 7,
     borderBottomWidth: 0.5,
-    marginLeft: 18,
-    marginRight: 18,
+    marginBottom: 5,
+    marginLeft: 22,
+    marginRight: 22,
+  },
+  heart_avatar: {
+    backgroundColor: 'white',
+    width: 78,
+    height: '100%',
+  },
+  heart_imgavatar: {
+    flex: 0.01,
+    width: 55,
+    height: 55,
+    borderRadius: 40,
+    position: 'absolute',
+    backgroundColor: 'white',
+    borderColor: 'blue',
+    borderWidth: 1,
+    alignItems: 'center',
     justifyContent: 'center',
   },
+  img_scrollView: {
+    flex: 0.01,
+    width: 50,
+    height: 50,
+    borderRadius: 40,
+    position: 'absolute',
+    backgroundColor: 'white',
+  },
+  txt_scrollView: {
+    fontSize: 10,
+    color: 'black',
+    marginTop: 55,
+    fontWeight: 'bold',
+    marginLeft: 5,
+  },
   boder_taskbar: {
-    flex: 0.04,
+    flex: 0.07,
     backgroundColor: 'white',
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: 15,
     borderTopWidth: 0.2,
   },
   heart_Taskbar: {
@@ -341,29 +385,6 @@ const styles = StyleSheet.create({
     width: 28,
     height: 28,
     backgroundColor: 'white',
-  },
-  heart_avatar: {
-    flex: 0.2,
-    backgroundColor: 'white',
-    width: 100,
-    height: '100%',
-    flexDirection: 'column',
-    marginHorizontal: 1,
-  },
-  img_scrollView: {
-    width: 55,
-    height: 55,
-    borderRadius: 40,
-    position: 'absolute',
-    backgroundColor: 'white',
-    marginBottom: 40,
-  },
-  txt_scrollView: {
-    fontSize: 10,
-    color: 'black',
-    marginTop: 50,
-    fontWeight: 'bold',
-    marginLeft: 5,
   },
 });
 
