@@ -25,7 +25,7 @@ export default class HomeScreen extends Component {
                             <View style={styles.left_top} >
                                 <View>
                                     <Image
-                                        source={require('../assets/ic_location.png')}
+                                        source={require('../../assets/ic_location.png')}
                                         style={styles.img_location}
                                     />
                                 </View>

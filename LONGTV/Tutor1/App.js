@@ -16,8 +16,8 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import CustomButton from './component/CustomButton.js';
-import HomeScreen from './screens/HomeScreen';
+import CustomButton from './src/component/CustomButton.js';
+import HomeScreen from './src/screens/HomeScreen.js';
 class App extends Component {
 
   render() {

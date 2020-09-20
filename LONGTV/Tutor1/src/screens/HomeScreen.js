@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator, FlatList, Image, ImageBackground, TextInput } from 'react-native';
-import CustomScreen from '../component/CustomScreen';
-import mockData from '../mockData.json';
+import CustomScreen from '../component/CustomScreen.js';
+import mockData from '../../mockData.json';
 import axios from 'axios';
-import Loading from '../component/Loading';
+import Loading from '../component/Loading.tsx';
 export default class HomeScreen extends Component {
     state = {
         isLoading: true,
@@ -81,18 +81,18 @@ export default class HomeScreen extends Component {
             <SafeAreaView style={styles.container}>
                 <View>
                     <ImageBackground
-                        source={require('../assets/ImgBackground.jpg')}
+                        source={require('../../assets/ImgBackground.jpg')}
                         style={{ width: 425, height: 172 }}>
                         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Tôi muốn mua sỉ</Text>
                         <View style={styles.v_row}>
-                            <View style={styles.v_listsp}>
-                                <Text style={styles.txt_listsp} >Danh mục sản phẩm</Text>
-                            </View>
+                            <TextInput style={styles.v_listsp}
+                                placeholder={' Danh mục sản phẩm'} >
+                            </TextInput>
                             <View style={styles.v_location}>
-                                <TextInput style={styles.txt_location}>Toàn quốc</TextInput>
+                                <Text style={styles.txt_location}>Toàn quốc</Text>
                                 <Image
                                     resizeMethod='contain'
-                                    source={require('../assets/ic_arrow_down.png')}
+                                    source={require('../../assets/ic_arrow_down.png')}
                                     style={{ width: 11.53, height: 6.65, marginRight: 6.2 }} />
                             </View>
                         </View>
@@ -106,77 +106,35 @@ export default class HomeScreen extends Component {
                         </View>
                     </ImageBackground>
                 </View>
+                <View style={styles.title}><Text style={styles.text_title}>Từ khóa tìm kiếm</Text></View>
+                <FlatList
+                    style={styles.text_key}
+                    numColumns={data.listpost.length / 4}
+                    data={data.listpost}
+                    renderItem={({ item, index }) => {
+                        return (
+                            <Text>{item.namekey}</Text>
+                        )
+                    }}
+                />
                 <View style={styles.title}>
                     <Text style={styles.text_title}>Danh mục sản phảm cần mua </Text>
                     <Text style={styles.text_title_2}>Tất cả </Text>
                 </View>
                 <FlatList style={styles.list_post}
-                    data={this.state.data.listpost}
+                    data={data.listpost}
                     renderItem={({ item, index }) => {
                         return (
                             <View style={styles.body}>
                                 <CustomScreen
                                     Namekey={item.namekey}
                                     Username={item.username}
-                                    img={require('../assets/ic_location.png')}
+                                    img={require('../../assets/ic_location.png')}
                                     Province={item.province}
                                     Phone={item.phone}
-                                    ImgTime={require('../assets/ic_time.png')}
+                                    ImgTime={require('../../assets/ic_time.png')}
                                     Modified_date={item.modified_date}
                                 />
-                                {/* <View style={styles.body_2}>
-                                    <Text style={styles.text_body}>{item.namekey}</Text>
-                                </View>
-                                <View style={styles.body_3}>
-                                    <View style={styles.boder_img}>
-                                        <Text>
-                                            MC
-                                        </Text>
-                                    </View>
-                                    <View style={styles.information}>
-                                        <View style={styles.top}>
-                                            <View style={styles.Top_information}>
-                                                <Text>{item.username}</Text>
-                                            </View>
-                                            <View style={styles.left_top} >
-                                                <View>
-                                                    <Image
-                                                        source={require('../assets/ic_location.png')}
-                                                        style={styles.img_location}
-                                                    />
-                                                </View>
-                                                <View style={styles.left}>
-                                                    <View>
-                                                        <Text>{item.province}</Text>
-                                                    </View>
-
-                                                </View>
-                                            </View>
-
-                                        </View>
-                                        <View style={styles.left}>
-                                            <View style={styles.Bottom_information}>
-                                                <Text>{item.phone}</Text>
-                                            </View>
-                                            <View style={styles.left_bottom} >
-                                                <View>
-                                                    <Image
-                                                        source={require('../assets/ic_time.png')}
-                                                        style={styles.img_time}
-                                                    />
-                                                </View>
-                                                <View style={styles.left}>
-                                                    <View>
-                                                        <Text>{item.modified_date}</Text>
-                                                    </View>
-
-                                                </View>
-                                            </View>
-                                        </View>
-
-                                    </View>
-                                    
-                                </View> */}
                             </View>
                         );
                     }}
@@ -195,9 +153,6 @@ const styles = StyleSheet.create({
         flex: 1,
 
     },
-
-
-
     title: {
         height: 40,
         backgroundColor: '#F2F2F2',
@@ -315,12 +270,6 @@ const styles = StyleSheet.create({
         flex: 1,
         marginRight: 4
     },
-    txt_listsp: {
-        color: '#979797',
-        fontSize: 14,
-        marginVertical: 9,
-        marginLeft: 8,
-    },
     v_location: {
         backgroundColor: '#DFDFDE',
         borderRadius: 17,
@@ -354,6 +303,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '400'
     },
+    text_key: {
+        fontSize: 30,
+        backgroundColor: 'white',
+    }
 })
 
 
