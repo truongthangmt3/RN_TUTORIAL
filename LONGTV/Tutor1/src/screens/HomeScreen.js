@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator, FlatList, Image, ImageBackground, TextInput } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator, FlatList, Image, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
 import CustomScreen from '../component/CustomScreen.js';
 import mockData from '../../mockData.json';
 import axios from 'axios';
@@ -106,7 +106,13 @@ export default class HomeScreen extends Component {
                         </View>
                     </ImageBackground>
                 </View>
-                <View style={styles.title}><Text style={styles.text_title}>Từ khóa tìm kiếm</Text></View>
+                <View style={styles.title}>
+                    <TouchableOpacity onPress={() => {
+                        this.props.navigation.Navigated()
+                    }}>
+                        <Text style={styles.text_title}>Từ khóa tìm kiếm</Text>
+                    </TouchableOpacity>
+                </View>
                 <FlatList
                     style={styles.text_key}
                     numColumns={data.listpost.length / 4}
