@@ -44,7 +44,7 @@ export default class HomeScreen extends Component {
             const response = await axios.get('http://3.0.209.176/api/GetHome');
             const jsonResponse = await response.data;
             this.setState({
-                isLoading: true,
+                isLoading: false,
                 isError: false,
                 data: jsonResponse.data
             })
