@@ -1,114 +1,117 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
+import React, { Component } from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
+  SafeAreaView,
+  ImageBackground,
+  TextInput,
+  FlatList
 } from 'react-native';
+import Loading from './apps/component/Loading.tsx';
+import FlatListItem from './apps/component/FlatListItem';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import styles from './apps/common/style/HomeScreenStyle';
+import axios from 'axios';
 
-const App = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
+class HomeScreen extends Component {
+  state = {
+    isLoading: true,
+    isError: false,
+    data: {},
+  };
+
+  componentDidMount = async () => {
+    try {
+      const response = await axios.get('http://3.0.209.176/api/GetHome');
+      const jsonResponse = response.data
+      this.setState({
+        isLoading: false,
+        isError: false,
+        data: jsonResponse.data
+      })
+    } catch (error) {
+      this.setState({
+        isLoading: false,
+        isError: true,
+        data: {}
+      })
+    }
+  }
+
+  renderHeader = () => {
+    return (
+      <View>
+        <ImageBackground
+          style={styles.img_background}
+          source={require('./apps/assets/img/background.png')}>
+          <Text style={styles.t_img}>
+            Tôi muốn mua sỉ
+            </Text>
+          <View style={styles.v_block}>
+            <View style={styles.v_option}>
+              <TextInput
+                style={styles.v_textinput}
+                placeholder="Danh mục sản phẩm">
+              </TextInput>
+              <View style={styles.v_address}>
+                <Text>
+                  Toàn quốc
+                  </Text>
+              </View>
             </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
+            <Text style={styles.t_warning}>
+              Để tìm kiếm khách hàng được tốt nhất, bạn nên đăng ký đúng danh mục
+                  </Text>
+            <View style={styles.v_buttonDangtin}>
+              <Text style={styles.v_button}>
+                Đăng tin
+                </Text>
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
-        </ScrollView>
+        </ImageBackground>
+        <Text style={{ fontSize: 20, marginLeft: 10, marginVertical: 10 }}>
+          Từ khóa tìm kiếm
+        </Text>
+      </View>
+    );
+  }
+
+  render() {
+    const { data, isLoading, isError } = this.state;
+    if (isLoading) {
+      return (
+        <View style={styles.container}>
+          <Loading />
+        </View>
+      );
+    }
+    if (isError) {
+      return (
+        alert('Halo')
+      );
+    }
+    return (
+      <SafeAreaView style={styles.container}>
+        <FlatList style={styles.list_post}
+          data={data.listpost}
+          ListHeaderComponent={this.renderHeader}
+          renderItem={({ item }) => {
+            return (
+              <View style={styles.body}>
+                <FlatListItem
+                  Namekey={item.namekey}
+                  Username={item.username}
+                  Province={item.province}
+                  Phone={item.phone}
+                  Modified_date={item.modified_date}
+                />
+              </View>
+            );
+          }}
+        />
       </SafeAreaView>
-    </>
-  );
-};
+    );
+  }
+}
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
-
-export default App;
+export default HomeScreen;
