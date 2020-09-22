@@ -8,7 +8,8 @@ import {
     FlatList,
     ImageBackground,
     Image,
-    Dimensions
+    Dimensions,
+    TouchableOpacity
 } from 'react-native';
 import mockData from '../../mockData.json'
 import axios from 'axios'
@@ -116,9 +117,10 @@ export default class HomeScreen extends Component {
                             Để tìm kiếm khách hàng được tốt nhất bạn nên đăng ký đúng danh mục sản phẩm !
                         </Text>
                         <View style={{ alignItems: 'center', flex: 1 }}>
-                            <View style={styles.v_button}>
+                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('user') }}
+                                style={styles.v_button}>
                                 <Text style={styles.txt_button}>Đăng tin</Text>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </ImageBackground>
                     <Text style={styles.txt_keysearch}>Từ khóa tìm kiếm</Text>
