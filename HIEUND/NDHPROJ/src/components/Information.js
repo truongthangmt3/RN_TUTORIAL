@@ -32,13 +32,13 @@ export default class Information extends Component {
               flex: 1,
               flexDirection: 'column',
               marginHorizontal: '2%',
-              marginBottom: '1.5%',
+              marginBottom: '2.5%',
             }}>
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                marginBottom: '1.5%',
+                marginBottom: '2.5%',
               }}>
               <Text style={{fontSize: 15}}>{name}</Text>
               <View

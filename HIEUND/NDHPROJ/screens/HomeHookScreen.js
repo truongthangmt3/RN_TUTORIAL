@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useEffect} from 'react';
 import {AppRegistry} from 'react-native';
 import {
   SafeAreaView,
@@ -17,56 +17,42 @@ import axios from 'axios';
 import Loading from '../src/components/Loading';
 import ProvinceDropdown from '../src/components/ProvinceDropdown';
 import Headers from '../src/components/Headers';
-import Information from '.././src/components/Information';
-import TaskBarButtons from '.././src/components/TaskBarButtons';
+import Information from '../src/components/Information';
+import TaskBarButtons from '../src/components/TaskBarButtons';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default class HomeScreen extends Component {
-  state = {
-    isLoading: true,
-    isError: false,
-    name: '',
-    data: {},
-  };
-  componentDidMount = async () => {
-    // goi api va cho du lieu tra ve
-    //cach co dien
-    // fetch('http://3.0.209.176/api/GetHome')
-    //   .then((response) => response.json())
-    //   .then((res) => {
-    //     alert(JSON.stringify(res));
-    //   });
-    //cach hien dai tu ES6 dung async va await (thay doi ham thanh async)
+export default HomeScreen = () => {
+  const [isLoading, setLoading] = useState(true);
+  const [isError, setError] = useState(false);
+  const [data, setData] = useState({});
+  const [name, setName] = useState({});
+
+  useEffect(() => {
+    getData();
+  }, []); // same componentDidMount()
+  getData = async () => {
     try {
       const response = await axios.get('http://3.0.209.176/api/GetHome');
       const jsonResponse = response.data;
-      // alert(JSON.stringify(jsonResponse));
-      this.setState({
-        isLoading: false,
-        isError: false,
-        // data: jsonResponse.data.listpost,
-        data: jsonResponse.data,
-      });
+      setData(jsonResponse);
+      setLoading(false);
+      setError(false);
     } catch (error) {
-      this.setState({
-        isLoading: false,
-        isError: true,
-        data: {},
-      });
+      setLoading(false);
+      setError(true);
+      setData({});
     }
   };
-  // componentDidMount() {
-  //   // setTimeout(() => {
-  //   this.setState({
-  //     isLoading: false,
-  //     isError: false,
-  //     data: mockData.homeData.data.listpost,
-  //   });
-  //   // }, 500);
-  // }
-  render() {
-    const {isLoading, isError, data, name} = this.state;
+  if (isLoading) {
+    return <Loading />;
+  } else if (isError) {
+    return (
+      <View style={styles.container}>
+        <Text>FAILED</Text>
+      </View>
+    );
+  } else {
     if (isLoading) {
       return <Loading />;
     }
@@ -100,9 +86,7 @@ export default class HomeScreen extends Component {
                 style={styles.text_input}
                 placeholder="Danh mục sản phẩm"
                 value={name}
-                onChangeText={(text) =>
-                  this.setState({name: text})
-                }></TextInput>
+                onChangeText={(text) => setName(name)}></TextInput>
               <ProvinceDropdown />
             </View>
             <Text style={{fontSize: 14, marginLeft: '4%', color: 'white'}}>
@@ -116,16 +100,12 @@ export default class HomeScreen extends Component {
           <Headers text="Từ khoá tìm kiếm" />
           <FlatList
             style={styles.list_post}
-            data={this.state.data.listpost}
+            data={data.data.listpost}
             renderItem={({item, index}) => {
               return (
-                <TouchableOpacity
-                  onPress={() => {
-                    this.props.navigation.navigate('user');
-                  }}
-                  style={styles.items}>
+                <View style={styles.items}>
                   <Text style={{fontSize: 16}}>{'#' + item.namekey}</Text>
-                </TouchableOpacity>
+                </View>
               );
             }}
             contentContainerStyle={{
@@ -135,7 +115,7 @@ export default class HomeScreen extends Component {
           />
           <Headers text="Danh mục sản phẩm cần mua" all />
           <FlatList
-            data={this.state.data.listpost}
+            data={data.data.listpost}
             renderItem={({item, index}) => {
               return (
                 <Information
@@ -159,11 +139,12 @@ export default class HomeScreen extends Component {
       </SafeAreaView>
     );
   }
-}
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#69AAFF',
+    backgroundColor: '#69ABFE',
   },
   add_news: {
     borderColor: 'red',
@@ -172,7 +153,7 @@ const styles = StyleSheet.create({
     marginHorizontal: '35%',
     marginVertical: '4%',
     borderRadius: 30,
-    backgroundColor: '#69AAFF',
+    backgroundColor: '#69ABFE',
     justifyContent: 'center',
     alignItems: 'center',
   },
