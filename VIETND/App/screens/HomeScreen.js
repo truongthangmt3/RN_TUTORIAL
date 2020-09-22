@@ -1,30 +1,72 @@
 import React, { Component } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator, FlatList, Image } from 'react-native';
 import CustomScreen from '../component/CustomScreen';
-
-import mockData from '../mockData.json'
+import mockData from '../mockData.json';
+import axios from 'axios';
+import Loading from '../component/Loading';
 export default class HomeScreen extends Component {
     state = {
         isLoading: true,
         isError: false,
-        data: {}
+        data: {},
     }
-    componentDidMount() {
-        setTimeout(() => {
+    componentDidMount = async () => {
+        // gọi api và chờ dữ liệu chả về 
+
+
+
+        // cách cổ điển
+        // fetch('http://3.0.209.176/api/GetHome')
+        //     .then((response) => response.json())
+        //     .then((res => {
+        //         alert(JSON.stringify(res))
+        //     }))
+
+
+
+        // cách hiện đại tùw es6 asnyc await thay đổi hàm thanh anys mới dùng được
+
+
+        try {
+            const response = await axios.get('http://3.0.209.176/api/GetHome');
+            const jsonResponse = response.data
+            // alert(JSON.stringify(jsonResponse))
             this.setState({
                 isLoading: false,
                 isError: false,
-                data: mockData.homeData.data
+                data: jsonResponse.data
             })
-        }, 500)
+        } catch (error) {
+            setTimeout(() => {
+                this.setState({
+                    isLoading: false,
+                    isError: true,
+                    data: {}
+                })
+            }, 5000)
+        }
+
+
+        // tuỳ vào dữ liệu trả về mà set err hay data
+
+
+        // setTimeout(() => {
+        //     this.setState({
+        //         isLoading: false,
+        //         isError: false,
+        //         data: mockData.homeData.data
+        //     })
+        // }, 500)
     }
     render() {
         const { isLoading, isError, data } = this.state
         if (isLoading) {
             return (
-                <View style={styles.container}>
-                    {<ActivityIndicator color='red' />}
-                </View>
+                <Loading />
+                // <View style={styles.container}>
+                //     {<ActivityIndicator color='red' />}
+
+                // </View>
             );
 
         }
@@ -131,7 +173,7 @@ const styles = StyleSheet.create({
 
     title: {
         height: 40,
-        backgroundColor: '#D8D8D8',
+        backgroundColor: '#F2F2F2',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -230,8 +272,8 @@ const styles = StyleSheet.create({
         width: 20
     },
     img_time: {
-        height: 18,
-        width: 18,
+        height: 16,
+        width: 16,
         marginRight: 5
     }
 })
