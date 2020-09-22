@@ -6,6 +6,7 @@ import {
     StyleSheet,
     ActivityIndicator,
     FlatList,
+    TouchableOpacity
 } from 'react-native'
 import mockData from '../../mockData.json'
 import axios from 'axios'
@@ -86,17 +87,21 @@ export default class HomeScreen extends Component {
                                 <View style={styles.vContentKeySearch}>
                                     {this.state.data.listhotkey.map((item, index) => {
                                         return (
+                                            <TouchableOpacity
+                                                onPress={() => {
+                                                    this.props.navigation.navigate("user")
+                                                }}>
+                                                <Text
+                                                    style={{
+                                                        padding: 5,
+                                                        borderColor: 'gray',
+                                                        borderWidth: 1,
+                                                        margin: 2,
+                                                        borderRadius: 15
 
-                                            <Text
-                                                style={{
-                                                    padding: 5,
-                                                    borderColor: 'gray',
-                                                    borderWidth: 1,
-                                                    margin: 2,
-                                                    borderRadius: 15
-
-                                                }}
-                                                key={item.name}>{item.name}</Text>
+                                                    }}
+                                                    key={item.name}>{item.name}</Text>
+                                            </TouchableOpacity>
 
                                         )
 
