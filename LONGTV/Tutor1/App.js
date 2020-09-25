@@ -18,27 +18,26 @@ import {
 } from 'react-native';
 import CustomButton from './src/component/CustomButton.js';
 import HomeScreen from './src/screens/HomeScreen.js';
-import HookHomeScreen from './src/screens/HookHomeScreen.js'
-import createAppContainer from 'react-navigation'
-import createStackNavigator from 'react-navigation-stack'
-import User from './src/screens/User'
+import HookHomeScreen from './src/screens/HookHomeScreen.js';
+import UserScreen from './src/screens/User';
+import LoginScreen from './src/screens/Login';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 class App extends Component {
-
   render() {
     return (
-      <HomeScreen />
+      <Login />
     );
   }
 };
 
-const AppNavigator = createAppContainer({
+const AppNavigator = createStackNavigator({
   home: HomeScreen,
-  user: User,
+  user: UserScreen,
+  Login: LoginScreen
 }, {
   headerMode: 'none',
-}
-
-)
+})
 
 export default createAppContainer(AppNavigator);
