@@ -15,7 +15,7 @@ export default class UserSreen extends Component {
                 </TouchableOpacity>
 
                 <Image
-                    source={require('../../assets/Main@3x.png')}
+                    source={require('../../assets/Main.png')}
                     style={{ height: 812, width: 375 }}
                 />
             </View>
