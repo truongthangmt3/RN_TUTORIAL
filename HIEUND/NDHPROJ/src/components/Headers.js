@@ -15,8 +15,7 @@ export default class Headers extends Component {
           style={{
             fontSize: 20,
             paddingLeft: '3%',
-            paddingTop: '2%',
-            height: windowHeight * 0.05,
+            paddingVertical: '2%',
           }}>
           {text}
         </Text>
