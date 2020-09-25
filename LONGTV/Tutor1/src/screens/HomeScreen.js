@@ -4,6 +4,7 @@ import CustomScreen from '../component/CustomScreen.js';
 import mockData from '../../mockData.json';
 import axios from 'axios';
 import Loading from '../component/Loading.tsx';
+
 export default class HomeScreen extends Component {
     state = {
         isLoading: true,
@@ -106,14 +107,33 @@ export default class HomeScreen extends Component {
                         </View>
                     </ImageBackground>
                 </View>
-                <View style={styles.title}>
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigation.Navigated()
-                    }}>
-                        <Text style={styles.text_title}>Từ khóa tìm kiếm</Text>
-                    </TouchableOpacity>
+                <View style={{ flex: 1 }}>
+                    <Text style={{ fontSize: 20, marginHorizontal: 10 }}>Từ khóa tìm kiếm</Text>
+                    <View style={styles.vContentKeySearch}>
+                        {data.listhotkey.map((item, index) => {
+                            return (
+                                <TouchableOpacity
+                                    onPress={() => {
+                                        this.props.navigation.navigate("user")
+                                    }}>
+                                    <Text
+                                        style={{
+                                            padding: 5,
+                                            borderColor: 'gray',
+                                            borderWidth: 1,
+                                            margin: 2,
+                                            borderRadius: 15
+
+                                        }}
+                                        key={item.name}>{item.name}</Text>
+                                </TouchableOpacity>
+
+                            )
+
+                        })}
+                    </View>
                 </View>
-                <FlatList
+                {/* <FlatList
                     style={styles.text_key}
                     numColumns={data.listpost.length / 4}
                     data={data.listpost}
@@ -122,7 +142,7 @@ export default class HomeScreen extends Component {
                             <Text>{item.namekey}</Text>
                         )
                     }}
-                />
+                /> */}
                 <View style={styles.title}>
                     <Text style={styles.text_title}>Danh mục sản phảm cần mua </Text>
                     <Text style={styles.text_title_2}>Tất cả </Text>
@@ -309,10 +329,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '400'
     },
-    text_key: {
-        fontSize: 30,
-        backgroundColor: 'white',
-    }
+    vContentKeySearch: {
+        flexWrap: "wrap",
+        padding: 5,
+        flexDirection: "row",
+        width: '100%',
+        backgroundColor: "white"
+    },
 })
 
 
