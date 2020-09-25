@@ -13,13 +13,11 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import mockData from '.././mockData.json';
 import axios from 'axios';
 import Loading from '../src/components/Loading';
 import ProvinceDropdown from '../src/components/ProvinceDropdown';
 import Headers from '../src/components/Headers';
 import Information from '.././src/components/Information';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import TaskBarButtons from '.././src/components/TaskBarButtons';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -28,6 +26,7 @@ export default class HomeScreen extends Component {
   state = {
     isLoading: true,
     isError: false,
+    name: '',
     data: {},
   };
   componentDidMount = async () => {
@@ -69,12 +68,7 @@ export default class HomeScreen extends Component {
   render() {
     const {isLoading, isError, data, name} = this.state;
     if (isLoading) {
-      return (
-        // <View style={styles.container}>
-        //   <ActivityIndicator color="red" />
-        // </View>
-        <Loading />
-      );
+      return <Loading />;
     }
     if (isError) {
       return (
@@ -125,9 +119,13 @@ export default class HomeScreen extends Component {
             data={this.state.data.listpost}
             renderItem={({item, index}) => {
               return (
-                <View style={styles.items}>
+                <TouchableOpacity
+                  onPress={() => {
+                    this.props.navigation.navigate('user');
+                  }}
+                  style={styles.items}>
                   <Text style={{fontSize: 16}}>{'#' + item.namekey}</Text>
-                </View>
+                </TouchableOpacity>
               );
             }}
             contentContainerStyle={{
@@ -165,7 +163,7 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#69ABFE',
+    backgroundColor: '#69AAFF',
   },
   add_news: {
     borderColor: 'red',
@@ -174,7 +172,7 @@ const styles = StyleSheet.create({
     marginHorizontal: '35%',
     marginVertical: '4%',
     borderRadius: 30,
-    backgroundColor: '#69ABFE',
+    backgroundColor: '#69AAFF',
     justifyContent: 'center',
     alignItems: 'center',
   },

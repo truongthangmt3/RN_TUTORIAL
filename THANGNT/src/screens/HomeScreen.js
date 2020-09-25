@@ -11,6 +11,8 @@ import {
 import mockData from '../../mockData.json'
 import axios from 'axios'
 import Loading from '../components/Loading'
+import NavigationUtil from '../navigation/NavigationUtil'
+import { SCREEN_ROUTER } from '../utils/Constant'
 
 
 export default class HomeScreen extends Component {
@@ -89,7 +91,7 @@ export default class HomeScreen extends Component {
                                         return (
                                             <TouchableOpacity
                                                 onPress={() => {
-                                                    this.props.navigation.navigate("user")
+                                                    NavigationUtil.navigate(SCREEN_ROUTER.LIST_POST)
                                                 }}>
                                                 <Text
                                                     style={{
