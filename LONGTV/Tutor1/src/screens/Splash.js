@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, View, StyleSheet } from 'react-native'
 
 export default class Login extends Component {
     render() {
         return (
-            <View>
-                <TouchableOpacity
-                    onPress={() => {
-                        navigation.navigate("home")
-                    }
-                    }>
-                    <Text>Login</Text>
-                </TouchableOpacity>
+            <View style={styles.container}>
+                <Image source={require('../../assets/Main.png')}
+                    style={{
+                        width: 450,
+                        height: 650
+                    }}
+                />
             </View>
         )
     }

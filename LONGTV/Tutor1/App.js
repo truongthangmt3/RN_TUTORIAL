@@ -18,9 +18,9 @@ import {
 } from 'react-native';
 import CustomButton from './src/component/CustomButton.js';
 import HomeScreen from './src/screens/HomeScreen.js';
-import HookHomeScreen from './src/screens/HookHomeScreen.js';
 import UserScreen from './src/screens/User';
-import LoginScreen from './src/screens/Login';
+import LoginScreen from './src/screens/LoginScreen';
+import Splash from './src/screens/Splash'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -33,9 +33,11 @@ class App extends Component {
 };
 
 const AppNavigator = createStackNavigator({
+  Login: LoginScreen,
+  Splash,
   home: HomeScreen,
   user: UserScreen,
-  Login: LoginScreen
+
 }, {
   headerMode: 'none',
 })
