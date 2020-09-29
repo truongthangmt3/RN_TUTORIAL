@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
+import React, { Component } from 'react';
+import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 
-export default class UserScreen extends Component {
+export default class ChangePasswordScreen extends Component {
+
     render() {
         return (
             <SafeAreaView>
@@ -9,6 +10,6 @@ export default class UserScreen extends Component {
                     <Text> textInComponent </Text>
                 </TouchableOpacity>
             </SafeAreaView>
-        )
+        );
     }
 }
