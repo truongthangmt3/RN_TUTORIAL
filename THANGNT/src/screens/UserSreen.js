@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
+import NavigationUtil from '../navigation/NavigationUtil'
 
 export default class UserSreen extends Component {
     render() {
@@ -14,7 +15,7 @@ export default class UserSreen extends Component {
             >
                 <TouchableOpacity
                     onPress={() => {
-                        this.props.navigation.goBack();
+                        NavigationUtil.goBack()
                     }}
                 >
                     <Text> UserScreen</Text>
