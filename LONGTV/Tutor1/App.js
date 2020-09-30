@@ -33,10 +33,11 @@ class App extends Component {
 };
 
 const AppNavigator = createStackNavigator({
+  user: UserScreen,
   Login: LoginScreen,
   Splash,
   home: HomeScreen,
-  user: UserScreen,
+
 
 }, {
   headerMode: 'none',
