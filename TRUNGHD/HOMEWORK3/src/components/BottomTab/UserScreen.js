@@ -7,10 +7,13 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
+import NavigationUtil from '../../navigation/NavigationUtil';
+import CustomBottomTab from '../CustomComponent/CustomBottomTab';
+import {SCREEN_ROUTER} from '../../utils/constant';
 
-export default class User extends Component {
+export default class UserScreen extends Component {
   render() {
-    var name = 'Trần Văn Kim Cương';
+    var name = 'Hà Đức Trung';
     // let shortname = this._func_getshortname(name);
     return (
       <SafeAreaView style={styles.container}>
@@ -31,77 +34,68 @@ export default class User extends Component {
 
         <View style={styles.v_blockuseroption}>
           <CustomOneOption
-            img1={require('../assets/images/ImgUserScreen/ic_list.png')}
+            img1={require('../../assets/images/ImgUserScreen/ic_list.png')}
             label="Tin mua của bạn"
-            img2={require('../assets/images/ImgUserScreen/ic_arrow.png')}
+            img2={require('../../assets/images/ImgUserScreen/ic_arrow.png')}
             action={this._func_nav_userbuyscreen}
           />
           <View style={styles.v_line} />
           <CustomOneOption
-            img1={require('../assets/images/ImgUserScreen/ic_user.png')}
+            img1={require('../../assets/images/ImgUserScreen/ic_user.png')}
             label="Thông tin cá nhân"
-            img2={require('../assets/images/ImgUserScreen/ic_arrow.png')}
+            img2={require('../../assets/images/ImgUserScreen/ic_arrow.png')}
             action={this._func_nav_userinforscreen}
           />
           <View style={styles.v_line} />
           <CustomOneOption
-            img1={require('../assets/images/ImgUserScreen/ic_menu.png')}
+            img1={require('../../assets/images/ImgUserScreen/ic_menu.png')}
             label="Danh mục của tôi"
-            img2={require('../assets/images/ImgUserScreen/ic_arrow.png')}
+            img2={require('../../assets/images/ImgUserScreen/ic_arrow.png')}
+            action={this._func_nav_mylist}
           />
           <View style={styles.v_line} />
           <CustomOneOption
-            img1={require('../assets/images/ImgUserScreen/ic_lock.png')}
+            img1={require('../../assets/images/ImgUserScreen/ic_lock.png')}
             label="Đổi mật khẩu"
-            img2={require('../assets/images/ImgUserScreen/ic_arrow.png')}
+            img2={require('../../assets/images/ImgUserScreen/ic_arrow.png')}
+            action={this._func_nav_changepassword}
           />
           <View style={styles.v_line} />
           <CustomOneOption
-            img1={require('../assets/images/ImgUserScreen/ic_text.png')}
+            img1={require('../../assets/images/ImgUserScreen/ic_text.png')}
             label="Hướng dẫn sử dụng"
-            img2={require('../assets/images/ImgUserScreen/ic_arrow.png')}
+            img2={require('../../assets/images/ImgUserScreen/ic_arrow.png')}
             action={this._func_nav_huongdansudung}
           />
           <View style={styles.v_line} />
           <CustomOneOption
-            img1={require('../assets/images/ImgUserScreen/ic_logout.png')}
+            img1={require('../../assets/images/ImgUserScreen/ic_logout.png')}
             label="Đăng xuất"
             action={this._func_nav_logout}
           />
         </View>
         <View style={styles.v_emty}></View>
-        <View style={styles.v_bottomtab}>
-          <CustomOneTab
-            imgtab={require('../assets/images/ImgUserScreen/ic_home.png')}
-            labebtab="Trang chủ"
-          />
-          <CustomOneTab
-            imgtab={require('../assets/images/ImgUserScreen/ic_bell.png')}
-            labebtab="Thông báo"
-          />
-          <CustomOneTab
-            imgtab={require('../assets/images/ImgUserScreen/ic_human.png')}
-            labebtab="Tài khoản"
-            style={{color: '#69AAFF'}}
-          />
-        </View>
+        {/* <CustomBottomTab /> */}
       </SafeAreaView>
     );
   }
   _func_nav_userinforscreen = () => {
-    this.props.navigation.navigate('userinforscreen');
+    NavigationUtil.navigate(SCREEN_ROUTER.USER_INFOR_SCREEN);
   };
   _func_nav_userbuyscreen = () => {
-    this.props.navigation.navigate('userbuyscreen');
-  };
-  _func_nav_userscreen = () => {
-    this.props.navigation.navigate('user');
+    NavigationUtil.navigate(SCREEN_ROUTER.USER_BUY_SCREEN);
   };
   _func_nav_huongdansudung = () => {
-    this.props.navigation.navigate('huongdansudung');
+    NavigationUtil.navigate(SCREEN_ROUTER.HUONG_DAN_SU_DUNG);
+  };
+  _func_nav_changepassword = () => {
+    NavigationUtil.navigate(SCREEN_ROUTER.CHANGE_PASSWORD);
+  };
+  _func_nav_mylist = () => {
+    NavigationUtil.navigate(SCREEN_ROUTER.MY_LIST);
   };
   _func_nav_logout = () => {
-    this.props.navigation.navigate('login');
+    NavigationUtil.navigate(SCREEN_ROUTER.LOGIN_SCREEN);
   };
   _func_getshortname = (text) => {
     var shortname = text.charAt(0);
@@ -126,22 +120,6 @@ class CustomOneOption extends Component {
         <Image style={styles.img_list} source={img1} />
         <Text style={styles.t_option}>{label}</Text>
         <Image style={styles.img_arrow} source={img2} />
-      </TouchableOpacity>
-    );
-  }
-}
-
-class CustomOneTab extends Component {
-  render() {
-    const {imgtab, labebtab} = this.props;
-    return (
-      <TouchableOpacity
-        style={styles.v_onetab}
-        onPress={() => {
-          alert('DemoTab');
-        }}>
-        <Image style={styles.img_tab} source={imgtab} />
-        <Text style={styles.t_onetab}>{labebtab}</Text>
       </TouchableOpacity>
     );
   }
@@ -212,7 +190,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginRight: 15,
     marginLeft: 25,
-    //justifyContent: 'center',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -236,23 +214,5 @@ const styles = StyleSheet.create({
   },
   v_emty: {
     flex: 3,
-  },
-  v_bottomtab: {
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#FFFFFF',
-  },
-  v_onetab: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  img_tab: {
-    width: 23,
-    height: 25,
-  },
-  t_onetab: {
-    fontSize: 11,
-    color: '#ABABAB',
   },
 });

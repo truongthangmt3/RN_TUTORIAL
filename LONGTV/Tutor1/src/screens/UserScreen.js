@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Image, SafeAreaView } from 'react-native'
+import NavigationUtil from '../navigation/NavigationUtil';
 
 export default class UserSreen extends Component {
     render() {
@@ -20,21 +21,29 @@ export default class UserSreen extends Component {
                     </View>
                 </View>
                 <View>
-                    {_list(require('../../assets/ic_user.png'),
+                    {_list(require('../../assets/recipe.png'),
                         "Tin mua của bạn",
                         () => { NavigationUtil.navigate('home') }
                     )}
-                    {_list(require('../../assets/ic_user.png'),
-                        "Tin mua của bạn",
+                    {_list(require('../../assets/single.png'),
+                        "Thông tin cá nhân",
                         () => { NavigationUtil.navigate('home') }
                     )}
-                    {_list(require('../../assets/ic_user.png'),
-                        "Tin mua của bạn",
+                    {_list(require('../../assets/list-ul.png'),
+                        "Danh mục của tôi",
                         () => { NavigationUtil.navigate('home') }
                     )}
-                    {_list(require('../../assets/ic_user.png'),
-                        "Tin mua của bạn",
+                    {_list(require('../../assets/lock.png'),
+                        "Đổi mật khẩu",
                         () => { NavigationUtil.navigate('home') }
+                    )}
+                    {_list(require('../../assets/recipe2.png'),
+                        "Hướng dẫn sử dụng",
+                        () => { NavigationUtil.navigate('home') }
+                    )}
+                    {_list(require('../../assets/log-out.png'),
+                        "Đăng xuất",
+                        () => { NavigationUtil.navigate('login') }
                     )}
                 </View>
             </SafeAreaView >
@@ -59,7 +68,7 @@ _list = (iconLocal, label, onPress) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#0F4960'
+        backgroundColor: '#F5F6F8'
     }
     ,
     InformationUser: {
