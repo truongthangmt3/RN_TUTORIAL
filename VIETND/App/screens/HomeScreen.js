@@ -14,21 +14,6 @@ export default class HomeScreen extends Component {
         data: {},
     }
     componentDidMount = async () => {
-        // gọi api và chờ dữ liệu chả về 
-
-
-
-        // cách cổ điển
-        // fetch('http://3.0.209.176/api/GetHome')
-        //     .then((response) => response.json())
-        //     .then((res => {
-        //         alert(JSON.stringify(res))
-        //     }))
-
-
-
-        // cách hiện đại tùw es6 asnyc await thay đổi hàm thanh anys mới dùng được
-
 
         try {
             const response = await axios.get('http://3.0.209.176/api/GetHome');
@@ -50,26 +35,13 @@ export default class HomeScreen extends Component {
         }
 
 
-        // tuỳ vào dữ liệu trả về mà set err hay data
 
-
-        // setTimeout(() => {
-        //     this.setState({
-        //         isLoading: false,
-        //         isError: false,
-        //         data: mockData.homeData.data
-        //     })
-        // }, 500)
     }
     render() {
         const { isLoading, isError, data } = this.state
         if (isLoading) {
             return (
                 <Loading />
-                // <View style={styles.container}>
-                //     {<ActivityIndicator color='red' />}
-
-                // </View>
             );
 
         }
@@ -82,59 +54,12 @@ export default class HomeScreen extends Component {
         }
         return (
             <SafeAreaView style={styles.container}>
-                <ImageBackground source={require('../assets/ic_Group873.png')} style={styles.img_herder} >
-                    <Text style={styles.text_herder}>Tôi muốn mua sỉ</Text>
-                    <View style={styles.input}>
-                        <View style={styles.input_nav}>
-                            <TextInput
-                                style={styles.text_input}
-                                placeholder="Danh mục sản phẩm">
-
-                            </TextInput>
-                        </View>
-                        <View style={styles.input_aside}>
-                            <View>
-                                <Text style={styles.text_aside}> Toàn quốc</Text>
-                            </View>
-                            <View style={styles.img_aside_all}>
-                                <Image
-                                    style={styles.img_aside}
-                                    source={require('../assets/ic_dow.png')}
-                                />
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.suggestions}>
-                        <Text style={{ color: '#fff' }} >Để tìm kiếm khách hàng được tốt nhất bạn nên đăng ký đúng danh mục sản phẩm! </Text>
-                    </View>
-
-                    <TouchableOpacity
-                        onPress={() => {
-                            NavigationUtil.navigate(SCREEN_ROUTER.USER);
-                        }}>
-                        <View style={styles.post}>
-                            <View style={styles.btn_post}>
-                                <Text style={{ color: '#fff', fontSize: 19, fontWeight: '500' }}>Đăng tin</Text>
-                            </View>
-                        </View>
-
-                    </TouchableOpacity>
-                </ImageBackground>
 
 
-                <View style={{ backgroundColor: 'F2F2F2', height: 50, justifyContent: 'center' }}>
-                    <Text style={{ color: 'black', fontSize: 18, fontWeight: '500', marginLeft: 15 }}> Từ khoá tìm kiếm</Text>
-                </View>
-
-                <View style={{ height: 136, backgroundColor: '#fff' }}>
-
-                </View>
 
 
-                <View style={styles.title}>
-                    <Text style={styles.text_title}>Danh mục sản phảm cần mua </Text>
-                    <Text style={styles.text_title_2}>Tất cả </Text>
-                </View>
+
+
                 <FlatList style={styles.list_post}
                     data={this.state.data.listpost}
                     renderItem={({ item, index }) => {
@@ -152,12 +77,95 @@ export default class HomeScreen extends Component {
                             </View>
                         );
                     }}
+                    ListHeaderComponent={() => {
+
+                        return (
+
+                            <View >
+                                <ImageBackground source={require('../assets/ic_Group873.png')} style={styles.img_herder} >
+                                    <Text style={styles.text_herder}>Tôi muốn mua sỉ</Text>
+                                    <View style={styles.input}>
+                                        <View style={styles.input_nav}>
+                                            <TextInput
+                                                style={styles.text_input}
+                                                placeholder="Danh mục sản phẩm">
+
+                                            </TextInput>
+                                        </View>
+                                        <View style={styles.input_aside}>
+                                            <View>
+                                                <Text style={styles.text_aside}> Toàn quốc</Text>
+                                            </View>
+                                            <View style={styles.img_aside_all}>
+                                                <Image
+                                                    style={styles.img_aside}
+                                                    source={require('../assets/ic_dow.png')}
+                                                />
+                                            </View>
+                                        </View>
+                                    </View>
+                                    <View style={styles.suggestions}>
+                                        <Text style={{ color: '#fff' }} >Để tìm kiếm khách hàng được tốt nhất bạn nên đăng ký đúng danh mục sản phẩm! </Text>
+                                    </View>
+
+                                    <TouchableOpacity
+                                        onPress={() => {
+                                            NavigationUtil.navigate(SCREEN_ROUTER.USER);
+                                        }}>
+                                        <View style={styles.post}>
+                                            <View style={styles.btn_post}>
+                                                <Text style={{ color: '#fff', fontSize: 19, fontWeight: '500' }}>Đăng tin</Text>
+                                            </View>
+                                        </View>
+
+                                    </TouchableOpacity>
+                                </ImageBackground>
+                                <View style={{ backgroundColor: 'F2F2F2', height: 50, justifyContent: 'center' }}>
+                                    <Text style={{ color: 'black', fontSize: 18, fontWeight: '500', marginLeft: 15 }}> Từ khoá tìm kiếm</Text>
+                                </View>
+
+                                <View style={{ height: 200, backgroundColor: '#fff' }}>
+                                    <View style={styles.search}>
+                                        {this.state.data.listhotkey.map((item, index) => {
+                                            return (
+                                                <Text style={{
+                                                    marginTop: 5,
+                                                    padding: 5,
+                                                    borderColor: 'gray',
+                                                    borderWidth: 1,
+                                                    margin: 2,
+                                                    borderRadius: 15
+                                                }}
+                                                    key={item.name}>{item.name}</Text>
+                                            );
+                                        })}
+
+                                    </View>
+                                </View>
+
+
+                                <View style={styles.title}>
+                                    <Text style={styles.text_title}>Danh mục sản phảm cần mua </Text>
+                                    <Text style={styles.text_title_2}>Tất cả </Text>
+                                </View>
+
+                            </View>
+                        );
+
+                    }}
                 />
-            </SafeAreaView >
+            </SafeAreaView>
         )
     }
 }
 const styles = StyleSheet.create({
+    search: {
+        height: 200,
+        marginTop: 5,
+        flexWrap: "wrap",
+        flexDirection: "row",
+        width: '100%',
+    },
     container: {
         flex: 1,
         backgroundColor: '#F2F2F2',
