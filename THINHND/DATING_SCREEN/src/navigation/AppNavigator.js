@@ -1,6 +1,4 @@
 import React from "react";
-import HomeScreen from '../screens/HomeScreen'
-import UserScreen from '../screens/UserScreen'
 import SplashScreen from '../screens/SplashScreen.js'
 import LoginScreen from '../screens/LoginScreen'
 import ListPostScreen from '../screens/ListPostScreen.js'
@@ -11,47 +9,94 @@ import { SCREEN_ROUTER } from '../utils/Constant';
 import { Image } from 'react-native'
 
 
+import HomeScreen from '../screens/TabScreens/HomeScreen';
+import CustomerScreen from '../screens/TabScreens/CustomerScreen';
+import UserScreen from '../screens/TabScreens/UserScreen';
+import NotificationScreen from '../screens/TabScreens/NotificationScreen';
+
+
 const tabNav = createBottomTabNavigator({
-    [SCREEN_ROUTER.HOME]: {
+    [SCREEN_ROUTER.HOME_SCREEN]: {
         screen: HomeScreen,
         navigationOptions: {
-            tabBarLabel: "Trang chủ",
-        }
-    },
-    [SCREEN_ROUTER.USER]: {
-        screen: UserScreen,
-        navigationOptions: {
-            tabBarLabel: "Tài khoản",
-        },
-    },
-},
-    {
-        defaultNavigationOptions: ({ navigation }) => ({
+            tabBarLabel: 'Trang chủ',
             tabBarIcon: ({ focused, tintColor }) => {
                 return (
                     <Image
                         style={{
-                            tintColor: focused ? "red" : 'green',
-                            width: focused ? 25 : 10,
-                            height: focused ? 25 : 10,
-
+                            tintColor: focused ? '#69AAFF' : '#ABABAB',
+                            width: focused ? 25 : 20,
+                            height: focused ? 25 : 20,
+                            resizeMode: 'contain',
                         }}
-                        source={require('../../assets/images/user.png')}
-                    />)
+                        source={require('../../assets/images/ic_home.png')}
+                    />
+                );
             },
-
-        })
-    }
-)
+        },
+    },
+    [SCREEN_ROUTER.CUSTOMER_SCREEN]: {
+        screen: CustomerScreen,
+        navigationOptions: {
+            tabBarLabel: 'KH quan tâm',
+            tabBarIcon: ({ focused, tintColor }) => {
+                return (
+                    <Image
+                        style={{
+                            tintColor: focused ? '#69AAFF' : '#ABABAB',
+                            width: focused ? 25 : 20,
+                            height: focused ? 25 : 20,
+                            resizeMode: 'contain',
+                        }}
+                        source={require('../../assets/images/ic_awesome_users.png')}
+                    />
+                );
+            },
+        },
+    },
+    [SCREEN_ROUTER.NOTIFICATION_SCREEN]: {
+        screen: NotificationScreen,
+        navigationOptions: {
+            tabBarLabel: 'Thông báo',
+            tabBarIcon: ({ focused, tintColor }) => {
+                return (
+                    <Image
+                        style={{
+                            tintColor: focused ? '#69AAFF' : '#ABABAB',
+                            width: focused ? 25 : 20,
+                            height: focused ? 25 : 20,
+                            resizeMode: 'contain',
+                        }}
+                        source={require('../../assets/images/ic_bell.png')}
+                    />
+                );
+            },
+        },
+    },
+    [SCREEN_ROUTER.USER_SCREEN]: {
+        screen: UserScreen,
+        navigationOptions: {
+            tabBarLabel: 'Tài khoản',
+            tabBarIcon: ({ focused, tintColor }) => {
+                return (
+                    <Image
+                        style={{
+                            tintColor: focused ? '#69AAFF' : '#ABABAB',
+                            width: focused ? 25 : 20,
+                            height: focused ? 25 : 20,
+                            resizeMode: 'contain',
+                        }}
+                        source={require('../../assets/images/ic_human.png')}
+                    />
+                );
+            },
+        },
+    },
+})
 
 const stackNav = createStackNavigator({
     tabNav,
-    [SCREEN_ROUTER.LIST_POST]: ListPostScreen
-
-},
-    {
-        headerMode: 'none'
-    })
+})
 
 const switchNav = createSwitchNavigator({
     [SCREEN_ROUTER.MAIN]: stackNav,
