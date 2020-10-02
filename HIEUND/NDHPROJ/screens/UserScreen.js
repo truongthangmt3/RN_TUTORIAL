@@ -14,7 +14,7 @@ const windowHeight = Dimensions.get('window').height; //896
 export default class UserScreen extends Component {
   render() {
     return (
-      <SafeAreaView style={{flex: 1, backgroundColor: '#4F7FBE'}}>
+      <SafeAreaView style={{flex: 1, backgroundColor: '#69AAFF'}}>
         <View style={{flex: 1, backgroundColor: '#F5F6F8'}}>
           <View
             style={{

@@ -7,14 +7,12 @@ import {
     StyleSheet,
 } from 'react-native';
 import images from '../../../assets/imagesAsset';
-import Header from '../../../component/Header';
 import BottomTab from '../../../component/Bottom';
 
 export class CustomerScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <Header text="Thông báo" />
                 <CustomerItem
                     item="Iphone X xuất xứ Hồng Kông còn bảo hành 6 tháng"
                     imgphone={images.ic_phone}

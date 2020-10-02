@@ -152,13 +152,13 @@ export default class HomeScreen extends Component {
             }}
           />
         </ScrollView>
-        <View style={{backgroundColor: '#F4F7F8', flexDirection: 'row'}}>
+        {/* <View style={{backgroundColor: '#F4F7F8', flexDirection: 'row'}}>
           <TaskBarButtons icon="home" label="Trang chủ" />
           <TaskBarButtons icon="users" label="KH quan tâm" />
           <TaskBarButtons icon="message" label="Tin nhắn" />
           <TaskBarButtons icon="bell" label="Thông báo" />
           <TaskBarButtons icon="user" label="Người dùng" />
-        </View>
+        </View> */}
       </SafeAreaView>
     );
   }

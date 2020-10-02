@@ -7,7 +7,6 @@ import {
     StyleSheet,
 } from 'react-native';
 import images from '../../../assets/imagesAsset'
-import Header from '../../../component/Header';
 
 export default class NotificationScreen extends Component {
     constructor(props) {
@@ -17,7 +16,6 @@ export default class NotificationScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <Header text="Thông báo" />
                 <CustomOnenotify
                     icon={images.ic_accept}
                     text="This is a notification"
@@ -55,17 +53,6 @@ class CustomOnenotify extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    v_blockheader: {
-        flex: 1,
-        backgroundColor: '#69AAFF',
-        justifyContent: 'center',
-    },
-    t_blockheader: {
-        color: '#FFFFFF',
-        fontWeight: 'bold',
-        fontSize: 20,
-        marginLeft: 10,
     },
     v_notice: {
         flex: 4,
