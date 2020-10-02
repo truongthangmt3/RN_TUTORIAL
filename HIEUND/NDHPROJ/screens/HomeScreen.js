@@ -19,6 +19,8 @@ import ProvinceDropdown from '../src/components/ProvinceDropdown';
 import Headers from '../src/components/Headers';
 import Information from '.././src/components/Information';
 import TaskBarButtons from '.././src/components/TaskBarButtons';
+import NavigationUtil from '../src/navigation/NavigationUtil';
+import {SCREEN_ROUTER} from '../utils/Constants.js';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -121,7 +123,8 @@ export default class HomeScreen extends Component {
               return (
                 <TouchableOpacity
                   onPress={() => {
-                    this.props.navigation.navigate('user');
+                    // this.props.navigation.navigate('user');
+                    NavigationUtil.navigate(SCREEN_ROUTER.USER);
                   }}
                   style={styles.items}>
                   <Text style={{fontSize: 16}}>{'#' + item.namekey}</Text>
