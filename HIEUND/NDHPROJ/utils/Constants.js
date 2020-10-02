@@ -6,5 +6,8 @@ const SCREEN_ROUTER = {
   CUSTOMER: 'customer',
   NOTIFY: 'notify',
   HOME: 'home',
+  LIST_POST: 'list_post',
+  MAIN: 'main',
+  MESSAGE: 'message',
 };
 export {SCREEN_ROUTER};
