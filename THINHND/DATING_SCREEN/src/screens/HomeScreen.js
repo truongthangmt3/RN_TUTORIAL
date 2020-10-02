@@ -14,6 +14,8 @@ import {
 import mockData from '../../mockData.json'
 import axios from 'axios'
 import Loading from '../../Loading.tsx'
+import NavigationUtil from '../navigation/NavigationUtil'
+import { SCREEN_ROUTER } from '../utils/Constant'
 export default class HomeScreen extends Component {
     state = {
         isLoading: true,
@@ -117,8 +119,13 @@ export default class HomeScreen extends Component {
                             Để tìm kiếm khách hàng được tốt nhất bạn nên đăng ký đúng danh mục sản phẩm !
                         </Text>
                         <View style={{ alignItems: 'center', flex: 1 }}>
-                            <TouchableOpacity onPress={() => { this.props.navigation.navigate('user') }}
-                                style={styles.v_button}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    NavigationUtil.navigate(SCREEN_ROUTER.LIST_POST)
+                                }}
+                                style={styles.v_button}
+                            >
+
                                 <Text style={styles.txt_button}>Đăng tin</Text>
                             </TouchableOpacity>
                         </View>

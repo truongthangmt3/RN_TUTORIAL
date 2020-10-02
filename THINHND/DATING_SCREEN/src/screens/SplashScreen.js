@@ -1,18 +1,30 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import React, { Component } from 'react'
+import { Text, View, ActivityIndicator } from 'react-native'
+import NavigationUtil from '../navigation/NavigationUtil'
+import { SCREEN_ROUTER } from '../utils/Constant'
 
 export default class SplashScreen extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
+
+    componentDidMount = async () => {
+        setTimeout(() => {
+            NavigationUtil.navigate(SCREEN_ROUTER.LOGIN)
+        }, 1000);
+
     }
 
     render() {
         return (
-            <View>
-                <Text> SplashScreen </Text>
+            <View style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <ActivityIndicator
+                    color='red'
+                />
             </View>
-        );
+        )
     }
+
+
 }

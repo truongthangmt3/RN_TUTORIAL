@@ -1,45 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
-  SafeAreaView,
-  StyleSheet,
-  Image,
   View,
   Text,
-  TouchableOpacity,
-  ScrollView,
+  SafeAreaView,
+  StyleSheet,
+  ActivityIndicator,
+  FlatList,
+  ImageBackground,
+  Image,
+  Dimensions
 } from 'react-native';
-import CustomButton from './src/component/CustomButton.js';
-import HomeScreen from './src/screens/HomeScreen.js';
-import UserScreen from './src/screens/User';
-import LoginScreen from './src/screens/LoginScreen';
-import Splash from './src/screens/Splash'
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-
+import HomeScreen from './src/screens/HomeScreen'
+import ChangePasswordScreen from './src/screens/ChangePasswordScreen'
+import UserScreen from './src/screens/UserScreen'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import AppNavigator from './src/navigation/AppNavigator';
+import NavigationUtil from './src/navigation/NavigationUtil';
 class App extends Component {
   render() {
     return (
-      <Login />
-    );
+      <AppNavigator
+        ref={ref => NavigationUtil.setTopLevelNavigator(ref)}
+
+      />
+    )
   }
 };
 
-const AppNavigator = createStackNavigator({
-  Login: LoginScreen,
-  Splash,
-  home: HomeScreen,
-  user: UserScreen,
-
-}, {
-  headerMode: 'none',
-})
-
-export default createAppContainer(AppNavigator);
+export default App;
