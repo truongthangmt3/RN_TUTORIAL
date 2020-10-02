@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   SafeAreaView
 } from 'react-native';
-import NotificationScreen from './src/apps/screen/notifications/NotificationScreen';
+import AppNavigator from './src/navigation/AppNavigator';
+import NavigationUtil from './src/navigation/NavigationUtil';
 export default class App extends Component {
   render() {
     return (
@@ -11,7 +12,7 @@ export default class App extends Component {
           flex: 1,
           backgroundColor: '#F5F6F8'
         }}>
-        <NotificationScreen />
+        <AppNavigator ref={(ref) => NavigationUtil.setTopLevelNavigator(ref)} />
       </SafeAreaView>
     );
   }

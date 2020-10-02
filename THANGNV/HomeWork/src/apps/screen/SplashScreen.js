@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
-import {
-    Image, SafeAreaView
-} from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
+import NavigationUtil from '../../navigation/NavigationUtil';
+import { SCREEN_ROUTER } from '../../utils/Constants';
 
 export default class SplashScreen extends Component {
+
+    componentDidMount = async () => {
+        setTimeout(() => {
+            NavigationUtil.navigate(SCREEN_ROUTER.LOGIN_SCREEN)
+        }, 1000);
+    }
+
     render() {
         return (
-            <SafeAreaView style={{
+            <View style={{
                 flex: 1,
                 justifyContent: 'center',
+                alignItems: 'center'
             }}>
-                <Image style={{
-                    alignSelf: 'center'
-                }}
-                    source={require('../../assets/img/logo.png')}
+                <ActivityIndicator
+                    color='red'
                 />
-            </SafeAreaView>
+            </View>
         )
     }
+
+
 }

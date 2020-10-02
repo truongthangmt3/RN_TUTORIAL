@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import {
     Text,
     View,
-    SafeAreaView,
     Image,
     TextInput,
     Dimensions,
     TouchableOpacity
-} from 'react-native'
+} from 'react-native';
+import images from '../../assets/imagesAsset';
+import NavigationUtil from '../../navigation/NavigationUtil';
+import { SCREEN_ROUTER } from '../../utils/Constants';
 
 export class Login extends Component {
     render() {
@@ -17,7 +19,7 @@ export class Login extends Component {
                     marginTop: 79,
                     alignSelf: 'center'
                 }}
-                    source={require('../../assets/img/logo.png')}
+                    source={images.logo}
                 />
 
                 <View style={{
@@ -73,7 +75,9 @@ export class Login extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => { }}
+                    onPress={() => {
+                        NavigationUtil.navigate(SCREEN_ROUTER.HOME_SCREEN)
+                    }}
                     style={{
                         alignSelf: 'center',
                         justifyContent: 'center',
@@ -95,7 +99,7 @@ export class Login extends Component {
                         position: 'absolute',
                         right: 8
                     }}
-                        source={require('../../assets/img/arrow.png')} />
+                        source={images.arrow} />
                 </TouchableOpacity>
 
                 <View style={{
