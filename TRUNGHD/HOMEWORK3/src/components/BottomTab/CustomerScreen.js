@@ -15,7 +15,7 @@ export class CustomerScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <CustomBlockHeader text="Thông báo" />
+        <CustomBlockHeader text="Khách hàng quan tâm" />
         <CustomerItem
           item="Iphone X xuất xứ Hồng Kông còn bảo hành 6 tháng"
           imgphone={require('../../assets/images/ImgCustomerScreen/ic_phone.png')}
