@@ -100,7 +100,6 @@ export default class UserScreen extends Component {
             <UserOptions
               label="Đăng xuất"
               img={require('../assets/muasi_icon/icon_log_out.png')}
-              logout
             />
           </View>
         </View>
