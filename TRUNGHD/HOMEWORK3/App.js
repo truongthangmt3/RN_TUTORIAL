@@ -10,10 +10,10 @@ import UserScreen from './src/components/BottomTab/UserScreen';
 export class App extends Component {
   render() {
     return (
-      // <AppNavigator ref={(ref) => NavigationUtil.setTopLevelNavigator(ref)} />
+      <AppNavigator ref={(ref) => NavigationUtil.setTopLevelNavigator(ref)} />
       //<CustomerScreen />
       //<NotificationScreen />
-      <UserScreen />
+      // <UserScreen />
     );
   }
 }

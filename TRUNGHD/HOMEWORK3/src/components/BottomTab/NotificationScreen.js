@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CustomBlockHeader from '../CustomComponent/CustomBlockHeader';
-import CustomBottomTab from '../CustomComponent/CustomBottomTab';
 
 export default class NotificationScreen extends Component {
   constructor(props) {
@@ -45,9 +44,6 @@ export default class NotificationScreen extends Component {
         />
         <View style={styles.v_line}></View>
         <View style={styles.v_blockemty}></View>
-        <View style={styles.v_bottomtab}>
-          <CustomBottomTab />
-        </View>
       </SafeAreaView>
     );
   }

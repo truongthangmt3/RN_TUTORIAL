@@ -6,8 +6,8 @@ import {SCREEN_ROUTER} from '../utils/constant';
 export default class SplashScreen extends Component {
   componentDidMount = async () => {
     setTimeout(() => {
-      NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
-    }, 1000);
+      NavigationUtil.navigate(SCREEN_ROUTER.LOGIN_SCREEN);
+    }, 3000);
   };
 
   render() {

@@ -9,8 +9,9 @@ import {
 } from 'react-native';
 import NavigationUtil from '../../navigation/NavigationUtil';
 import CustomBottomTab from '../CustomComponent/CustomBottomTab';
+import {SCREEN_ROUTER} from '../../utils/constant';
 
-export default class User extends Component {
+export default class UserScreen extends Component {
   render() {
     var name = 'Hà Đức Trung';
     // let shortname = this._func_getshortname(name);
@@ -50,12 +51,14 @@ export default class User extends Component {
             img1={require('../../assets/images/ImgUserScreen/ic_menu.png')}
             label="Danh mục của tôi"
             img2={require('../../assets/images/ImgUserScreen/ic_arrow.png')}
+            action={this._func_nav_mylist}
           />
           <View style={styles.v_line} />
           <CustomOneOption
             img1={require('../../assets/images/ImgUserScreen/ic_lock.png')}
             label="Đổi mật khẩu"
             img2={require('../../assets/images/ImgUserScreen/ic_arrow.png')}
+            action={this._func_nav_changepassword}
           />
           <View style={styles.v_line} />
           <CustomOneOption
@@ -72,24 +75,27 @@ export default class User extends Component {
           />
         </View>
         <View style={styles.v_emty}></View>
-        <CustomBottomTab />
+        {/* <CustomBottomTab /> */}
       </SafeAreaView>
     );
   }
   _func_nav_userinforscreen = () => {
-    NavigationUtil.navigate('userinforscreen');
+    NavigationUtil.navigate(SCREEN_ROUTER.USER_INFOR_SCREEN);
   };
   _func_nav_userbuyscreen = () => {
-    NavigationUtil.navigate('userbuyscreen');
-  };
-  _func_nav_userscreen = () => {
-    NavigationUtil.navigate('user');
+    NavigationUtil.navigate(SCREEN_ROUTER.USER_BUY_SCREEN);
   };
   _func_nav_huongdansudung = () => {
-    NavigationUtil.navigate('huongdansudung');
+    NavigationUtil.navigate(SCREEN_ROUTER.HUONG_DAN_SU_DUNG);
+  };
+  _func_nav_changepassword = () => {
+    NavigationUtil.navigate(SCREEN_ROUTER.CHANGE_PASSWORD);
+  };
+  _func_nav_mylist = () => {
+    NavigationUtil.navigate(SCREEN_ROUTER.MY_LIST);
   };
   _func_nav_logout = () => {
-    NavigationUtil.navigate('login');
+    NavigationUtil.navigate(SCREEN_ROUTER.LOGIN_SCREEN);
   };
   _func_getshortname = (text) => {
     var shortname = text.charAt(0);

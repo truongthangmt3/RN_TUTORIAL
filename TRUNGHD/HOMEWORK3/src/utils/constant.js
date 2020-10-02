@@ -9,6 +9,8 @@ const SCREEN_ROUTER = {
   MAIN: 'main',
   SPLASH_SCREEN: 'splash_screen',
   LOGIN_SCREEN: 'login_screen',
+  CHANGE_PASSWORD: 'change_password',
+  MY_LIST: 'my_list',
 };
 
 export {SCREEN_ROUTER};

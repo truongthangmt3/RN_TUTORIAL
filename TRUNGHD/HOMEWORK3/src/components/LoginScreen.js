@@ -49,7 +49,7 @@ export default class LoginScreen extends Component {
         <TouchableOpacity
           style={styles.v_buttonDangnhap}
           onPress={() => {
-            NavigationUtil.navigate(SCREEN_ROUTER.USER);
+            NavigationUtil.navigate(SCREEN_ROUTER.HOME_SCREEN);
           }}>
           <View style={styles.v_textdangnhap}>
             <Text style={styles.t_dangnhap}>Đăng nhập</Text>
