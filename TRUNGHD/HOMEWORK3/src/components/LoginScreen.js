@@ -8,6 +8,8 @@ import {
   Image,
   TextInput,
 } from 'react-native';
+import NavigationUtil from '../navigation/NavigationUtil';
+import {SCREEN_ROUTER} from '../utils/constant';
 
 export default class LoginScreen extends Component {
   //   constructor(props) {
@@ -45,19 +47,18 @@ export default class LoginScreen extends Component {
           </TouchableOpacity>
         </View>
         <TouchableOpacity
+          style={styles.v_buttonDangnhap}
           onPress={() => {
-            this.props.navigation.navigate('user');
+            NavigationUtil.navigate(SCREEN_ROUTER.USER);
           }}>
-          <View style={styles.v_buttonDangnhap}>
-            <View style={styles.v_textdangnhap}>
-              <Text style={styles.t_dangnhap}>Đăng nhập</Text>
-            </View>
-
-            <Image
-              style={styles.v_icdangnhap}
-              source={require('../assets/images/ImgLoginScreen/ic_dangnhap.png')}
-            />
+          <View style={styles.v_textdangnhap}>
+            <Text style={styles.t_dangnhap}>Đăng nhập</Text>
           </View>
+
+          <Image
+            style={styles.v_icdangnhap}
+            source={require('../assets/images/ImgLoginScreen/ic_dangnhap.png')}
+          />
         </TouchableOpacity>
         <View style={styles.v_dangki}>
           <Text style={styles.t_chuacotaikhoan}>Bạn chưa có tài khoản? </Text>
