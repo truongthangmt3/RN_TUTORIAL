@@ -1,9 +1,12 @@
 const SCREEN_ROUTER = {
     SPLASH: 'splash',
+    MAIN: 'main',
+    LOGIN: 'Login',
     HOME: 'home',
+    LIST_POST: 'ListPostScreen',
     CUSTOMER: 'customer',
-    USER: 'user',
     NOTIFY: 'notify',
+    USER: 'user',
 
 
 }
