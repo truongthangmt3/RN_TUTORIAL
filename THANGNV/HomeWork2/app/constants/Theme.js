@@ -14,8 +14,8 @@ const colors = {
 	inactive: 'gray',
 	indicator: "#24277e",
 	borderTopColor: "#dedede",
-};
 
+};
 
 const sizes = {
 	font: 15,
