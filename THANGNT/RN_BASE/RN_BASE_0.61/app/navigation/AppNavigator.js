@@ -95,7 +95,7 @@ export default createAppContainer(
         [SCREEN_ROUTER.MAIN]: Main
     },
         {
-            initialRouteName: SCREEN_ROUTER.MAIN
+            initialRouteName: SCREEN_ROUTER.AUTH_LOADING
         }
     )
 )

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { TextInput, View, Text, TouchableOpacity } from 'react-native';
 import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
 import NavigationUtil from '../../navigation/NavigationUtil';
-import { GoogleSignin , statusCodes} from '@react-native-community/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import reactotron from 'reactotron-react-native';
+import { requestLogin } from '@api'
+import { SCREEN_ROUTER } from '@app/constants/Constant';
+
 GoogleSignin.configure();
 //  GoogleSignin.configure({
 //             scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -58,6 +62,15 @@ export default class LoginScreen extends Component {
             }
         );
     }
+
+    state = {
+        isLoading: false,
+        error: null,
+        data: {},
+        phoneNumber: "",
+        password: ""
+    }
+
     render() {
         return (
             <View style={{
@@ -65,21 +78,56 @@ export default class LoginScreen extends Component {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}>
-                <TouchableOpacity
-                    onPress={() => {
-                        this._fbLogin()
-                    }}>
-                    <Text> Facebook Login </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                <TextInput
                     style={{
-                        marginTop: 50
+                        width: '80%',
+                        height: 50,
+                        backgroundColor: "gray"
                     }}
-                    onPress={() => {
-                        this._ggLogin()
-                    }}>
-                    <Text> Google Login </Text>
+                    onChangeText={(newText) => {
+
+                        this.setState({
+                            phoneNumber: newText
+                        })
+                    }}
+                >
+                </TextInput>
+                <TextInput
+                    style={{
+                        width: '80%',
+                        height: 50,
+                        marginTop: 10,
+                        backgroundColor: "gray"
+                    }}
+                    secureTextEntry={true}
+                    onChangeText={(newText) => {
+                        // reactotron.log(newText);
+                        this.setState({
+                            password: newText
+                        })
+                    }}
+                >
+
+                </TextInput>
+                <TouchableOpacity
+                    onPress={async () => {
+                        try {
+                            result = await requestLogin({
+                                "phone": this.state.phoneNumber,
+                                "password": this.state.password,
+                                "device_id": ""
+                            })
+                            reactotron.log(result);
+                            alert(JSON.stringify(result))
+                            // NavigationUtil.navigate(SCREEN_ROUTER.MAIN)
+                        } catch (error) {
+
+                        }
+                    }}
+                >
+                    <Text>Login</Text>
                 </TouchableOpacity>
+
 
             </View>
         );
