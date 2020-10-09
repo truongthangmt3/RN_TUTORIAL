@@ -9,6 +9,7 @@ import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import CheckForgotPasswordScreen from '../screens/auth/CheckForgotPasswordScreen';
 import HomeScreen from '../screens/HomeScreen'
 import UserScreen from '../screens/UserScreen'
+import NotificationScreen from '../screens/NotificationScreen'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R';
 import * as theme from "@theme";
@@ -29,8 +30,9 @@ const Auth = createStackNavigator({
 const tabbarIcons = {
     [SCREEN_ROUTER.HOME]: R.images.ic_home,
     [SCREEN_ROUTER.USER]: R.images.ic_user,
-    [SCREEN_ROUTER.HOME]: R.images.ic_home,
-    [SCREEN_ROUTER.USER]: R.images.ic_user,
+    [SCREEN_ROUTER.NOTIFICATION]: R.images.ic_notifications,
+    [SCREEN_ROUTER.CUSTOMER]: R.images.ic_customer,
+
 };
 
 const getTabBarIcon = (navigation, focused, tintColor) => {
@@ -41,6 +43,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
         <Image
             source={iconSource}
             fadeDuration={0}
+            resizeMode={'contain'}
             style={{ tintColor: tintColor, width: iconSize, height: iconSize }}
         />
     );
@@ -55,15 +58,15 @@ const Main = createBottomTabNavigator(
                 tabBarLabel: R.strings.home,
             },
         },
-        [SCREEN_ROUTER.USER]: {
-            screen: UserScreen,
+        [SCREEN_ROUTER.CUSTOMER]: {
+            screen: NotificationScreen,
             title: R.strings.customer,
             navigationOptions: {
                 tabBarLabel: R.strings.customer,
             },
         },
-        [SCREEN_ROUTER.HOME]: {
-            screen: HomeScreen,
+        [SCREEN_ROUTER.NOTIFICATION]: {
+            screen: NotificationScreen,
             title: R.strings.notification,
             navigationOptions: {
                 tabBarLabel: R.strings.notification,
@@ -102,7 +105,6 @@ const Main = createBottomTabNavigator(
         },
         initialRouteName: 'User'
     }
-
 )
 
 

@@ -3,7 +3,7 @@ import {
     Image,
     SafeAreaView,
 } from 'react-native'
-import NavigationUtil from '../../navigation/NavigationUtil';
+import NavigationUtil from '@app/navigation/NavigationUtil';
 import images from '@app/assets/imagesAsset';
 
 export default class AuthLoadingScreen extends Component {
@@ -11,6 +11,7 @@ export default class AuthLoadingScreen extends Component {
     componentDidMount() {
         // load something and check login
         setTimeout(() => {
+            //NavigationUtil.navigate("User");
             NavigationUtil.navigate("Login");
             //NavigationUtil.navigate("Register")
             //NavigationUtil.navigate("CheckPW")

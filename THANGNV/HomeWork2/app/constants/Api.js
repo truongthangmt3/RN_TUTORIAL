@@ -55,10 +55,21 @@ export const requestLogin = payload => {
   );
 };
 
+export const requestRegister = payload => {
+  return handleResult(
+    getAxios.post("Register", payload)
+  );
+};
+
+export const requestForgotPassword = payload => {
+  return handleResult(
+    getAxios.post("ForgotPassword", payload)
+  );
+};
 
 
 export const requestHomeData = () => {
   return handleResult(
-    getAxios.get(`/api/GetHome`)
+    getAxios.get(`/GetHome`)
   );
 };

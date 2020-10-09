@@ -121,7 +121,9 @@ export default class FlatListItem extends Component {
                                 style={{
                                     resizeMode: 'contain',
                                     marginRight: 5,
-                                    marginBottom: 4
+                                    marginBottom: 4,
+                                    width: 12,
+                                    height: 12,
                                 }}
                                 source={images.ic_location} />
                             <Text style={{
@@ -141,6 +143,8 @@ export default class FlatListItem extends Component {
                             <Image style={{
                                 resizeMode: 'contain',
                                 marginRight: 5,
+                                width: 12,
+                                height: 12,
                             }}
                                 source={images.ic_time} />
                             <Text style={{

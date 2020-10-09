@@ -6,8 +6,10 @@ const SCREEN_ROUTER = {
   AUTH_LOADING: "AuthLoading",
   FORGOT_PASS: "ForgotPassword",
   REGISTER: "Register",
-  USER: 'User',
-  CHECK_PASSWORD: "CheckPW"
+  USER: "User",
+  CHECK_PASSWORD: "CheckPW",
+  NOTIFICATION: "Notification",
+  CUSTOMER: "Customer"
 };
 
 export { SCREEN_ROUTER };

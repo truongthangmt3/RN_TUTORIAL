@@ -15,7 +15,6 @@ import {
 } from 'react-native-fbsdk';
 import reactotron from 'reactotron-react-native';
 import NavigationUtil from '../../navigation/NavigationUtil';
-import { SCREEN_ROUTER } from '@constant';
 import images from '@app/assets/imagesAsset';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import { requestLogin } from '@api';
@@ -125,6 +124,8 @@ export default class LoginScreen extends Component {
                                 phoneNumber: newText
                             })
                         }}
+                        keyboardType={'numbers-and-punctuation'}
+                        returnKeyType={'next'}
                         placeholder={'Số Điện Thoại'}
                         placeholderTextColor='grey'
                     />
@@ -138,6 +139,7 @@ export default class LoginScreen extends Component {
                                 password: newText
                             })
                         }}
+                        returnKeyType={'go'}
                         secureTextEntry={true}
                         placeholder={'Mật khẩu'}
                         placeholderTextColor='grey'
