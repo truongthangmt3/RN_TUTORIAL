@@ -6,7 +6,8 @@ import AuthLoadingScreen from '../screens/auth/AuthLoadingScreen'
 import LoginScreen from '../screens/auth/LoginScreen'
 import RegisterScreen from '../screens/auth/RegisterScreen'
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
-import HomeScreen from '@screen/HomeScreen'
+import CheckForgotPasswordScreen from '../screens/auth/CheckForgotPasswordScreen';
+import HomeScreen from '../screens/HomeScreen'
 import UserScreen from '../screens/UserScreen'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R';
@@ -20,11 +21,14 @@ const TabBarComponent = props => <BottomTabBar {...props} />;
 const Auth = createStackNavigator({
     [SCREEN_ROUTER.LOGIN]: LoginScreen,
     [SCREEN_ROUTER.REGISTER]: RegisterScreen,
-    [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen
+    [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen,
+    [SCREEN_ROUTER.CHECK_PASSWORD]: CheckForgotPasswordScreen,
 })
 
 
 const tabbarIcons = {
+    [SCREEN_ROUTER.HOME]: R.images.ic_home,
+    [SCREEN_ROUTER.USER]: R.images.ic_user,
     [SCREEN_ROUTER.HOME]: R.images.ic_home,
     [SCREEN_ROUTER.USER]: R.images.ic_user,
 };
@@ -49,6 +53,20 @@ const Main = createBottomTabNavigator(
             title: R.strings.home,
             navigationOptions: {
                 tabBarLabel: R.strings.home,
+            },
+        },
+        [SCREEN_ROUTER.USER]: {
+            screen: UserScreen,
+            title: R.strings.customer,
+            navigationOptions: {
+                tabBarLabel: R.strings.customer,
+            },
+        },
+        [SCREEN_ROUTER.HOME]: {
+            screen: HomeScreen,
+            title: R.strings.notification,
+            navigationOptions: {
+                tabBarLabel: R.strings.notification,
             },
         },
         [SCREEN_ROUTER.USER]: {
@@ -95,7 +113,7 @@ export default createAppContainer(
         [SCREEN_ROUTER.MAIN]: Main
     },
         {
-            initialRouteName: SCREEN_ROUTER.MAIN
+            initialRouteName: SCREEN_ROUTER.AUTH_LOADING
         }
     )
 )

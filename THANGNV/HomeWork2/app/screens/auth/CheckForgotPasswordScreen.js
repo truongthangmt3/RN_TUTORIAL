@@ -1,15 +1,15 @@
 import images from '@app/assets/imagesAsset';
+import NavigationUtil from '@app/navigation/NavigationUtil';
 import React, { Component } from 'react';
 import {
     View,
     Text,
     Image,
-    TextInput,
     Dimensions,
     TouchableOpacity
 } from 'react-native';
 
-export default class ForgotPassword extends Component {
+export default class CheckForgotPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,29 +27,39 @@ export default class ForgotPassword extends Component {
                     width: 297,
                     height: 120,
                     alignSelf: 'center',
-                    marginBottom: 120,
+                    marginBottom: 37,
                     marginHorizontal: 39
                 }} source={images.img_muasi_logo} />
 
-                <TextInput
+                <View
                     style={{
                         borderWidth: 0.5,
                         backgroundColor: 'white',
                         marginHorizontal: 25,
                         borderColor: '#707070',
                         borderRadius: 10,
-                        height: 59,
-                        padding: 19
+                        marginBottom: 100,
+                        height: 107,
+                        padding: 18
                     }}
-                    placeholder={'Email'}
-                />
+                >
+                    <Text style={{
+                        fontSize: 18
+                    }}>
+                        Mật khẩu đã được gửi tới email của bạn.
+                    </Text>
+                    <Text style={{
+                        marginTop: 18,
+                        fontSize: 18
+                    }}
+                    >Vui lòng kiểm tra email !</Text>
+                </View>
 
                 <TouchableOpacity
                     onPress={() => {
-                        NavigationUtil.navigate("Home")
+                        NavigationUtil.navigate("Login")
                     }}
                     style={{
-                        marginTop: 65,
                         alignSelf: 'center',
                         justifyContent: 'center',
                         borderRadius: 23,
@@ -63,7 +73,7 @@ export default class ForgotPassword extends Component {
                         fontWeight: 'bold',
                         color: 'white',
                     }}>
-                        Xác nhận
+                        Quay lại đăng nhập
                     </Text>
                     <Image style={{
                         alignSelf: 'flex-end',

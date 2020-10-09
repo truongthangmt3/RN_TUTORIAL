@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
 import {
-    View,
-    Text,
+    Image,
     SafeAreaView,
-    StatusBar,
-    ActivityIndicator
 } from 'react-native'
-import NavigationUtil from '../../navigation/NavigationUtil'
-import i18 from '@i18';
-
-// import { connect } from 'react-redux'
+import NavigationUtil from '../../navigation/NavigationUtil';
+import images from '@app/assets/imagesAsset';
 
 export default class AuthLoadingScreen extends Component {
 
@@ -17,23 +12,25 @@ export default class AuthLoadingScreen extends Component {
         // load something and check login
         setTimeout(() => {
             NavigationUtil.navigate("Login");
-        }, 200);
-
+            //NavigationUtil.navigate("Register")
+            //NavigationUtil.navigate("CheckPW")
+        }, 1000);
     }
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <View>
-                    <ActivityIndicator />
-                    <Text>{i18.t('user')}</Text>
-                </View>
+            <SafeAreaView style={{
+                flex: 1,
+                justifyContent: 'center',
+            }}>
+                <Image style={{
+                    resizeMode: 'contain',
+                    width: 374,
+                    alignSelf: 'center'
+                }} source={images.img_flashscreen} />
             </SafeAreaView>
         )
     }
-
-
-
 }
 
 const mapStateToProps = (state) => ({

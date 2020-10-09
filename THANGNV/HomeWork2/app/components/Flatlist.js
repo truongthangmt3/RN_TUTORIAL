@@ -5,8 +5,7 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
-import R from '@R';
-import images from '@R/images';
+import images from '../assets/imagesAsset';
 
 export default class FlatListItem extends Component {
 
@@ -118,13 +117,13 @@ export default class FlatListItem extends Component {
                             flexDirection: 'row',
                             alignSelf: 'flex-end',
                         }}>
-                            {/* <Image
+                            <Image
                                 style={{
                                     resizeMode: 'contain',
                                     marginRight: 5,
                                     marginBottom: 4
                                 }}
-                                source={images.ic_location} /> */}
+                                source={images.ic_location} />
                             <Text style={{
                                 fontSize: 12,
                                 marginBottom: 4,
@@ -139,11 +138,11 @@ export default class FlatListItem extends Component {
                             alignSelf: 'flex-end',
                             alignItems: 'center'
                         }}>
-                            {/* <Image style={{
+                            <Image style={{
                                 resizeMode: 'contain',
                                 marginRight: 5,
                             }}
-                                source={images.ic_time} /> */}
+                                source={images.ic_time} />
                             <Text style={{
                                 fontSize: 12,
                                 fontWeight: '200',

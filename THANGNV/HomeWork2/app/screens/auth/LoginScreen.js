@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
+import {
+    View,
+    Text,
+    Image,
+    TextInput,
+    Dimensions,
+    SafeAreaView,
+    TouchableOpacity
+} from 'react-native';
+import {
+    LoginButton,
+    AccessToken,
+    LoginManager
+} from 'react-native-fbsdk';
 import NavigationUtil from '../../navigation/NavigationUtil';
-import { GoogleSignin , statusCodes} from '@react-native-community/google-signin';
+import { SCREEN_ROUTER } from '@constant';
+import images from '@app/assets/imagesAsset';
+import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 GoogleSignin.configure();
 //  GoogleSignin.configure({
 //             scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -60,28 +74,170 @@ export default class LoginScreen extends Component {
     }
     render() {
         return (
-            <View style={{
+            <SafeAreaView style={{
                 flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
+                backgroundColor: '#F7F7F7'
             }}>
+                <Image style={{
+                    marginTop: 79,
+                    width: 313,
+                    height: 126,
+                    marginHorizontal: 31,
+                    alignSelf: 'center'
+                }}
+                    source={images.img_muasi_logo}
+                />
+
+                <View style={{
+                    marginTop: 68,
+                    marginHorizontal: 25,
+                    borderWidth: 0.5,
+                    borderRadius: 20,
+                    borderColor: '#707070',
+                    backgroundColor: 'white',
+                    shadowColor: "#000",
+                    shadowOffset: {
+                        width: 4,
+                        height: 4,
+                    },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 10,
+                }}>
+                    <TextInput
+                        style={{
+                            height: 59,
+                            padding: 22,
+                            borderBottomWidth: 1,
+                            borderBottomColor: 'rgba(70, 70, 70, 0.3)'
+                        }}
+                        placeholder={'Số Điện Thoại'}
+                        placeholderTextColor='grey'
+                    />
+                    <TextInput
+                        style={{
+                            height: 59,
+                            padding: 22
+                        }}
+                        placeholder={'Mật khẩu'}
+                        placeholderTextColor='grey'
+                    />
+                </View>
+
                 <TouchableOpacity
                     onPress={() => {
-                        this._fbLogin()
-                    }}>
-                    <Text> Facebook Login </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={{
-                        marginTop: 50
+                        NavigationUtil.navigate("ForgotPassword")
                     }}
-                    onPress={() => {
-                        this._ggLogin()
+                    style={{
+                        marginTop: 9,
+                        marginRight: 25,
+                        marginBottom: 93,
+                        alignSelf: 'flex-end'
                     }}>
-                    <Text> Google Login </Text>
+                    <Text style={{
+                        fontSize: 12,
+                        fontWeight: 'bold',
+                        textDecorationLine: 'underline'
+                    }}>
+                        Quên mật khẩu?
+                        </Text>
                 </TouchableOpacity>
 
-            </View>
-        );
+                <TouchableOpacity
+                    onPress={() => {
+                        NavigationUtil.navigate("Home")
+                    }}
+                    style={{
+                        alignSelf: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 23,
+                        height: 46,
+                        width: Dimensions.get('window').width - 23 * 2,
+                        backgroundColor: 'grey',
+                    }}>
+                    <Text style={{
+                        fontSize: 12,
+                        alignSelf: 'center',
+                        fontWeight: 'bold',
+                        color: 'white',
+                    }}>
+                        Đăng nhập
+                    </Text>
+                    <Image style={{
+                        alignSelf: 'flex-end',
+                        position: 'absolute',
+                        width: 29,
+                        height: 29,
+                        right: 8
+                    }}
+                        source={images.ic_next} />
+                </TouchableOpacity>
+
+                <View style={{
+                    marginTop: 12,
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                    justifyContent: 'center'
+                }}>
+
+                    <Text style={{
+                        fontSize: 12,
+                    }}>
+                        Bạn chưa có tài khoản?
+                    </Text>
+                    <TouchableOpacity onPress={() => {
+                        NavigationUtil.navigate("Register")
+                    }}
+                        style={{
+                            marginLeft: 5
+                        }}>
+                        <Text style={{
+                            fontSize: 12,
+                            color: 'red'
+                        }}>
+                            Đăng ký
+                    </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{
+                    marginTop: 20,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'column',
+                }}>
+                    <Text style={{
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                    }}>
+                        Hoặc
+                        </Text>
+                    <Text style={{
+                        marginVertical: 15
+                    }}>
+                        Đăng nhập với
+                        </Text>
+                    <View style={{
+                        flexDirection: 'row',
+                    }}>
+                        <TouchableOpacity onPress={this._fbLogin}>
+                            <Image style={{
+                                width: 40,
+                                height: 40,
+                                marginRight: 40
+                            }} source={images.ic_facebook} />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={
+                            this._ggLogin
+                        }>
+                            <Image style={{
+                                width: 40,
+                                height: 40
+                            }} source={images.ic_google} />
+                        </TouchableOpacity>
+
+                    </View>
+                </View>
+            </SafeAreaView>
+        )
     }
 }

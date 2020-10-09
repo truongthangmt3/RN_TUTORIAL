@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Alert, Image } from 'react-native';
-import i18 from '@i18';
+import {
+    Text,
+    View,
+    TouchableOpacity,
+    Alert,
+    Image
+} from 'react-native';
 import theme from '@theme'
 import R from '@R'
-import NavigationUtil from '@app/navigation/NavigationUtil';
-import { SCREEN_ROUTER } from '@app/constants/Constant';
-import DropdownAlertUtil from '@app/components/DropdownAlertUtil';
-import OneSignal from "react-native-onesignal";
-import reactotron from 'reactotron-react-native';
-import AwsomeFont from '../components/Icon';
-import axios from 'axios';
 import FlatListItem from '@app/components/Flatlist';
 import Loading from '@app/components/Loading'
 import WHeader from '@app/components/WHeader';
@@ -23,12 +21,12 @@ export default class UserScreen extends Component {
 
     componentDidMount = async () => {
         try {
-            const response = await await requestHomeData()
+            const response = await requestHomeData()
             const jsonResponse = response.data
             this.setState({
                 isLoading: false,
                 isError: false,
-                data: jsonResponse.data
+                data: jsonResponse
             })
         } catch (error) {
             alert(JSON.stringify(error))
@@ -48,20 +46,18 @@ export default class UserScreen extends Component {
         }
         if (isError)
             return (
-                <View style={styles.container}>
-                    <Text>
-                        Đã có lỗi xảy ra
-                        </Text>
-                </View>
+                <Text>
+                    Đã có lỗi xảy ra
+                </Text>
             )
         return (
             <View style={{
                 flex: 1,
             }}>
-                <WHeader
+                {/* <WHeader
                     titleHeader={R.strings.user}
                     color={theme.colors.headerTitle}
-                />
+                /> */}
                 <FlatList
                     data={this.state.data.listpost}
                     renderItem={({ item }) => {
