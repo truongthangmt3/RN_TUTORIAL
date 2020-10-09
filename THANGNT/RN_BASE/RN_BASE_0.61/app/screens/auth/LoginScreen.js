@@ -6,6 +6,8 @@ import { GoogleSignin, statusCodes } from '@react-native-community/google-signin
 import reactotron from 'reactotron-react-native';
 import { requestLogin } from '@api'
 import { SCREEN_ROUTER } from '@app/constants/Constant';
+import AsyncStorage from '@react-native-community/async-storage' // luu du lieu xuong o cung
+
 
 GoogleSignin.configure();
 //  GoogleSignin.configure({
@@ -67,8 +69,8 @@ export default class LoginScreen extends Component {
         isLoading: false,
         error: null,
         data: {},
-        phoneNumber: "",
-        password: ""
+        phoneNumber: "0975545828",
+        password: "123456"
     }
 
     render() {
@@ -90,6 +92,7 @@ export default class LoginScreen extends Component {
                             phoneNumber: newText
                         })
                     }}
+                    value={this.state.phoneNumber}
                 >
                 </TextInput>
                 <TextInput
@@ -101,13 +104,11 @@ export default class LoginScreen extends Component {
                     }}
                     secureTextEntry={true}
                     onChangeText={(newText) => {
-                        // reactotron.log(newText);
                         this.setState({
                             password: newText
                         })
                     }}
-                >
-
+                    value={this.state.password}>
                 </TextInput>
                 <TouchableOpacity
                     onPress={async () => {
@@ -117,9 +118,9 @@ export default class LoginScreen extends Component {
                                 "password": this.state.password,
                                 "device_id": ""
                             })
-                            reactotron.log(result);
-                            alert(JSON.stringify(result))
-                            // NavigationUtil.navigate(SCREEN_ROUTER.MAIN)
+                            const token = result.data.token
+                            await AsyncStorage.setItem("token", token)
+                            NavigationUtil.navigate(SCREEN_ROUTER.MAIN)
                         } catch (error) {
 
                         }
