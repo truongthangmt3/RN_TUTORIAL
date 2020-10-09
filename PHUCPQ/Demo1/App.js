@@ -18,7 +18,7 @@ import {
   ScrollView,
 } from 'react-native';
 import CustomButton from './src/Component/CustomButton';
-import imagesAsset from './assets/imagesAsset'
+import imagesAsset from './assets/imagesAsset';
 class App extends Component {
   state = {
     current: 0,
@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
   v_action_block: {
     flexDirection: 'row',
     margin: 10,
+    backgroundColor: 'white'
   },
   img_user: {
     width: 24,
