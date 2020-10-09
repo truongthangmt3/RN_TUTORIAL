@@ -70,7 +70,9 @@ export default class RNHeader extends Component<Props> {
                 />
               </TouchableOpacity>
             ) : leftButton ? (
-              <TouchableOpacity style={styles.leftComp} onPress={leftPress}>
+              <TouchableOpacity style={styles.leftComp}
+                onPress={leftPress}
+              >
                 {leftButton}
               </TouchableOpacity>
             ) : null}

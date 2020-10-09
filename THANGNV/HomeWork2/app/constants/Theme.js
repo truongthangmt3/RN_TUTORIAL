@@ -29,7 +29,7 @@ const sizes = {
 	base: 16,
 	font: 14,
 	border: 15,
-	padding: 25,
+	//padding: 25,
 };
 
 const fonts = {

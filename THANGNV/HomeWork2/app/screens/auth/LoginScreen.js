@@ -13,10 +13,12 @@ import {
     AccessToken,
     LoginManager
 } from 'react-native-fbsdk';
+import reactotron from 'reactotron-react-native';
 import NavigationUtil from '../../navigation/NavigationUtil';
 import { SCREEN_ROUTER } from '@constant';
 import images from '@app/assets/imagesAsset';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
+import { requestLogin } from '@api';
 GoogleSignin.configure();
 //  GoogleSignin.configure({
 //             scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -72,6 +74,14 @@ export default class LoginScreen extends Component {
             }
         );
     }
+
+    state = {
+        isLoading: false,
+        error: null,
+        data: {},
+        phoneNumber: "",
+        password: ""
+    }
     render() {
         return (
             <SafeAreaView style={{
@@ -110,6 +120,11 @@ export default class LoginScreen extends Component {
                             borderBottomWidth: 1,
                             borderBottomColor: 'rgba(70, 70, 70, 0.3)'
                         }}
+                        onChangeText={(newText) => {
+                            this.setState({
+                                phoneNumber: newText
+                            })
+                        }}
                         placeholder={'Số Điện Thoại'}
                         placeholderTextColor='grey'
                     />
@@ -118,6 +133,12 @@ export default class LoginScreen extends Component {
                             height: 59,
                             padding: 22
                         }}
+                        onChangeText={(newText) => {
+                            this.setState({
+                                password: newText
+                            })
+                        }}
+                        secureTextEntry={true}
                         placeholder={'Mật khẩu'}
                         placeholderTextColor='grey'
                     />
@@ -143,8 +164,19 @@ export default class LoginScreen extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={() => {
-                        NavigationUtil.navigate("Home")
+                    onPress={async () => {
+                        try {
+                            result = await requestLogin({
+                                "phone": this.state.phoneNumber,
+                                "password": this.state.password,
+                                "device_id": ""
+                            })
+                            NavigationUtil.navigate("Home")
+                        } catch (error) {
+                            reactotron.log(result);
+                            alert(JSON.stringify(result))
+                        }
+                        //NavigationUtil.navigate("Home")
                     }}
                     style={{
                         alignSelf: 'center',

@@ -1,4 +1,5 @@
 import images from '@app/assets/imagesAsset';
+import NavigationUtil from '@app/navigation/NavigationUtil';
 import React, { Component } from 'react';
 import {
     View,
@@ -46,7 +47,7 @@ export default class ForgotPassword extends Component {
 
                 <TouchableOpacity
                     onPress={() => {
-                        NavigationUtil.navigate("Home")
+                        NavigationUtil.navigate("CheckPW")
                     }}
                     style={{
                         marginTop: 65,
