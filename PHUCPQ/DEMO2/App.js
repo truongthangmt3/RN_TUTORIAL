@@ -6,36 +6,18 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import React, { Component } from 'react';
+import AppNavigator from './src/Navigation/AppNavigator';
+import NavigationUtil from './src/Navigation/NavigationUtil';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+class App extends Component {
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-      </SafeAreaView>
-    </>
-  );
+  render() {
+    return (
+      <AppNavigator
+        ref={ref => NavigationUtil.setTopLevelNavigator(ref)}
+      ></AppNavigator>
+    );
+  }
 };
-
-const styles = StyleSheet.create({
-
-});
-
 export default App;

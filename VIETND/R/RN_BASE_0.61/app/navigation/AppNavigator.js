@@ -92,10 +92,11 @@ export default createAppContainer(
     createSwitchNavigator({
         [SCREEN_ROUTER.AUTH_LOADING]: AuthLoadingScreen,
         [SCREEN_ROUTER.AUTH]: Auth,
-        [SCREEN_ROUTER.MAIN]: Main
+        [SCREEN_ROUTER.MAIN]: Main,
+
     },
         {
-            initialRouteName: SCREEN_ROUTER.MAIN
+            initialRouteName: SCREEN_ROUTER.AUTH_LOADING
         }
     )
 )
