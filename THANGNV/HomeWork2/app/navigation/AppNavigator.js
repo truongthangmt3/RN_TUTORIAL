@@ -7,10 +7,11 @@ import LoginScreen from '../screens/auth/LoginScreen'
 import RegisterScreen from '../screens/auth/RegisterScreen'
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import CheckForgotPasswordScreen from '../screens/auth/CheckForgotPasswordScreen';
-import HomeScreen from '../screens/HomeScreen'
-import UserScreen from '../screens/UserScreen'
-import NotificationScreen from '../screens/NotificationScreen'
-import { SCREEN_ROUTER } from '@constant'
+import HomeScreen from '../screens/HomeScreen';
+import UserScreen from '../screens/UserScreen';
+import NotificationScreen from '../screens/NotificationScreen';
+import CustomerScreen from '../screens/CustomerScreen';
+import { SCREEN_ROUTER } from '@constant';
 import R from '@R';
 import * as theme from "@theme";
 
@@ -24,6 +25,8 @@ const Auth = createStackNavigator({
     [SCREEN_ROUTER.REGISTER]: RegisterScreen,
     [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen,
     [SCREEN_ROUTER.CHECK_PASSWORD]: CheckForgotPasswordScreen,
+}, {
+    headerMode: 'none'
 })
 
 
@@ -32,13 +35,12 @@ const tabbarIcons = {
     [SCREEN_ROUTER.USER]: R.images.ic_user,
     [SCREEN_ROUTER.NOTIFICATION]: R.images.ic_notifications,
     [SCREEN_ROUTER.CUSTOMER]: R.images.ic_customer,
-
 };
 
 const getTabBarIcon = (navigation, focused, tintColor) => {
     const { routeName } = navigation.state;
     const iconSource = tabbarIcons[routeName] || R.images.home;
-    const iconSize = focused ? 25 : 22;
+    const iconSize = focused ? 25 : 20;
     return (
         <Image
             source={iconSource}
@@ -59,7 +61,7 @@ const Main = createBottomTabNavigator(
             },
         },
         [SCREEN_ROUTER.CUSTOMER]: {
-            screen: NotificationScreen,
+            screen: CustomerScreen,
             title: R.strings.customer,
             navigationOptions: {
                 tabBarLabel: R.strings.customer,

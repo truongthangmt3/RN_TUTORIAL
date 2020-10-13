@@ -5,17 +5,22 @@ import {
 } from 'react-native'
 import NavigationUtil from '@app/navigation/NavigationUtil';
 import images from '@app/assets/imagesAsset';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class AuthLoadingScreen extends Component {
 
-    componentDidMount() {
+    componentDidMount = async () => {
         // load something and check login
-        setTimeout(() => {
-            //NavigationUtil.navigate("User");
+        try {
+            const token = await AsyncStorage.getItem("token")
+            if (token && token.length > 0) {
+                NavigationUtil.navigate("Home");
+            } else {
+                NavigationUtil.navigate("Login");
+            }
+        } catch (error) {
             NavigationUtil.navigate("Login");
-            //NavigationUtil.navigate("Register")
-            //NavigationUtil.navigate("CheckPW")
-        }, 1000);
+        }
     }
 
     render() {

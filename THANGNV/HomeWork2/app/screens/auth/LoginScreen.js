@@ -18,6 +18,8 @@ import NavigationUtil from '../../navigation/NavigationUtil';
 import images from '@app/assets/imagesAsset';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import { requestLogin } from '@api';
+import AsyncStorage from '@react-native-community/async-storage';
+
 GoogleSignin.configure();
 //  GoogleSignin.configure({
 //             scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -124,6 +126,7 @@ export default class LoginScreen extends Component {
                                 phoneNumber: newText
                             })
                         }}
+                        //value={this.state.phoneNumber}
                         keyboardType={'numbers-and-punctuation'}
                         returnKeyType={'next'}
                         placeholder={'Số Điện Thoại'}
@@ -139,6 +142,7 @@ export default class LoginScreen extends Component {
                                 password: newText
                             })
                         }}
+                        //value={this.state.password}
                         returnKeyType={'go'}
                         secureTextEntry={true}
                         placeholder={'Mật khẩu'}
@@ -173,6 +177,8 @@ export default class LoginScreen extends Component {
                                 "password": this.state.password,
                                 "device_id": ""
                             })
+                            const token = result.data.token
+                            await AsyncStorage.setItem("token", token)
                             NavigationUtil.navigate("Home")
                         } catch (error) {
                             reactotron.log(result);

@@ -1,7 +1,8 @@
 import axios from "axios";
-import { AsyncStorage, Alert } from "react-native";
+import { Alert } from "react-native";
 import NavigationUtil from "../navigation/NavigationUtil";
 import I18n from "../i18n/i18n";
+import AsyncStorage from '@react-native-community/async-storage'; // luu du lieu vao o cung
 
 function createAxios() {
   // AsyncStorage.setItem("token", '773DE1FE9732F26F7552BC921CBE347E')

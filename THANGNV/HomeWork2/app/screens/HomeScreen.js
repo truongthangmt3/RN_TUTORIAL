@@ -10,14 +10,13 @@ import {
     Alert,
     Image
 } from 'react-native';
-import theme from '@theme';
-import R from '@R';
 import reactotron from 'reactotron-react-native';
 import FlatListItem from '@app/components/Flatlist';
 import Loading from '@app/components/Loading';
-import WHeader from '@app/components/WHeader';
 import { requestHomeData } from '@api';
 import images from '@app/assets/imagesAsset';
+import AsyncStorage from '@react-native-community/async-storage';
+import NavigationUtil from '@app/navigation/NavigationUtil';
 
 export default class HomeScreen extends Component {
     state = {
@@ -153,7 +152,11 @@ export default class HomeScreen extends Component {
                                             Để tìm kiếm khách hàng được tốt nhất bạn nên đăng ký đúng danh mục sản phẩm !
                                         </Text>
 
-                                        <TouchableOpacity onPress={() => { }}
+                                        <TouchableOpacity onPress={async () => {
+                                            const token = ""
+                                            await AsyncStorage.setItem("token", token)
+                                            NavigationUtil.navigate("Login")
+                                        }}
                                             style={{
                                                 alignSelf: 'center',
                                                 alignItems: 'center',
@@ -167,7 +170,7 @@ export default class HomeScreen extends Component {
                                                 color: 'white',
                                                 fontSize: 16
                                             }}>
-                                                Đăng tin
+                                                LogOut
                                             </Text>
                                         </TouchableOpacity>
                                     </ImageBackground>
