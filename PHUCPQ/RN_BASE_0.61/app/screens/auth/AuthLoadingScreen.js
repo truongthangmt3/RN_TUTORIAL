@@ -13,22 +13,16 @@ import { SCREEN_ROUTER } from '@app/constants/Constant';
 export default class AuthLoadingScreen extends Component {
 
     componentDidMount = async () => {
-        // load something and check login
-
         try {
             const token = await AsyncStorage.getItem("token")
             if (token && token.length > 0) {
-                NavigationUtil.navigate(SCREEN_ROUTER.MAIN);
+                NavigationUtil.navigate(SCREEN_ROUTER.REGISTER);
             } else {
                 NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
             }
         } catch (error) {
             NavigationUtil.navigate(SCREEN_ROUTER.LOGIN)
         }
-        // setTimeout(() => {
-        //     NavigationUtil.navigate("Login");
-        // }, 200);
-
     }
 
     render() {

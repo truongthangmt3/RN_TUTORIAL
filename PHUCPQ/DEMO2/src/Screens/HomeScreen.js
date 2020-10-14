@@ -11,7 +11,7 @@ import {
     TextInput,
     TouchableOpacity,
 } from 'react-native';
-import FastImage from 'react-native-fast-image'
+// import FastImage from 'react-native-fast-image'
 import axios from 'axios'
 import Loading from '../Compoment/Loading'
 import NavigationUtil from '../Navigation/NavigationUtil';
@@ -76,7 +76,7 @@ export default class HomeScreen extends Component {
             <SafeAreaView style={styles.container}>
 
                 <View style={styles.block_search}>
-                    <FastImage
+                    <Image
                         source={require('../../asset/ic/ic_search.png')}
                         style={styles.img_search}
                     />
