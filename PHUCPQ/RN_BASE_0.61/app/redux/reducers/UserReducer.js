@@ -2,7 +2,7 @@ import { GET_USER } from "../actions/type";
 
 const initialState = {
   data: {},
-  isLoading: true,
+  isLoading: false,
   error: null
 };
 

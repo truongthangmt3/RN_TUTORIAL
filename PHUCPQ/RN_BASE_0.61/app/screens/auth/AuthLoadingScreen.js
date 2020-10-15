@@ -16,7 +16,7 @@ export default class AuthLoadingScreen extends Component {
         try {
             const token = await AsyncStorage.getItem("token")
             if (token && token.length > 0) {
-                NavigationUtil.navigate(SCREEN_ROUTER.REGISTER);
+                NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
             } else {
                 NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
             }

@@ -40,9 +40,13 @@ export default class LoginScreen extends Component {
                     }}
                     value={this.state.password}>
                 </TextInput>
-                <Text style={styles.txt_forgotPass}>
-                    Quên mật khẩu?
+                <TouchableOpacity onPress={() => {
+                    NavigationUtil.navigate(SCREEN_ROUTER.FORGOT_PASS)
+                }}>
+                    <Text style={styles.txt_forgotPass}>
+                        Quên mật khẩu?
                 </Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.headerlogin}
                     onPress={async () => {
                         try {
