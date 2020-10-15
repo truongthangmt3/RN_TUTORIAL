@@ -21,7 +21,12 @@ const Auth = createStackNavigator({
     [SCREEN_ROUTER.LOGIN]: LoginScreen,
     [SCREEN_ROUTER.REGISTER]: RegisterScreen,
     [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen
-})
+}
+    ,
+    {
+        headerMode: 'none'
+    }
+)
 
 
 const tabbarIcons = {
@@ -93,10 +98,9 @@ export default createAppContainer(
         [SCREEN_ROUTER.AUTH_LOADING]: AuthLoadingScreen,
         [SCREEN_ROUTER.AUTH]: Auth,
         [SCREEN_ROUTER.MAIN]: Main,
-
     },
         {
-            initialRouteName: SCREEN_ROUTER.MAIN
+            initialRouteName: SCREEN_ROUTER.AuthLoadingScreen
         }
     )
 )
