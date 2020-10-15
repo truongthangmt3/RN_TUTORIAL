@@ -3,6 +3,7 @@ import {
     View,
     Text,
     Image,
+    StyleSheet,
     TouchableOpacity
 } from 'react-native';
 import images from '../assets/imagesAsset';
@@ -51,9 +52,9 @@ export default class FlatListItem extends Component {
             <TouchableOpacity
                 onPress={() => { }}
                 style={{
+                    flex: 1,
+                    marginBottom: 7,
                     backgroundColor: 'white',
-                    height: 100,
-                    marginBottom: 7
                 }}>
 
                 <Text style={{
@@ -66,7 +67,8 @@ export default class FlatListItem extends Component {
                 </Text>
 
                 <View style={{
-                    flexDirection: 'row'
+                    flexDirection: 'row',
+                    marginBottom: 14
                 }}>
                     <View style={{
                         width: 40,
@@ -151,7 +153,7 @@ export default class FlatListItem extends Component {
                                 fontSize: 12,
                                 fontWeight: '200',
                             }}>
-                                {Modified_date}
+                                {Modified_date.substr(0, 10)}
                             </Text>
                         </View>
                     </View>
@@ -160,3 +162,6 @@ export default class FlatListItem extends Component {
         );
     }
 }
+const styles = StyleSheet.create({
+
+})

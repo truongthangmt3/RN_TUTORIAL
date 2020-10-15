@@ -1,16 +1,17 @@
 import React from 'react';
-import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
-import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs'
-import AuthLoadingScreen from '../screens/auth/AuthLoadingScreen'
-import LoginScreen from '../screens/auth/LoginScreen'
-import RegisterScreen from '../screens/auth/RegisterScreen'
-import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import AuthLoadingScreen from '../screens/auth/AuthLoadingScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
+import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
 import CheckForgotPasswordScreen from '../screens/auth/CheckForgotPasswordScreen';
 import HomeScreen from '../screens/HomeScreen';
-import UserScreen from '../screens/UserScreen';
+import UserScreen from '../screens/user/UserScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import CustomerScreen from '../screens/CustomerScreen';
+import UserInfo from '@app/screens/user/stackScreen/UserInfo';
 import { SCREEN_ROUTER } from '@constant';
 import R from '@R';
 import * as theme from "@theme";
@@ -18,6 +19,8 @@ import * as theme from "@theme";
 import {
     Image
 } from "react-native";
+
+
 const TabBarComponent = props => <BottomTabBar {...props} />;
 
 const Auth = createStackNavigator({
@@ -29,6 +32,9 @@ const Auth = createStackNavigator({
     headerMode: 'none'
 })
 
+const User = createStackNavigator({
+    [SCREEN_ROUTER.USER_INFO]: UserInfo,
+})
 
 const tabbarIcons = {
     [SCREEN_ROUTER.HOME]: R.images.ic_home,

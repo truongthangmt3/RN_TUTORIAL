@@ -2,20 +2,20 @@ import React, { Component } from 'react';
 import {
     Text,
     View,
-    SafeAreaView,
+    Alert,
+    Image,
     FlatList,
     TextInput,
+    StyleSheet,
+    SafeAreaView,
     ImageBackground,
     TouchableOpacity,
-    Alert,
-    Image
 } from 'react-native';
 import reactotron from 'reactotron-react-native';
 import FlatListItem from '@app/components/Flatlist';
 import Loading from '@app/components/Loading';
 import { requestHomeData } from '@api';
 import images from '@app/assets/imagesAsset';
-import AsyncStorage from '@react-native-community/async-storage';
 import NavigationUtil from '@app/navigation/NavigationUtil';
 
 export default class HomeScreen extends Component {
@@ -62,6 +62,7 @@ export default class HomeScreen extends Component {
         return (
             <SafeAreaView style={{
                 flex: 1,
+                backgroundColor: '#F5F6F8'
             }}>
                 <FlatList
                     data={this.state.data.listpost}
@@ -79,22 +80,11 @@ export default class HomeScreen extends Component {
                     ListHeaderComponent={() => {
                         return (
                             <View style={{ flex: 1 }}>
-                                <View style={{
-                                    height: 172,
-                                }}>
+                                <View style={{ height: 172 }}>
                                     <ImageBackground
-                                        style={{
-                                            height: 172,
-                                        }}
-                                        source={images.img_header_background}
-                                    >
-                                        <Text style={{
-                                            marginLeft: 11,
-                                            marginTop: 15,
-                                            marginBottom: 8,
-                                            color: 'white',
-                                            fontSize: 20
-                                        }}>
+                                        style={{ height: 172 }}
+                                        source={images.img_header_background}>
+                                        <Text style={styles.headerTitle}>
                                             Tôi muốn mua sỉ
                                     </Text>
                                         <View style={{
@@ -102,75 +92,46 @@ export default class HomeScreen extends Component {
                                             marginHorizontal: 10
                                         }}>
                                             <TextInput
-                                                style={{
-                                                    flex: 1,
-                                                    height: 36,
-                                                    backgroundColor: 'white',
-                                                    opacity: 0.8,
-                                                    borderRadius: 18,
-                                                    padding: 10,
-                                                }}
+                                                style={styles.textInput}
                                                 placeholder={'Danh mục sản phẩm'}
                                                 placeholderTextColor='grey'
                                             />
 
                                             <TouchableOpacity
                                                 onPress={() => { }}
-                                                style={{
-                                                    flexDirection: 'row',
-                                                    backgroundColor: 'white',
-                                                    opacity: 0.8,
-                                                    borderRadius: 18,
-                                                    height: 36,
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    marginLeft: 5
-                                                }}>
+                                                style={styles.dropdownButton}>
                                                 <Text style={{
-                                                    fontSize: 13,
-                                                    marginLeft: 6,
-                                                    marginRight: 5
-                                                }}>
-                                                    Toàn quốc
-                                                </Text>
+                                                    fontSize: 13, marginLeft: 6, marginRight: 5
+                                                }}>Toàn quốc</Text>
+
                                                 <Image style={{
-                                                    width: 11,
-                                                    height: 6,
-                                                    resizeMode: 'contain',
-                                                    marginRight: 5
+                                                    width: 11, height: 6, marginRight: 5, resizeMode: 'contain',
                                                 }} source={images.arrow_back} />
                                             </TouchableOpacity>
                                         </View>
 
                                         <Text
-                                            style={{
-                                                marginVertical: 6,
-                                                marginHorizontal: 15,
-                                                color: 'white',
-                                                fontSize: 12
-                                            }}>
+                                            style={styles.headerNotice}>
                                             Để tìm kiếm khách hàng được tốt nhất bạn nên đăng ký đúng danh mục sản phẩm !
                                         </Text>
 
-                                        <TouchableOpacity onPress={async () => {
-                                            const token = ""
-                                            await AsyncStorage.setItem("token", token)
-                                            NavigationUtil.navigate("Login")
+                                        <TouchableOpacity onPress={() => {
+                                            alert('Press')
                                         }}
                                             style={{
-                                                alignSelf: 'center',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
                                                 height: 36,
                                                 width: 115,
                                                 borderRadius: 18,
+                                                alignSelf: 'center',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
                                                 backgroundColor: '#69AAFF'
                                             }}>
                                             <Text style={{
+                                                fontSize: 16,
                                                 color: 'white',
-                                                fontSize: 16
                                             }}>
-                                                LogOut
+                                                Tìm kiếm
                                             </Text>
                                         </TouchableOpacity>
                                     </ImageBackground>
@@ -184,10 +145,10 @@ export default class HomeScreen extends Component {
                                     Từ khóa tìm kiếm
                                     </Text>
                                 <View style={{
-                                    flexWrap: 'wrap',
                                     padding: 5,
-                                    flexDirection: 'row',
                                     width: '100%',
+                                    flexWrap: 'wrap',
+                                    flexDirection: 'row',
                                     backgroundColor: 'white'
                                 }}>
                                     {this.state.data.listhotkey.map((item, index) => {
@@ -195,9 +156,9 @@ export default class HomeScreen extends Component {
                                             <Text
                                                 style={{
                                                     padding: 5,
-                                                    borderWidth: 0.4,
                                                     borderRadius: 5,
                                                     marginRight: 12,
+                                                    borderWidth: 0.4,
                                                     marginVertical: 6,
                                                 }}
                                                 key={item.name}>
@@ -208,12 +169,12 @@ export default class HomeScreen extends Component {
                                 </View>
 
                                 <View style={{
-                                    flexDirection: 'row',
                                     marginVertical: 11,
+                                    flexDirection: 'row',
                                 }}>
                                     <Text style={{
-                                        marginLeft: 11,
                                         fontSize: 18,
+                                        marginLeft: 11,
                                     }}>
                                         Danh mục sản phẩm cần mua
                                     </Text>
@@ -225,8 +186,8 @@ export default class HomeScreen extends Component {
                                             alignItems: 'flex-end',
                                         }}>
                                         <Text style={{
+                                            fontSize: 18,
                                             color: 'blue',
-                                            fontSize: 18
                                         }}>
                                             Tất cả
                                     </Text>
@@ -240,3 +201,38 @@ export default class HomeScreen extends Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    headerTitle: {
+        marginLeft: 11,
+        marginTop: 15,
+        marginBottom: 8,
+        color: 'white',
+        fontSize: 20
+    },
+    textInput: {
+        flex: 1,
+        height: 36,
+        padding: 10,
+        opacity: 0.8,
+        borderRadius: 18,
+        backgroundColor: 'white',
+    },
+    dropdownButton: {
+        height: 36,
+        opacity: 0.8,
+        marginLeft: 5,
+        borderRadius: 18,
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+    },
+    headerNotice: {
+        marginVertical: 6,
+        marginHorizontal: 15,
+        color: 'white',
+        fontSize: 12
+    },
+
+
+})
