@@ -2,7 +2,8 @@ import {
   GET_USER,
 } from "./type";
 
-export const getUserInfoAction = () => ({
+export const getUserInfo = (data) => ({
   type: GET_USER,
-  payload: {}
+  payload: data
 });
+

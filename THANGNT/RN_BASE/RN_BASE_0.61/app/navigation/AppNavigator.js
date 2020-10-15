@@ -8,6 +8,7 @@ import RegisterScreen from '../screens/auth/RegisterScreen'
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import HomeScreen from '@screen/HomeScreen'
 import UserScreen from '../screens/UserScreen'
+import UpdateUserInfoScreen from '../screens/UpdateUserInfoScreen'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R';
 import * as theme from "@theme";
@@ -21,7 +22,11 @@ const Auth = createStackNavigator({
     [SCREEN_ROUTER.LOGIN]: LoginScreen,
     [SCREEN_ROUTER.REGISTER]: RegisterScreen,
     [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen
-})
+},
+    {
+        headerMode: 'none'
+    }
+)
 
 
 const tabbarIcons = {
@@ -42,7 +47,7 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
     );
 };
 
-const Main = createBottomTabNavigator(
+const Home = createBottomTabNavigator(
     {
         [SCREEN_ROUTER.HOME]: {
             screen: HomeScreen,
@@ -87,6 +92,15 @@ const Main = createBottomTabNavigator(
 
 )
 
+const Main = createStackNavigator({
+    Home,
+    [SCREEN_ROUTER.UPDATE_USER_INFO]: UpdateUserInfoScreen
+}, {
+    headerMode: 'none'
+}
+
+)
+
 
 export default createAppContainer(
     createSwitchNavigator({
@@ -95,7 +109,7 @@ export default createAppContainer(
         [SCREEN_ROUTER.MAIN]: Main
     },
         {
-            initialRouteName: SCREEN_ROUTER.MAIN
+            initialRouteName: SCREEN_ROUTER.AUTH_LOADING
         }
     )
 )

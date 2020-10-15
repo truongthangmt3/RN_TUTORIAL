@@ -9,12 +9,12 @@ import {
 import * as API from "../../constants/Api";
 
 export function* getUserInfor(payload) {
-  try {
-    const response = yield call(API.requestLogin, payload);
-    yield put({ type: GET_USER_SUCCESS, payload: response });
-  } catch (err) {
-    yield put({ type: GET_USER_FAIL, payload: err });
-  }
+  // try {
+  //   const response = yield call(API.requestLogin, payload);
+  //   yield put({ type: GET_USER_SUCCESS, payload: response });
+  // } catch (err) {
+  //   yield put({ type: GET_USER_FAIL, payload: err });
+  // }
 }
 export const watchGetUser = takeEvery(GET_USER, getUserInfor);
 

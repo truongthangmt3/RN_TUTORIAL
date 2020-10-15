@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { requestHomeData } from '@api'
-import reactotron from 'reactotron-react-native';
 import Loading from '@component/Loading'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R'
+import reactotron from 'reactotron-react-native';
 
 
 export default class HomeScreen extends Component {
@@ -21,7 +21,9 @@ export default class HomeScreen extends Component {
             this.setState({
                 isLoading: false,
                 isError: false,
-                data: jsonResponse.data
+                data: jsonResponse
+            }, () => {
+                reactotron.log("API", this.state.data)
             })
         } catch (error) {
             reactotron.log(error)
@@ -32,6 +34,8 @@ export default class HomeScreen extends Component {
             })
         }
     }
+
+    // new branch
 
     render() {
 
@@ -52,7 +56,7 @@ export default class HomeScreen extends Component {
                     style={{
                         fontFamily: R.fonts.roboto_bolditalic
                     }}
-                >Hello</Text>
+                >{JSON.stringify(this.state.data)}</Text>
 
             </View>
         );
