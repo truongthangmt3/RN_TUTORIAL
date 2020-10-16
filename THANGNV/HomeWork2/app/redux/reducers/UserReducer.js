@@ -1,32 +1,24 @@
-import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL } from "../actions/type";
+
+import { INCREMENT, DECREMENT } from "../actions/type";
 
 const initialState = {
-  data: {},
-  isLoading: true,
+  data: 0,
+  isLoading: false,
   error: null
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER: {
-      return { ...state, isLoading: true };
-    }
-    case GET_USER_SUCCESS: {
+    case INCREMENT:
       return {
         ...state,
-        isLoading: false,
-        error: null,
-        data: action.payload
-      };
-    }
-    case GET_USER_FAIL: {
-     
+        data: state.data + 1
+      }
+    case DECREMENT:
       return {
         ...state,
-        error: action.payload,
-        isLoading: false,
-      };
-    }
+        data: state.data - 1
+      }
     default:
       return state;
   }
