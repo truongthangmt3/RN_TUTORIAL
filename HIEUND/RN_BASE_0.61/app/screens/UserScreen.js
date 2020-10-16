@@ -9,11 +9,38 @@ import {
 } from "react-native";
 import { Avatar, Accessory } from "react-native-elements";
 import UserOptions from "@component/UserOptions";
+import AsyncStorage from '@react-native-community/async-storage';
+import NavigationUtil from '../navigation/NavigationUtil';
 const windowWidth = Dimensions.get("window").width; //414
 const windowHeight = Dimensions.get("window").height; //896
 import R from "@R";
-export default class UserScreen extends Component {
+import { connect } from 'react-redux'
+import {getUserInfoAction}from '@action'
+export class UserScreen extends Component {
+  // state = {
+  //   isLoading: true,
+  //   isError:false,
+  // };
+  // componentDidMount = async () => {
+  //   try {
+  //     this.setState(
+  //       {
+  //         isLoading: false,
+  //         isError: false,
+  //       },
+  //     );
+  //   } catch (error) {
+  //     this.setState({
+  //       isLoading: false,
+  //       isError: true,
+  //     });
+  //   }
+  // };
+  componentDidMount(){
+    alert(JSON.stringify(this.props.userState))
+  }
   render() {
+    // const { isLoading, isError} = this.state;
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "#69AAFF" }}>
         <View style={{ flex: 1, backgroundColor: "#F5F6F8" }}>
@@ -100,10 +127,23 @@ export default class UserScreen extends Component {
               img={R.images.icon_feather_lock}
             />
             <UserOptions label="Hướng dẫn sử dụng" img={R.images.icon_recipe} />
-            <UserOptions label="Đăng xuất" img={R.images.icon_log_out} />
+            <UserOptions label="Đăng xuất" img={R.images.icon_log_out} onPress={
+              async () => { 
+                await AsyncStorage.setItem("token","")
+                NavigationUtil.navigate("login")
+            }} />
           </View>
         </View>
       </SafeAreaView>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  userState:state.userReducer
+})
+
+const mapDispatchToProps = {
+  getUserInfoAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserScreen)

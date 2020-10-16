@@ -22,7 +22,11 @@ const Auth = createStackNavigator({
   [SCREEN_ROUTER.LOGIN]: LoginScreen,
   [SCREEN_ROUTER.REGISTER]: RegisterScreen,
   [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen
-});
+},
+{
+  headerMode: 'none'
+}
+);
 
 const tabbarIcons = {
   [SCREEN_ROUTER.HOME]: R.images.icon_home_navbar,
@@ -119,7 +123,7 @@ export default createAppContainer(
       [SCREEN_ROUTER.MAIN]: Main
     },
     {
-      initialRouteName: SCREEN_ROUTER.MAIN
+      initialRouteName: SCREEN_ROUTER.AUTH_LOADING
     }
   )
 );

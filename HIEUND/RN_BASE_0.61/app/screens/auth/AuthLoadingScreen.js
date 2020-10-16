@@ -8,17 +8,25 @@ import {
 } from 'react-native'
 import NavigationUtil from '../../navigation/NavigationUtil'
 import i18 from '@i18';
-
+import AsyncStorage from '@react-native-community/async-storage'
 // import { connect } from 'react-redux'
 
 export default class AuthLoadingScreen extends Component {
 
-    componentDidMount() {
+    componentDidMount = async () =>{
         // load something and check login
-        setTimeout(() => {
-            NavigationUtil.navigate("Login");
-        }, 200);
-
+        try{
+            const token = await AsyncStorage.getItem("token");
+            if(token && token.length>0){
+                NavigationUtil.navigate("home");
+            }
+            else{
+                NavigationUtil.navigate("login");
+            }
+        }
+        catch(error){
+            NavigationUtil.navigate("login")
+        }
     }
 
     render() {
