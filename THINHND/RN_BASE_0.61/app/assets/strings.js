@@ -5,7 +5,8 @@ import i18 from '@i18';
         notification: i18.t("notification"),
         user: i18.t("user"),
         account: i18.t("account"),
-        update_user_info: i18.t("update_user_info")
+        update_user_info: i18.t("update_user_info"),
+        customer: i18.t("customer")
         }
  
         export default strings

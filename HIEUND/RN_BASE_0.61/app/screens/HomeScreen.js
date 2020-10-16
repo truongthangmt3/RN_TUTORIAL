@@ -16,6 +16,7 @@ import Loading from "@component/Loading";
 import ProvinceDropdown from "@component/ProvinceDropdown";
 import Headers from "@component/Headers";
 import Information from "@component/Information";
+import reactotron from "@app/debug/ReactotronConfig";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 export default class HomeScreen extends Component {
@@ -28,12 +29,18 @@ export default class HomeScreen extends Component {
   componentDidMount = async () => {
     try {
       const response = await requestHomeData();
+      reactotron.log("API", response);
       const jsonResponse = response.data;
-      this.setState({
-        isLoading: false,
-        isError: false,
-        data: jsonResponse
-      });
+      this.setState(
+        {
+          isLoading: false,
+          isError: false,
+          data: jsonResponse
+        },
+        () => {
+          reactotron.log("API2", this.state.data);
+        }
+      );
     } catch (error) {
       this.setState({
         isLoading: false,
@@ -150,7 +157,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   list_post: {
-    marginVertical: "3%",
+    // marginVertical: "3%"
     backgroundColor: "white"
   },
   header: {

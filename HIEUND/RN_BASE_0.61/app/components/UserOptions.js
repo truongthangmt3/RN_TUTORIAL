@@ -12,9 +12,9 @@ const windowHeight = Dimensions.get("window").height;
 import R from "@R";
 export default class UserOptions extends Component {
   render() {
-    const { img, label, logout } = this.props;
+    const { img, label, logout, onPress } = this.props;
     return (
-      <TouchableOpacity style={styles.optionsContainer}>
+      <TouchableOpacity style={styles.optionsContainer} onPress={onPress} >
         <Image
           source={img}
           style={{
