@@ -79,14 +79,14 @@ class MessageScreen extends Component {
             placeholder="Nhập b"
             onChangeText={newText => {
               this.setState({
-                firstNumber: newText
+                secondNumber: newText
               });
             }}
           />
           <View style={{ flexDirection: 'row' }}>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => { this.props.plus() }} >
+              onPress={() => { this.props.plus(this.state) }} >
               <Text>PLUS</Text>
             </TouchableOpacity>
             <TouchableOpacity
