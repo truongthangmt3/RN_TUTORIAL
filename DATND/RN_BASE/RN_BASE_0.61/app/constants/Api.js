@@ -1,12 +1,13 @@
 import axios from "axios";
-import { AsyncStorage, Alert } from "react-native";
+import { Alert } from "react-native";
 import NavigationUtil from "../navigation/NavigationUtil";
 import I18n from "../i18n/i18n";
+import AsyncStorage from '@react-native-community/async-storage';
 
 function createAxios() {
   // AsyncStorage.setItem("token", '773DE1FE9732F26F7552BC921CBE347E')
   var axiosInstant = axios.create();
-  axiosInstant.defaults.baseURL = "http://150.95.115.192:8021/";
+  axiosInstant.defaults.baseURL = "http://toimuonmuasi.com/api/";
   axiosInstant.defaults.timeout = 20000;
   axiosInstant.defaults.headers = { "Content-Type": "application/json" };
 
@@ -51,17 +52,18 @@ function handleResult(api) {
 
 export const requestLogin = payload => {
   return handleResult(
-    getAxios.post("api/Service/LoginApp", {
-      value: payload.value,
-      type: payload.type
-    })
+    getAxios.post("Login", payload)
   );
-};
-
-export const requestHomeData = (deviceID = "") => {
+}; export const requestRegist = payload => {
   return handleResult(
-    getAxios.get(`api/Service/GetHomeScreen?deviceID=${deviceID}`)
+    getAxios.post("Register", payload)
   );
 };
 
 
+
+export const requestHomeData = () => {
+  return handleResult(
+    getAxios.get(`GetHome`)
+  );
+};

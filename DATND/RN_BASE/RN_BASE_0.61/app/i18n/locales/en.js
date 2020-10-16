@@ -39,7 +39,7 @@ const common = {
 		invalid_phone: "Số điện thoại không hợp lệ",
 		invalid_email: "Email không hợp lệ",
 		not_zero: "Số không hợp lệ",
-		not_select_gender:"Chưa chọn giới tính"
+		not_select_gender: "Chưa chọn giới tính"
 	},
 };
 const order = {
@@ -100,6 +100,7 @@ export default {
 	home: "Trang chủ",
 	notification: "Thông báo",
 	user: "Người dùng",
+	care: "KH Quan Tâm",
 	account: "Tài khoản",
 
 	patients_bar_title: "Bệnh nhân",

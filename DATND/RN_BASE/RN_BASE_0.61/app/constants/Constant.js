@@ -3,10 +3,13 @@ const SCREEN_ROUTER = {
   AUTH: "Auth",
   HOME: "Home",
   LOGIN: "Login",
+  CARE: 'Care',
+  NOTIFY: 'Notify',
   AUTH_LOADING: "AuthLoading",
   FORGOT_PASS: "ForgotPassword",
   REGISTER: "Register",
-  USER : 'User'
+  USER: 'User',
+  UPDATE_USER_INFO: 'UpdateUserInfo'
 };
 
 export { SCREEN_ROUTER };
