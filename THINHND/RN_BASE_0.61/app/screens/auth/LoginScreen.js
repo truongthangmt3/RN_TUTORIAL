@@ -9,6 +9,8 @@ import { requestLogin } from '@api'
 import { SCREEN_ROUTER } from '@app/constants/Constant'
 import R from '@app/assets/R';
 import theme from '@app/constants/Theme';
+import AsyncStorage from "@react-native-community/async-storage"
+// Lưu dữ liệu xuống ổ cứng
 GoogleSignin.configure();
 //  GoogleSignin.configure({
 //             scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -113,6 +115,8 @@ export default class LoginScreen extends Component {
                                 "password": this.state.password,
                                 "device_id": ""
                             })
+                            const token = result.data.token
+                            await AsyncStorage.setItem("token", token)
                             NavigationUtil.navigate(SCREEN_ROUTER.MAIN)
                         } catch (error) {
 
