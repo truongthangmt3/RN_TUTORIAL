@@ -3,7 +3,7 @@ import {
   GET_NOTIFICATIONS,
   INCREMENT,
   DECREMENT,
-  SQUARE, SQRT, RESET
+  SQUARE, SQRT, RESET, PLUS, SUBTRACT, MULTIPLY, DIVIDE
 } from "./type";
 
 export const getUserInfoAction = () => ({
@@ -33,5 +33,21 @@ export const getSQRT = (data) => ({
 export const getRESET = (data) => ({
   type: RESET,
   payload: data,
-})
+});
+export const plus = (data) => ({
+  type: PLUS,
+  payload: data,
+});
+export const subtract = (data) => ({
+  type: SUBTRACT,
+  payload: data,
+});
+export const multiply = (data) => ({
+  type: MULTIPLY,
+  payload: data,
+});
+export const divide = (data) => ({
+  type: DIVIDE,
+  payload: data,
+});
 

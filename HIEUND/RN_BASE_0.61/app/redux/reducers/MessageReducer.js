@@ -1,4 +1,14 @@
-import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL, GET_NOTIFICATIONS, INCREMENT, DECREMENT, SQUARE, SQRT, RESET } from "../actions/type";
+import {
+  INCREMENT,
+  DECREMENT,
+  SQUARE,
+  SQRT,
+  RESET,
+  PLUS,
+  SUBTRACT,
+  MULTIPLY,
+  DIVIDE
+} from "../actions/type";
 
 const initialState = {
   data: 1,
@@ -22,6 +32,22 @@ export default function (state = initialState, action) {
     }
     case RESET: {
       return { ...state, data: state.data }
+    }
+    case PLUS: {
+      let tmpData
+      return { ...state, data: tmpData = Number(action.payload.firstNumber) + Number(action.payload.secondNumber) }
+    }
+    case SUBTRACT: {
+      let tmpData
+      return { ...state, data: tmpData = Number(action.payload.firstNumber) - Number(action.payload.secondNumber) }
+    }
+    case MULTIPLY: {
+      let tmpData
+      return { ...state, data: tmpData = Number(action.payload.firstNumber) * Number(action.payload.secondNumber) }
+    }
+    case DIVIDE: {
+      let tmpData
+      return { ...state, data: tmpData = Number(action.payload.firstNumber) / Number(action.payload.secondNumber) }
     }
   }
   return state;

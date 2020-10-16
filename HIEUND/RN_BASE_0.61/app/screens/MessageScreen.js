@@ -1,46 +1,112 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, TextInput, StyleSheet, Dimensions } from 'react-native';
-import { getINCREMENTAL, getDECREMENTAL, getSQUARE, getSQRT, getRESET } from '@action';
+import {
+  getINCREMENTAL, getDECREMENTAL, getSQUARE, getSQRT, getRESET, plus,
+  subtract,
+  multiply,
+  divide
+} from '@action';
 import Input from '@app/components/Input'
 import { connect } from 'react-redux'
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+const CALCULATION = {
+  PLUS: 0,
+  SUBTRACT: 1,
+  MULTIPLY: 2,
+  DIVIDE: 3
+};
 class MessageScreen extends Component {
+  state = {
+    firstNumber: 0,
+    secondNumber: 0,
+    plus: CALCULATION.PLUS,
+    subtract: CALCULATION.SUBTRACT,
+    multiply: CALCULATION.MULTIPLY,
+    divide: CALCULATION.DIVIDE
+  };
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
         <Text>{JSON.stringify(this.props.messageReducer.data)}</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '100%' }} >
-          <TouchableOpacity onPress={() => { this.props.getDECREMENTAL() }} >
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          width: '100%'
+        }} >
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => { this.props.getDECREMENTAL() }} >
             <Text>DECREMENT</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={styles.button}
             onPress={() => { this.props.getINCREMENTAL() }}>
             <Text>INCREMENT</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={styles.button}
             onPress={() => { this.props.getSQUARE() }}>
             <Text>SQUARE</Text>
           </TouchableOpacity>
           <TouchableOpacity
+            style={styles.button}
             onPress={() => { this.props.getSQRT() }}>
             <Text>SQRT</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity
+          style={styles.button}
           onPress={() => { this.props.getRESET() }}>
           <Text>RESET</Text>
         </TouchableOpacity>
-        <TextInput
-          style={styles.text_input}
-          placeholder="Nhập a"
-        // onChangeText={text => this.setState({ name: text })}
-        />
-        <TextInput
-          style={styles.text_input}
-          placeholder="Nhập a"
-        // onChangeText={text => this.setState({ name: text })}
-        />
+        <View style={{ marginTop: 50 }}>
+          <TextInput
+            style={styles.text_input}
+            placeholder="Nhập a"
+            onChangeText={newText => {
+              this.setState({
+                firstNumber: newText
+              });
+            }}
+          />
+          <TextInput
+            style={styles.text_input}
+            placeholder="Nhập b"
+            onChangeText={newText => {
+              this.setState({
+                firstNumber: newText
+              });
+            }}
+          />
+          <View style={{ flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => { this.props.plus() }} >
+              <Text>PLUS</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => { }} >
+              <Text>SUBTRACT</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => { }} >
+              <Text>MULTIPLE</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => { }} >
+              <Text>DIVIDE</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <Text>{this.props.messageReducer.data}</Text>
       </View>
     );
   }
@@ -54,53 +120,31 @@ const mapDispatchToProps = {
   getDECREMENTAL,
   getSQUARE,
   getSQRT,
-  getRESET
+  getRESET,
+  plus,
+  subtract,
+  multiply,
+  divide,
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#69AAFF"
-  },
-  add_news: {
-    borderColor: "red",
-    width: windowWidth * 0.35,
-    height: windowHeight * 0.05,
-    marginHorizontal: "35%",
-    borderRadius: 30,
-    backgroundColor: "#69AAFF",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  list_post: {
-    // marginVertical: "3%"
-    backgroundColor: "white"
-  },
-  header: {
-    flexDirection: "row",
-    marginVertical: 10,
-    marginHorizontal: 5,
-    justifyContent: "space-between"
+  button: {
+    borderWidth: 1,
+    height: 30,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30
   },
   text_input: {
     borderWidth: 0.3,
-    height: windowHeight * 0.05,
-    width: "30%",
+    height: 50,
+    width: windowWidth - 50,
     borderRadius: 30,
     marginHorizontal: "1%",
     backgroundColor: "white",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
+    marginBottom: 20
   },
-  items: {
-    borderWidth: 0.5,
-    borderRadius: 7,
-    borderColor: "black",
-    marginLeft: 10,
-    height: windowHeight * 0.04,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 5,
-    marginVertical: 5
-  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageScreen)
