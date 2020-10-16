@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Image, SafeAreaView } from 'react-native';
 import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
-// import NavigationUtil from '../../navigation/NavigationUtil';
-// import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
-// import { TouchableHighlight } from 'react-native-gesture-handler';
-// import reactotron from '@app/debug/ReactotronConfig';
-// // import { requestLogin } from '@R';
-// import { requestLogin, requestRegister } from '@api';
-// import R from '@R';
-// import {SCREEN_ROUTE} from '@app/constants/Constant'
 import NavigationUtil from '../../navigation/NavigationUtil';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import { TouchableHighlight } from 'react-native-gesture-handler';
@@ -16,14 +8,15 @@ import reactotron from '@app/debug/ReactotronConfig';
 import { requestLogin } from '@api'
 import R from '@R';
 import { SCREEN_ROUTER } from '@app/constants/Constant';
+import AsyncStorage from '@react-native-community/async-storage';
 export default class LoginScreen extends Component {
     state = {
         isLoading: false,
         error: null,
         data: {},
-        phone: '',
-        password: '',
-    };
+        phoneNumber: "0968189970",
+        password: "123"
+    }
 
     render() {
         return (
@@ -41,6 +34,13 @@ export default class LoginScreen extends Component {
                         <Text style={styles.inputTitle}>Số điện thoại</Text>
                         <TextInput
                             style={styles.text_herder}
+                            onChangeText={(newText) => {
+                            this.setState({
+                                phoneNumber: newText
+                                
+                            })
+                 }}
+                 value={this.state.phoneNumber}
                         />
                     </View>
 
@@ -48,8 +48,15 @@ export default class LoginScreen extends Component {
                         <Text style={styles.inputTitle}>Mật khẩu</Text>
                         <TextInput style={styles.text_herder}
                             secureTextEntry={true}
+                            onChangeText={(newText) => {
+                        // reactotron.log(newText);
+                        this.setState({
+                            password: newText
+                        })
+                        
+                    }}
+                    value={this.state.password}
                         />
-
                     </View>
 
                     <View style={styles.forget}>
@@ -57,10 +64,24 @@ export default class LoginScreen extends Component {
                             Quên mật khẩu ?
                 </Text>
                     </View>
-                    <TouchableOpacity onPress={() => {
-
-                      
-                    }}>
+                    <TouchableOpacity 
+                    
+                    onPress={async () => {
+                        try {
+                            result = await requestLogin({
+                                "phone": this.state.phoneNumber,
+                                "password": this.state.password,
+                                "device_id": ""
+                            })
+                            reactotron.log(result);
+                            const token = result.data.token;
+                            AsyncStorage.setItem("token", token);
+                            NavigationUtil.navigate(SCREEN_ROUTER.MAIN)
+                        } catch (error) {
+                            alert(error.message)
+                        }
+                    }}
+                    >
                         <View style={styles.button_background}>
 
 

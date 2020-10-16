@@ -1,8 +1,16 @@
+
 import {
-  GET_USER,
+  GET_TRU, GET_HOME
 } from "./type";
 
-export const getUserInfoAction = () => ({
-  type: GET_USER,
-  payload: {}
+export const getTruInfoAction = (data) => ({
+  type: GET_TRU,
+  payload: data,
 });
+export const getHomeInfoAction = (data) => ({
+  type: GET_HOME,
+  payload: data,
+});
+
+
+
