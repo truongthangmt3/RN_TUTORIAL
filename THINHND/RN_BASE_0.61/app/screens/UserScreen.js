@@ -1,5 +1,7 @@
 
 import React, { Component } from "react";
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import {
   Text,
   View,
@@ -10,10 +12,14 @@ import {
 } from "react-native";
 import NavigationUtil from "../navigation/NavigationUtil";
 import { SCREEN_ROUTER } from "../constants/Constant";
-
+import AsyncStorage from "@react-native-community/async-storage"
 import R from "@R";
 
-export default class UserScreen extends Component {
+class UserScreen extends Component {
+
+  componentDidMount() {
+    alert(JSON.stringify(this.props.userState))
+  }
   render() {
     var name = "Nguyễn Đức Thịnh";
     // let shortname = this._func_getshortname(name);
@@ -96,7 +102,8 @@ export default class UserScreen extends Component {
   _func_nav_mylist = () => {
     NavigationUtil.navigate(SCREEN_ROUTER.MY_LIST);
   };
-  _func_nav_logout = () => {
+  _func_nav_logout = async () => {
+    await AsyncStorage.setItem("token", "")
     NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
   };
   _func_getshortname = text => {
@@ -220,3 +227,12 @@ const styles = StyleSheet.create({
     flex: 3
   }
 });
+const mapStateToProps = (state) => ({
+  userState: state.userReducer
+})
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserScreen)
