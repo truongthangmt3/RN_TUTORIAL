@@ -17,6 +17,8 @@ import AppNavigator from './app/navigation/AppNavigator';
 import NavigationUtil from './app/navigation/NavigationUtil';
 import store from "./app/redux/store";
 
+
+
 class App extends Component {
 
   render() {
@@ -25,9 +27,9 @@ class App extends Component {
         <AppNavigator
           ref={navigatorRef => NavigationUtil.setTopLevelNavigator(navigatorRef)}
         />
-        <DropdownAlert 
-         ref={alertRef => DropdownAlertUtil.setTopDropdownAlert(alertRef)}
-         onTap = {DropdownAlertUtil.onTap}
+        <DropdownAlert
+          ref={alertRef => DropdownAlertUtil.setTopDropdownAlert(alertRef)}
+          onTap={DropdownAlertUtil.onTap}
         />
       </Provider>
     )

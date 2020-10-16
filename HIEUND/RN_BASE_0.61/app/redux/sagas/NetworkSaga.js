@@ -4,6 +4,7 @@ import {
   GET_USER,
   GET_USER_SUCCESS,
   GET_USER_FAIL,
+  GET_NOTIFICATIONS
 } from "../actions/type";
 
 import * as API from "../../constants/Api";

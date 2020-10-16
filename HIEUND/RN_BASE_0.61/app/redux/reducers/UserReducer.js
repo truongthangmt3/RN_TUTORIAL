@@ -1,4 +1,4 @@
-import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL } from "../actions/type";
+import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL, GET_NOTIFICATIONS } from "../actions/type";
 
 const initialState = {
   data: {},
@@ -6,7 +6,7 @@ const initialState = {
   error: null
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_USER: {
       return { ...state, isLoading: true };
@@ -20,12 +20,19 @@ export default function(state = initialState, action) {
       };
     }
     case GET_USER_FAIL: {
-     
+
       return {
         ...state,
         error: action.payload,
         isLoading: false,
       };
+    }
+    case GET_NOTIFICATIONS: {
+      return {
+        ...state,
+        error: null,
+        data: action.payload
+      }
     }
     default:
       return state;
