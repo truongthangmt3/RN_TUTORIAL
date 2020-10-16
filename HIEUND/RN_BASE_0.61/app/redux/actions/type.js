@@ -9,10 +9,6 @@ export const INCREMENT = "windsoft/increment";
 export const DECREMENT = "windsoft/decrement";
 export const SQUARE = "windsoft/square";
 export const SQRT = "windsoft/sqrt";
-export const PLUS = "windsoft/plus";
-export const SUBTRACT = "windsoft/subtract";
-export const MULTIPLY = "windsoft/multiply";
-export const DIVIDE = "windsoft/divide";
 
 //thangnt fix calculation
 export const CALCULATION = "windsoft/calculation";
