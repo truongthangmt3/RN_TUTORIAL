@@ -3,9 +3,10 @@ import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import R from "@R";
 export default class Notifications extends Component {
   render() {
-    const { text, img, time, unseen } = this.props;
+    const { text, img, time, unseen,onPress} = this.props;
     return (
       <TouchableOpacity
+        onPress={onPress}
         style={{
           flexDirection: "row",
           marginTop: "3%",
