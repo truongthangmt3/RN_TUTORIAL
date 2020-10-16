@@ -1,6 +1,36 @@
 const images = {
-    
+    avt1: require("./images/avt1.png"),
+    avt2: require("./images/avt2.png"),
+    avt3: require("./images/avt3.png"),
+    avt4: require("./images/avt4.png"),
+    down_arrow: require("./images/down-arrow.png"),
     ic_home: require("./images/ic_home.png"),
-    ic_user: require("./images/ic_user.png")
+    ic_user: require("./images/ic_user.png"),
+    icon_arrow: require("./images/icon_arrow.png"),
+    icon_awesome_list_ul: require("./images/icon_awesome_list_ul.png"),
+    icon_buynews: require("./images/icon_buynews.png"),
+    icon_call: require("./images/icon_call.png"),
+    icon_chat: require("./images/icon_chat.png"),
+    icon_clock: require("./images/icon_clock.png"),
+    icon_customer: require("./images/icon_customer.png"),
+    icon_customers_navbar: require("./images/icon_customers_navbar.png"),
+    icon_feather_lock: require("./images/icon_feather_lock.png"),
+    icon_home_navbar: require("./images/icon_home_navbar.png"),
+    icon_location: require("./images/icon_location.png"),
+    icon_log_out: require("./images/icon_log_out.png"),
+    icon_mark: require("./images/icon_mark.png"),
+    icon_message: require("./images/icon_message.png"),
+    icon_message_header: require("./images/icon_message_header.png"),
+    icon_message_navbar: require("./images/icon_message_navbar.png"),
+    icon_noti_navbar: require("./images/icon_noti_navbar.png"),
+    icon_phone: require("./images/icon_phone.png"),
+    icon_recipe: require("./images/icon_recipe.png"),
+    icon_user: require("./images/icon_user.png"),
+    icon_user_navbar: require("./images/icon_user_navbar.png"),
+    icon_zalo: require("./images/icon_zalo.png"),
+    img_login: require("./images/img_login.png"),
+    img_login_button: require("./images/img_login_button.png"),
+    img_res_muasi: require("./images/img_res_muasi.png"),
+    red_dot: require("./images/red_dot.png")
     }
 export default images

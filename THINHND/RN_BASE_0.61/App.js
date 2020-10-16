@@ -25,9 +25,9 @@ class App extends Component {
         <AppNavigator
           ref={navigatorRef => NavigationUtil.setTopLevelNavigator(navigatorRef)}
         />
-        <DropdownAlert 
-         ref={alertRef => DropdownAlertUtil.setTopDropdownAlert(alertRef)}
-         onTap = {DropdownAlertUtil.onTap}
+        <DropdownAlert
+          ref={alertRef => DropdownAlertUtil.setTopDropdownAlert(alertRef)}
+          onTap={DropdownAlertUtil.onTap}
         />
       </Provider>
     )
@@ -73,4 +73,3 @@ let codePushOptions = { checkFrequency: codePush.CheckFrequency.MANUAL };
 MyApp = codePush(codePushOptions)(App);
 
 export default MyApp
-
