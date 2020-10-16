@@ -80,6 +80,7 @@ const tabNav = createBottomTabNavigator({
             tabBarIcon: ({ focused, tintColor }) => {
                 return (
                     <Image style={{
+                        tintColor: focused ? "blue" : '',
                         height: 25,
                         width: 25,
                         resizeMode: 'contain'
