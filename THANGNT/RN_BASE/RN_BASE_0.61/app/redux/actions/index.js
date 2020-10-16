@@ -16,6 +16,8 @@ export const calculation = (data) => ({
 });
 
 export const getProduct = (data) => ({
+  // gọi api sau do lấy kết quả và ném vào payload
+
   type: GET_PRODUCT,
   payload: data,
 });

@@ -1,6 +1,4 @@
-import {
-  watchGetUser,
-} from "./NetworkSaga";
+import { watchGetUser } from "./NetworkSaga";
 
 export default function* rootSaga() {
   yield watchGetUser;

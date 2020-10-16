@@ -1,4 +1,4 @@
-import { GET_PRODUCT } from '../actions/type';
+import { GET_PRODUCT, GET_PRODUCT_FAIL, GET_PRODUCT_SUCCESS } from '../actions/type';
 
 const initialState = {
   data: 1,
@@ -7,11 +7,28 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  if (action.type === GET_PRODUCT) {
-    return {
-      ...state,
-      data: state.data + 1,
-    };
+  switch (action.type) {
+    case GET_PRODUCT:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case GET_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        data: action.payload.data,
+      };
+    case GET_PRODUCT_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        data: null,
+        error: action.payload.error,
+      };
+
+    default:
+      break;
   }
   return state;
 }

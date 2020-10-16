@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProduct } from '@action';
@@ -8,6 +8,8 @@ export class ProductScreen extends Component {
   static propTypes = {
     prop: PropTypes,
   };
+
+  componentDidMount() {}
 
   render() {
     return (
@@ -18,15 +20,7 @@ export class ProductScreen extends Component {
           alignItems: 'center',
         }}
       >
-        <Text> {this.props.productState.data} </Text>
-
-        <TouchableOpacity
-          onPress={() => {
-            this.props.getProduct('Do something');
-          }}
-        >
-          <Text>Do something</Text>
-        </TouchableOpacity>
+        <Text> {JSON.stringify(this.props.productState)} </Text>
       </View>
     );
   }
