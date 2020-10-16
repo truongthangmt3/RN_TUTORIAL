@@ -7,3 +7,5 @@ export const GET_USER_FAIL = 'windsoft/getUserFail';
 
 export const GET_HOME = 'utruck/getHome';
 export const CALCULATION = 'utruck/caculation';
+
+export const GET_PRODUCT = 'utruck/product';
