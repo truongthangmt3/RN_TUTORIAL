@@ -1,13 +1,17 @@
 const SCREEN_ROUTER = {
-  MAIN: "Main",
-  AUTH: "Auth",
-  HOME: "Home",
-  LOGIN: "Login",
   AUTH_LOADING: "AuthLoading",
   FORGOT_PASS: "ForgotPassword",
   REGISTER: "Register",
-  USER : 'User'
+  SPLASH: "splash",
+  AUTH: "auth",
+  LOGIN: "login",
+  USER: "user",
+  CUSTOMER: "customer",
+  NOTIFY: "notify",
+  HOME: "home",
+  LIST_POST: "list_post",
+  MAIN: "main",
+  MESSAGE: "message"
 };
 
 export { SCREEN_ROUTER };
-

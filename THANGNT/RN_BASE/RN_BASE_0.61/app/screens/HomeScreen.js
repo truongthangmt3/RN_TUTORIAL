@@ -1,78 +1,79 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { requestHomeData } from '@api'
-import reactotron from 'reactotron-react-native';
-import Loading from '@component/Loading'
-import { SCREEN_ROUTER } from '@constant'
-import R from '@R'
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getHome, calculation } from '@action';
 
+const CALCULATION = {
+  PLUS: 0,
+  SUBTRACT: 1,
+  MULTIPLY: 2,
+  DIVIDE: 3
+};
+class HomeScreen extends Component {
+  state = {
+    firstNumber: 0,
+    secondNumber: 0,
+    calculation: CALCULATION.SUBTRACT
+  };
 
-export default class HomeScreen extends Component {
-    state = {
-        isLoading: true,
-        isError: false,
-        data: {},
-    }
-
-    componentDidMount = async () => {
-        try {
-            const response = await requestHomeData()
-            const jsonResponse = response.data
+  render() {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
+        <TextInput
+          style={{
+            width: '90%',
+            height: 60,
+            backgroundColor: 'gray'
+          }}
+          onChangeText={newText => {
             this.setState({
-                isLoading: false,
-                isError: false,
-                data: jsonResponse.data
-            })
-        } catch (error) {
-            reactotron.log(error)
+              firstNumber: newText
+            });
+          }}
+        />
+        <TextInput
+          style={{
+            marginTop: 5,
+            width: '90%',
+            height: 60,
+            backgroundColor: 'gray'
+          }}
+          onChangeText={newText => {
             this.setState({
-                isLoading: false,
-                isError: true,
-                data: {}
-            })
-        }
-    }
-
-    render() {
-
-        const { isLoading, isError, data } = this.state
-        if (isLoading) {
-            return (
-                <Loading />
-            )
-        }
-
-        return (
-            <View style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-                <Text
-                    style={{
-                        fontFamily: R.fonts.roboto_bolditalic
-                    }}
-                >Hello</Text>
-
-            </View>
-        );
-    }
+              secondNumber: newText
+            });
+          }}
+        />
+        <TextInput> {this.props.userState.data} </TextInput>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.calculation(this.state);
+          }}
+        >
+          <Text>Do something</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-    vContentKeySearch: {
-        flexWrap: "wrap",
-        padding: 5,
-        flexDirection: "row",
-        width: '100%',
-        backgroundColor: "white"
-    },
-    container: {
-        flex: 1,
-        backgroundColor: "green"
-    },
-    list_post: {
-        flex: 1,
-        backgroundColor: "yellow"
-    }
-})
+const mapStateToProps = state => ({
+  userState: state.homeReducer
+});
+
+const mapDispatchToProps = {
+  getHome,
+  calculation
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen);
