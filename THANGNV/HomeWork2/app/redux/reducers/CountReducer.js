@@ -15,10 +15,10 @@ export default function (state = initialState, action) {
             if (action.payload.calculation == '-') {
                 temp = Number(action.payload.firstNumber) - Number(action.payload.secondNumber);
             }
-            if (action.payload.calculation == '*') {
+            if (action.payload.calculation == 'x') {
                 temp = Number(action.payload.firstNumber) * Number(action.payload.secondNumber);
             }
-            if (action.payload.calculation == '/') {
+            if (action.payload.calculation == ':') {
                 temp = Number(action.payload.firstNumber) / Number(action.payload.secondNumber);
             }
             return {

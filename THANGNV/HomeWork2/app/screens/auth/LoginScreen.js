@@ -282,11 +282,11 @@
 //     }
 // }
 
-import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { increment, decrement, result } from '@action'
+// import React, { Component } from 'react';
+// import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { increment, decrement, result } from '@action'
 
 
 // const CALCULATION = {
@@ -455,104 +455,133 @@ import { increment, decrement, result } from '@action'
 // export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
 
 
-const CALCULATION = {
-    ADD: '+',
-    SUBTRACT: '-',
-    MULTIPLY: '*',
-    DIVIDE: '/',
-};
+// const CALCULATION = {
+//     ADD: '+',
+//     SUBTRACT: '-',
+//     MULTIPLY: 'x',
+//     DIVIDE: ':',
+// };
+
+// export class LoginScreen extends Component {
+//     state = {
+//         firstNumber: 0,
+//         secondNumber: 0,
+//         calculation: 0
+//     };
+
+//     render() {
+//         return (
+//             <View
+//                 style={{
+//                     flex: 1, justifyContent: 'center', alignItems: 'center'
+//                 }}>
+//                 <TextInput
+//                     style={{
+//                         width: '50%', height: 50, backgroundColor: 'gray', padding: 10
+//                     }}
+//                     onChangeText={newText => {
+//                         this.setState({
+//                             firstNumber: newText
+//                         });
+//                     }}
+//                     placeholder="First number"
+//                     autoFocus={true}
+//                     keyboardType='phone-pad'
+//                     placeholderTextColor='white'
+//                 />
+//                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+//                     <Text style={{ marginHorizontal: 10 }}>Nhap phep toan</Text>
+//                     <TextInput
+//                         style={{
+//                             width: '10%',
+//                             height: 50,
+//                             backgroundColor: 'gray',
+//                             marginTop: 5,
+//                             padding: 10
+//                         }}
+//                         onChangeText={newText => {
+//                             this.setState({
+//                                 calculation: newText
+//                             });
+//                         }}
+//                         placeholderTextColor='white'
+//                     />
+//                 </View>
+
+//                 <TextInput
+//                     style={{
+//                         width: '50%',
+//                         height: 50,
+//                         backgroundColor: 'gray',
+//                         marginTop: 5,
+//                         padding: 10
+//                     }}
+//                     onChangeText={newText => {
+//                         this.setState({
+//                             secondNumber: newText
+//                         });
+//                     }}
+//                     placeholder="Second number"
+//                     keyboardType='phone-pad'
+//                     placeholderTextColor='white'
+//                 />
+//                 <TouchableOpacity
+//                     onPress={() => {
+//                         this.props.result(this.state);
+//                     }}>
+//                     <View style={{
+//                         marginTop: 5,
+//                         width: '90%',
+//                         backgroundColor: 'blue',
+//                         borderRadius: 20,
+//                         padding: 10
+//                     }}>
+//                         <Text>Result</Text>
+//                     </View>
+//                 </TouchableOpacity>
+//                 <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
+//                     <Text style={{ fontSize: 25 }}> {this.props.userState.data} </Text>
+//                 </View>
+//             </View>
+//         )
+//     }
+// }
+
+// const mapStateToProps = (state) => ({
+//     userState: state.countReducer
+// })
+
+// const mapDispatchToProps = {
+//     result
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+
+import React, { Component } from 'react'
+import { View, Text } from 'react-native'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 export class LoginScreen extends Component {
-    state = {
-        firstNumber: 0,
-        secondNumber: 0,
-        calculation: 0
-    };
+    static propTypes = {
+        prop: PropTypes
+    }
 
     render() {
         return (
-            <View
-                style={{
-                    flex: 1, justifyContent: 'center', alignItems: 'center'
-                }}>
-                <TextInput
-                    style={{
-                        width: '50%', height: 50, backgroundColor: 'gray', padding: 10
-                    }}
-                    onChangeText={newText => {
-                        this.setState({
-                            firstNumber: newText
-                        });
-                    }}
-                    placeholder="First number"
-                    autoFocus={true}
-                    keyboardType='phone-pad'
-                    placeholderTextColor='white'
-                />
-                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ marginHorizontal: 10 }}>Nhap phep toan</Text>
-                    <TextInput
-                        style={{
-                            width: '10%',
-                            height: 50,
-                            backgroundColor: 'gray',
-                            marginTop: 5,
-                            padding: 10
-                        }}
-                        onChangeText={newText => {
-                            this.setState({
-                                calculation: newText
-                            });
-                        }}
-                        placeholderTextColor='white'
-                    />
-                </View>
-
-                <TextInput
-                    style={{
-                        width: '50%',
-                        height: 50,
-                        backgroundColor: 'gray',
-                        marginTop: 5,
-                        padding: 10
-                    }}
-                    onChangeText={newText => {
-                        this.setState({
-                            secondNumber: newText
-                        });
-                    }}
-                    placeholder="Second number"
-                    keyboardType='phone-pad'
-                    placeholderTextColor='white'
-                />
-                <TouchableOpacity
-                    onPress={() => {
-                        this.props.result(this.state);
-                    }}>
-                    <View style={{
-                        marginTop: 5,
-                        width: '90%',
-                        backgroundColor: 'blue',
-                        borderRadius: 20,
-                        padding: 10
-                    }}>
-                        <Text>Result</Text>
-                    </View>
-                </TouchableOpacity>
-                <View style={{ marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 25 }}> {this.props.userState.data} </Text>
-                </View>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text> prop </Text>
             </View>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    userState: state.countReducer
+
 })
 
 const mapDispatchToProps = {
-    result
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
