@@ -7,9 +7,9 @@ import { getUserInfo } from '@action'
 
 export class UserScreen extends Component {
 
-    componentDidMount() {
-        alert(JSON.stringify(this.props.userState))
-    }
+    // componentDidMount() {
+    //     alert(JSON.stringify(this.props.userState))
+    // }
 
     render() {
         return (

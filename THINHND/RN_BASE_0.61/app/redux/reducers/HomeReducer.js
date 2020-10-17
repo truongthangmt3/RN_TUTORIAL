@@ -1,5 +1,4 @@
-import { GET_HOME, CALCULATION } from "../actions/type";
-
+import { GET_INCREASE, GET_DECREASE, CALCULATION } from "../actions/type";
 const initialState = {
     data: 0,
     isLoading: false,
@@ -7,6 +6,22 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
+    // switch (action.type) {
+    //     case GET_INCREASE:
+    //         return {
+    //             ...state,
+    //             isLoading: true,
+    //             data: state.data + 1
+    //         }
+    //     case GET_DECREASE:
+    //         return {
+    //             ...state,
+    //             isLoading: true,
+    //             data: state.data - 1
+    //         }
+    //     default:
+    //         return state;
+    // }
     if (action.type == CALCULATION) {
         let tmpData;
         if (action.payload.calculation == 0) {
@@ -14,12 +29,6 @@ export default function (state = initialState, action) {
         }
         if (action.payload.calculation == 1) {
             tmpData = Number(action.payload.firstNumber) - Number(action.payload.secondNumber);
-        }
-        if (action.payload.calculation == 2) {
-            tmpData = Number(action.payload.firstNumber) * Number(action.payload.secondNumber);
-        }
-        if (action.payload.calculation == 3) {
-            tmpData = Number(action.payload.firstNumber) / Number(action.payload.secondNumber);
         }
 
         return {
