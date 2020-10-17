@@ -355,7 +355,6 @@ class HomeScreen extends Component {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
 
-
                 <TouchableOpacity
 
                     onPress={() => {

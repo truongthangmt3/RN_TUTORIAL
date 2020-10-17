@@ -1,12 +1,31 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View, Text } from 'react-native'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { getProduct } from '@action'
+export class Notification extends Component {
+    static propTypes = {
+        prop: PropTypes
+    }
+    componentDidMount() {
+        this.props.getProduct();
+    }
 
-export default class Notification extends Component {
     render() {
         return (
-            <View>
-                <Text> textInComponent </Text>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text> {JSON.stringify(this.props.producState)} </Text>
             </View>
         )
     }
 }
+
+const mapStateToProps = (state) => ({
+    producState: state.productReducer,
+})
+
+const mapDispatchToProps = {
+    getProduct,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notification)
