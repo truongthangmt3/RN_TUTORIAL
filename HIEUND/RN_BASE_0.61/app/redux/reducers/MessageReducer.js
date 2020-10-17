@@ -7,7 +7,8 @@ import {
   PLUS,
   SUBTRACT,
   MULTIPLY,
-  DIVIDE
+  DIVIDE,
+  CALCULATION
 } from "../actions/type";
 
 const initialState = {
@@ -16,40 +17,17 @@ const initialState = {
   error: null
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
+  let tmpData;
   switch (action.type) {
-    case INCREMENT: {
-      return { ...state, data: state.data + 1 }
-    }
-    case DECREMENT: {
-      return { ...state, data: state.data - 1 }
-    }
-    case SQUARE: {
-      return { ...state, data: state.data * state.data }
-    }
-    case SQRT: {
-      return { ...state, data: Math.sqrt(state.data) }
-    }
-    case RESET: {
-      return { ...state, data: state.data }
-    }
-    case PLUS: {
-      let tmpData
-      return { ...state, data: tmpData = Number(action.payload.firstNumber) + Number(action.payload.secondNumber) }
-    }
-    case SUBTRACT: {
-      let tmpData
-      return { ...state, data: tmpData = Number(action.payload.firstNumber) - Number(action.payload.secondNumber) }
-    }
-    case MULTIPLY: {
-      let tmpData
-      return { ...state, data: tmpData = Number(action.payload.firstNumber) * Number(action.payload.secondNumber) }
-    }
-    case DIVIDE: {
-      let tmpData
-      return { ...state, data: tmpData = Number(action.payload.firstNumber) / Number(action.payload.secondNumber) }
+    case CALCULATION: {
+      if (action.payload.calculation == 0) {
+        tmpData =
+          Number(action.payload.firstNumber) +
+          Number(action.payload.secondNumber);
+      }
+      return { ...state, data: tmpData };
     }
   }
   return state;
 }
-

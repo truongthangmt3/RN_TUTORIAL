@@ -8,6 +8,8 @@ import RegisterScreen from '../screens/auth/RegisterScreen'
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import HomeScreen from '@screen/HomeScreen'
 import UserScreen from '../screens/UserScreen'
+import Notification from '@screen/Notification'
+import CareScreen from '@screen/CareScreen'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R';
 import * as theme from "@theme";
@@ -27,12 +29,15 @@ const Auth = createStackNavigator({
 const tabbarIcons = {
     [SCREEN_ROUTER.HOME]: R.images.ic_home,
     [SCREEN_ROUTER.USER]: R.images.ic_user,
+    [SCREEN_ROUTER.NOTIFICATION]: R.images.ic_notifications,
+    [SCREEN_ROUTER.CARE]: R.images.ic_care,
+
 };
 
 const getTabBarIcon = (navigation, focused, tintColor) => {
     const { routeName } = navigation.state;
     const iconSource = tabbarIcons[routeName] || R.images.home;
-    const iconSize = focused ? 25 : 22;
+    const iconSize = focused ? 20 : 18;
     return (
         <Image
             source={iconSource}
@@ -51,6 +56,20 @@ const Main = createBottomTabNavigator(
                 tabBarLabel: R.strings.home,
             },
         },
+        [SCREEN_ROUTER.CARE]: {
+            screen: CareScreen,
+            title: R.strings.care,
+            navigationOptions: {
+                tabBarLabel: R.strings.care,
+            },
+        },
+        [SCREEN_ROUTER.NOTIFICATION]: {
+            screen: Notification,
+            title: R.strings.user,
+            navigationOptions: {
+                tabBarLabel: R.strings.notification,
+            },
+        },
         [SCREEN_ROUTER.USER]: {
             screen: UserScreen,
             title: R.strings.user,
@@ -58,6 +77,7 @@ const Main = createBottomTabNavigator(
                 tabBarLabel: R.strings.user,
             },
         },
+
     },
     {
         defaultNavigationOptions: ({ navigation }) => ({

@@ -6,6 +6,7 @@ export default {
 	notification: "Thông báo",
 	user: "Người dùng",
 	account: "Tài khoản",
-	update_user_info : 'Cập nhật thông tin người dùng'
+	care: "KH quan tâm",
+	update_user_info: 'Cập nhật thông tin người dùng'
 
 }

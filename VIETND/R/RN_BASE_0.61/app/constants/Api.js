@@ -1,15 +1,15 @@
 import axios from "axios";
-import { AsyncStorage, Alert } from "react-native";
+import { Alert } from "react-native";
 import NavigationUtil from "../navigation/NavigationUtil";
 import I18n from "../i18n/i18n";
-
+import AsyncStorage from '@react-native-community/async-storage';//lưu dữ liệu xuống ổ cứng
 
 
 //new
 function createAxios() {
   // AsyncStorage.setItem("token", '773DE1FE9732F26F7552BC921CBE347E')
   var axiosInstant = axios.create();
-  axiosInstant.defaults.baseURL = "http://toimuonmuasi.com/api/ ";
+  axiosInstant.defaults.baseURL = "http://toimuonmuasi.com/api/";
   axiosInstant.defaults.timeout = 20000;
   axiosInstant.defaults.headers = { "Content-Type": "application/json" };
 
@@ -56,6 +56,7 @@ export const requestLogin = payload => {
   return handleResult(
     getAxios.post("Login", payload)
   );
+
 }; export const requestRegister = payload => {
   return handleResult(
     getAxios.post("Register", payload)
