@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 import CountReducer from './CountReducer';
+import ProductReducer from './ProductReducer';
 import { RESET } from "../actions/type";
 
 appReducer = combineReducers({
-  countReducer: CountReducer
+  countReducer: CountReducer,
+  productReducer: ProductReducer,
 });
 
 const initialState = appReducer({}, {})
