@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/870537565/@react-native-community_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/870537565/@react-native-community_async-storage.iml" group="WindsBase/@react-native-community_async-storage" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-181085463/@react-native-community_google-signin.iml" filepath="$PROJECT_DIR$/.idea/modules/-181085463/@react-native-community_google-signin.iml" group="WindsBase/@react-native-community_google-signin" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WindsBase.iml" filepath="$PROJECT_DIR$/.idea/modules/WindsBase.iml" group="WindsBase" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="WindsBase/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1411756803/react-native-code-push.iml" filepath="$PROJECT_DIR$/.idea/modules/1411756803/react-native-code-push.iml" group="WindsBase/react-native-code-push" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1250610571/react-native-fbsdk.iml" filepath="$PROJECT_DIR$/.idea/modules/-1250610571/react-native-fbsdk.iml" group="WindsBase/react-native-fbsdk" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-297217411/react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/-297217411/react-native-gesture-handler.iml" group="WindsBase/react-native-gesture-handler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-773113465/react-native-i18n.iml" filepath="$PROJECT_DIR$/.idea/modules/-773113465/react-native-i18n.iml" group="WindsBase/react-native-i18n" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/637207183/react-native-iap.iml" filepath="$PROJECT_DIR$/.idea/modules/637207183/react-native-iap.iml" group="WindsBase/react-native-iap" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1048968791/react-native-image-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/-1048968791/react-native-image-picker.iml" group="WindsBase/react-native-image-picker" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/81711493/react-native-onesignal.iml" filepath="$PROJECT_DIR$/.idea/modules/81711493/react-native-onesignal.iml" group="WindsBase/react-native-onesignal" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/569864575/react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/569864575/react-native-reanimated.iml" group="WindsBase/react-native-reanimated" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1893542082/react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/-1893542082/react-native-screens.iml" group="WindsBase/react-native-screens" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/576298617/react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/576298617/react-native-vector-icons.iml" group="WindsBase/react-native-vector-icons" />
+    </modules>
+  </component>
+</project>

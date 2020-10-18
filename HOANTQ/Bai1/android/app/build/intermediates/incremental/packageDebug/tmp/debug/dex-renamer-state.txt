@@ -1,0 +1,4 @@
+#Fri Oct 02 02:44:06 ICT 2020
+base.0=C\:\\HOANTQ\\RN_TUTORIAL\\HOANTQ\\Bai1\\android\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
