@@ -73,7 +73,7 @@ export class UserScreen extends Component {
                     }}
                 />
 
-                <TextInput
+                {/* <TextInput
                     style={{
                         marginTop: 5,
                         width: '90%',
@@ -85,12 +85,14 @@ export class UserScreen extends Component {
                             user: newText
                         });
                     }}
-                />
+                /> */}
 
                 <TouchableOpacity
                     onPress={() => {
                         this.setState({
                             caculation: CACULATION.PLUS
+                        }, () => {
+                            this.props.caculation(this.state);
                         })
                     }}
                 >
@@ -102,6 +104,8 @@ export class UserScreen extends Component {
                     onPress={() => {
                         this.setState({
                             caculation: CACULATION.SUBTRACT
+                        }, () => {
+                            this.props.caculation(this.state);
                         })
                     }}
                 >
@@ -113,6 +117,8 @@ export class UserScreen extends Component {
                     onPress={() => {
                         this.setState({
                             caculation: CACULATION.MULTIPLY
+                        }, () => {
+                            this.props.caculation(this.state);
                         })
                     }}
                 >
@@ -124,6 +130,8 @@ export class UserScreen extends Component {
                     onPress={() => {
                         this.setState({
                             caculation: CACULATION.DIVIDE
+                        }, () => {
+                            this.props.caculation(this.state);
                         })
                     }}
                 >
@@ -131,21 +139,21 @@ export class UserScreen extends Component {
 
                 </TouchableOpacity>
 
-                {/* <TextInput> {this.props.homeState.data} </TextInput> */}
+                <TextInput> {this.props.homeState.data} </TextInput>
 
-                <Text> user: {this.props.homeState.data} </Text>
+                {/* <Text> user: {this.props.homeState.data} </Text>
                 <Text> phone: {this.props.homeState.data} </Text>
-                <Text> email: {this.props.homeState.data} </Text>
+                <Text> email: {this.props.homeState.data} </Text> */}
 
 
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     onPress={() => {
                         //this.props.caculation(this.state);
                         this.props.caculation(this.state);
                     }} >
                     <Text>Show</Text>
 
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
 
             // <View
@@ -184,8 +192,6 @@ const mapDispatchToProps = {
     getdecrease,
     caculation,
     getuser
-
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserScreen)

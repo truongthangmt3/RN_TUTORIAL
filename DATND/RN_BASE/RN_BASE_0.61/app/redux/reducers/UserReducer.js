@@ -1,41 +1,14 @@
-// import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL } from "../actions/type";
 
-// const initialState = {
-//   data: {},
-//   isLoading: false,
-//   error: null
-// };
-
-// export default function (state = initialState, action) {
-//   switch (action.type) {
-//     case GET_USER: {
-//       return { ...state, isLoading: true };
-//     }
-//     case GET_USER_SUCCESS: {
-//       return {
-//         ...state,
-//         isLoading: true,
-//         error: null,
-//         data: action.payload
-//       };
-//     }
-//     case GET_USER_FAIL: {
-
-//       return {
-//         ...state,
-//         error: action.payload,
-//         isLoading: false,
-//       };
-//     }
-//     default:
-//       return state;
-//   }
-// }
-
-import { GET_USER, CACULATION } from "../actions/type";
+import {
+  GET_USER,
+  CACULATION,
+  GET_UPDATEUSER,
+  GET_UPDATEUSER_SUCCESS,
+  GET_UPDATEUSER_FAIL
+} from "../actions/type";
 
 const initialState = {
-  data: {},
+  data: 1,
   isLoading: false,
   error: null
 };
@@ -43,12 +16,27 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER:
+    case GET_UPDATEUSER:
       return {
         ...state,
         isLoading: true,
-        data: action.payload
+
       }
+    case GET_UPDATEUSER_SUCCESS:
+      return {
+        ...state,
+        isLoading: true,
+        
+
+      }
+    case GET_UPDATEUSER_FAIL:
+      return {
+        ...state,
+        isLoading: true,
+
+      }
+
+
 
 
     default:

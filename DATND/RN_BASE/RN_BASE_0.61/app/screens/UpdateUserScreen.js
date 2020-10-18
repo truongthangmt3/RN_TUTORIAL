@@ -4,7 +4,8 @@ import R from '@R';
 import NavigationUtil from '@app/navigation/NavigationUtil';
 import { SCREEN_ROUTER } from '@app/constants/Constant';
 import { connect } from 'react-redux'
-import { getuser } from '@action'
+import { requestUpdateUser } from '@api'
+import { getUpdateUser } from '@action'
 
 import {
     Text, StyleSheet,
@@ -41,26 +42,19 @@ class CustomTabBar extends Component {
 
 class UpdateUserScreen extends Component {
     state = {
+        isLoading: false,
+        error: null,
+        data: {},
         modalVisible: false,
-        current: 0,
-        thanhpho: [
-            {
-                id: 1223,
-                name: 'hanoi'
-            }, {
-                id: 12243,
-                name: 'saigon'
-            }, {
-                id: 12263,
-                name: 'hue'
-            },
-        ],
+        userName: '',
+        address: '',
+        email: '',
 
-        texxt: '',
-        user: ''
     }
+
+
     render() {
-        const { current, thanhpho, texxt } = this.state
+        ///  const { current, thanhpho, texxt } = this.state
 
         return (
             <SafeAreaView style={styles.Container}>
@@ -73,10 +67,10 @@ class UpdateUserScreen extends Component {
                             style={styles.text_input}
                             onChangeText={newText => {
                                 this.setState({
-                                    user: newText
+                                    userName: newText
                                 });
                             }}>
-                            {this.props.homeState.data}
+                            {/* {this.props.useState.data} */}
                         </TextInput>
                     </View>
                     <View style={styles.info_name}>
@@ -103,25 +97,48 @@ class UpdateUserScreen extends Component {
                     <View style={styles.info_name}>
                         <Text style={styles.txt_label}>Địa chỉ (*)</Text>
                         <TextInput
-                            value={'nguyen dinh dat'}
-                            style={styles.text_input}
 
+                            style={styles.text_input}
+                            onChangeText={newText => {
+                                this.setState({
+                                    address: newText
+                                });
+                            }}
                         />
                     </View>
                     <View style={styles.info_name}>
                         <Text style={styles.txt_label}>Email (*)</Text>
                         <TextInput
-                            value={'nguyen dinh dat'}
+                            value={this.state.email}
                             style={styles.text_input}
-
+                            onChangeText={newText => {
+                                this.setState({
+                                    email: newText
+                                });
+                            }}
                         />
                     </View>
                     <View style={styles.info_update}>
                         <TouchableOpacity style={styles.up_click}
-                            onPress={async () => {
-                                this.props.getuser(this.state);
+                            // onPress={async () => {
+                            //     this.props.getUpdateUser();
 
-                                NavigationUtil.navigate(SCREEN_ROUTER.USER)
+                            //     NavigationUtil.navigate(SCREEN_ROUTER.USER)
+                            // }}
+                            onPress={async () => {
+                                try {
+                                    result = await requestUpdateUser({
+                                        "fullname": this.state.userName,
+                                        "email": "tunf@gmail.com",
+                                        "address": this.state.address
+                                    })
+
+                                    reactotron.log(result)
+                                    NavigationUtil.navigate(SCREEN_ROUTER.USER)
+
+                                } catch (error) {
+
+                                }
                             }}
                         >
                             <Text
@@ -149,7 +166,7 @@ class UpdateUserScreen extends Component {
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
 
-                            <CustomModal
+                            {/* <CustomModal
                                 action={this._action}
                                 city={this.state.thanhpho[current].name}
                             />
@@ -160,7 +177,7 @@ class UpdateUserScreen extends Component {
                             <CustomModal
                                 action={this._action}
                                 city={this.state.thanhpho[current].name}
-                            />
+                            /> */}
                             <TouchableHighlight
                                 style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                                 onPress={() => {
@@ -328,12 +345,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-    homeState: state.homeReducer
+    userState: state.userReducer
 })
 
 const mapDispatchToProps = {
 
-    getuser
+    getUpdateUser
 
 
 }
