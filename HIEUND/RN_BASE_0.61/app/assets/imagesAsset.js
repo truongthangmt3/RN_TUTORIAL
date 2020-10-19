@@ -3,7 +3,9 @@ const images = {
     avt2: require("./images/avt2.png"),
     avt3: require("./images/avt3.png"),
     avt4: require("./images/avt4.png"),
-    down_arrow: require("./images/down-arrow.png"),
+    down_arrow: require("./images/down_arrow.png"),
+    ic_back: require("./images/ic_back.png"),
+    ic_edit: require("./images/ic_edit.png"),
     ic_home: require("./images/ic_home.png"),
     ic_user: require("./images/ic_user.png"),
     icon_arrow: require("./images/icon_arrow.png"),
@@ -32,5 +34,5 @@ const images = {
     img_login_button: require("./images/img_login_button.png"),
     img_res_muasi: require("./images/img_res_muasi.png"),
     red_dot: require("./images/red_dot.png")
-    }
+}
 export default images

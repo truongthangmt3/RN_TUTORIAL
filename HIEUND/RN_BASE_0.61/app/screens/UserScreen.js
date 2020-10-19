@@ -15,7 +15,8 @@ const windowWidth = Dimensions.get("window").width; //414
 const windowHeight = Dimensions.get("window").height; //896
 import R from "@R";
 import { connect } from 'react-redux'
-import {getUserInfoAction}from '@action'
+import { getUserInfoAction } from '@action'
+import { SCREEN_ROUTER } from "@app/constants/Constant";
 export class UserScreen extends Component {
   // state = {
   //   isLoading: true,
@@ -36,8 +37,8 @@ export class UserScreen extends Component {
   //     });
   //   }
   // };
-  componentDidMount(){
-    alert(JSON.stringify(this.props.userState))
+  componentDidMount() {
+    // alert(JSON.stringify(this.props.userState))
   }
   render() {
     // const { isLoading, isError} = this.state;
@@ -113,25 +114,36 @@ export class UserScreen extends Component {
           <View
             style={{
               backgroundColor: "white",
-              marginTop: windowHeight * 0.007
+              marginTop: windowHeight * 0.007,
+              paddingBottom: 10
             }}
           >
-            <UserOptions label="Tin mua của bạn" img={R.images.icon_buynews} />
-            <UserOptions label="Thông tin cá nhân" img={R.images.icon_user} />
+            <UserOptions
+              label="Tin mua của bạn"
+              img={R.images.icon_buynews}
+              underline />
+            <UserOptions
+              label="Thông tin cá nhân"
+              img={R.images.icon_user}
+              underline
+              onPress={() => { NavigationUtil.navigate(SCREEN_ROUTER.USER_INFO_SCREEN) }}
+            />
             <UserOptions
               label="Danh mục của tôi"
               img={R.images.icon_awesome_list_ul}
+              underline
             />
             <UserOptions
               label="Đổi mật khẩu"
               img={R.images.icon_feather_lock}
+              underline
             />
-            <UserOptions label="Hướng dẫn sử dụng" img={R.images.icon_recipe} />
+            <UserOptions label="Hướng dẫn sử dụng" img={R.images.icon_recipe} underline />
             <UserOptions label="Đăng xuất" img={R.images.icon_log_out} onPress={
-              async () => { 
-                await AsyncStorage.setItem("token","")
+              async () => {
+                await AsyncStorage.setItem("token", "")
                 NavigationUtil.navigate("login")
-            }} />
+              }} />
           </View>
         </View>
       </SafeAreaView>
@@ -139,7 +151,7 @@ export class UserScreen extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  userState:state.userReducer
+  userState: state.userReducer
 })
 
 const mapDispatchToProps = {

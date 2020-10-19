@@ -11,21 +11,28 @@ import UserScreen from "../screens/UserScreen";
 import CustomerScreen from "@screen/CustomerScreen";
 import MessageScreen from "@screen/MessageScreen";
 import NotificationScreen from "@screen/NotificationScreen";
+import UserInfoScreen from '@screen/UserInfoScreen'
+import UpdateUserInfoScreen from '@screen/UpdateUserInfoScreen'
 import { SCREEN_ROUTER } from "@constant";
 import R from "@R";
 import * as theme from "@theme";
-
 import { Image } from "react-native";
 const TabBarComponent = props => <BottomTabBar {...props} />;
-
+const App = createStackNavigator({
+  // [SCREEN_ROUTER.USER]: UserScreen,
+  [SCREEN_ROUTER.USER_INFO_SCREEN]: UserInfoScreen,
+  [SCREEN_ROUTER.UPDATE_USER_INFO_SCREEN]: UpdateUserInfoScreen
+}, {
+  headerMode: 'none'
+})
 const Auth = createStackNavigator({
   [SCREEN_ROUTER.LOGIN]: LoginScreen,
   [SCREEN_ROUTER.REGISTER]: RegisterScreen,
   [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen
 },
-{
-  headerMode: 'none'
-}
+  {
+    headerMode: 'none'
+  }
 );
 
 const tabbarIcons = {
@@ -85,7 +92,7 @@ const Main = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Người dùng"
       }
-    }
+    },
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -120,10 +127,11 @@ export default createAppContainer(
     {
       [SCREEN_ROUTER.AUTH_LOADING]: AuthLoadingScreen,
       [SCREEN_ROUTER.AUTH]: Auth,
-      [SCREEN_ROUTER.MAIN]: Main
+      [SCREEN_ROUTER.MAIN]: Main,
+      [SCREEN_ROUTER.USER_OPTIONS]: App
     },
     {
       initialRouteName: SCREEN_ROUTER.AUTH_LOADING
-    }
+    },
   )
 );
