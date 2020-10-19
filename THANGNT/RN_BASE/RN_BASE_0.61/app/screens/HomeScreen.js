@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getHome, calculation } from '@action';
+import { getHome, calculation, getProduct } from '@action';
 
 const CALCULATION = {
   PLUS: 0,
   SUBTRACT: 1,
   MULTIPLY: 2,
-  DIVIDE: 3
+  DIVIDE: 3,
 };
 class HomeScreen extends Component {
   state = {
     firstNumber: 0,
     secondNumber: 0,
-    calculation: CALCULATION.SUBTRACT
+    calculation: CALCULATION.SUBTRACT,
   };
+
+  componentDidMount() {
+    this.props.getProduct();
+  }
 
   render() {
     return (
@@ -23,18 +27,18 @@ class HomeScreen extends Component {
         style={{
           flex: 1,
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
         <TextInput
           style={{
             width: '90%',
             height: 60,
-            backgroundColor: 'gray'
+            backgroundColor: 'gray',
           }}
-          onChangeText={newText => {
+          onChangeText={(newText) => {
             this.setState({
-              firstNumber: newText
+              firstNumber: newText,
             });
           }}
         />
@@ -43,11 +47,11 @@ class HomeScreen extends Component {
             marginTop: 5,
             width: '90%',
             height: 60,
-            backgroundColor: 'gray'
+            backgroundColor: 'gray',
           }}
-          onChangeText={newText => {
+          onChangeText={(newText) => {
             this.setState({
-              secondNumber: newText
+              secondNumber: newText,
             });
           }}
         />
@@ -64,16 +68,14 @@ class HomeScreen extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userState: state.homeReducer
+const mapStateToProps = (state) => ({
+  userState: state.homeReducer,
 });
 
 const mapDispatchToProps = {
   getHome,
-  calculation
+  calculation,
+  getProduct,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
