@@ -2,6 +2,7 @@ import {
   GET_USER,
   GET_HOME,
   CALCULATION,
+  GET_PRODUCT
 } from "./type";
 
 export const getUserInfo = (data) => ({
@@ -16,4 +17,8 @@ export const calculation = (data) => ({
   type: CALCULATION,
   payload: data
 });
+export const getProduct = (data) => ({
+  type: GET_PRODUCT,
+  payload: data,
+})
 
