@@ -8,15 +8,31 @@ import {
     Dimensions,
     TouchableOpacity
 } from 'react-native';
-
-class LoginScreen extends Component {
+import NavigationUtil from '@app/navigation/NavigationUtil';
+import R from '@app/assets/R';
+import RNHeader from '@app/components/WHeader';
+class RegisterScreen extends Component {
     render() {
         return (
             <View style={{
                 flex: 1,
                 backgroundColor: '#F5F6F8'
             }}>
+                <TouchableOpacity onPress={() => {
+                    NavigationUtil.navigate("Login")
+                }}>
+                    <Image style={{
+                        width: 9,
+                        height: 17,
+                        marginTop: 43,
+                        marginLeft: 16,
+                        resizeMode: 'contain'
+                    }} source={images.ic_back} />
+                </TouchableOpacity>
+
+
                 <Image style={{
+                    //marginTop: 52,
                     width: 177,
                     height: 72,
                     marginBottom: 18,
@@ -136,4 +152,4 @@ class LoginScreen extends Component {
     }
 }
 
-export default LoginScreen;
+export default RegisterScreen;

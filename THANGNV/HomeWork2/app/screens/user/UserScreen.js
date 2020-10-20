@@ -3,6 +3,7 @@ import {
     Text,
     View,
     StyleSheet,
+    Dimensions,
     TouchableOpacity,
     SafeAreaView,
     Image,
@@ -10,7 +11,9 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import NavigationUtil from '@app/navigation/NavigationUtil';
 import R from '@app/assets/R';
-import { SCREEN_ROUTER } from '@app/constants/Constant'
+import { SCREEN_ROUTER } from '@app/constants/Constant';
+
+const { height, width } = Dimensions.get('window');
 
 export default class UserScreen extends Component {
     render() {
@@ -41,7 +44,7 @@ export default class UserScreen extends Component {
                         }}>{phone}</Text>
                         <TouchableOpacity style={styles.modifyButton}
                             onPress={() => {
-                                NavigationUtil.navigate(SCREEN_ROUTER.USER_INFO)
+                                NavigationUtil.navigate("UserInfo")
                             }}>
                             <Text style={{
                                 fontSize: 12
@@ -106,7 +109,7 @@ _func_getshortname = (text) => {
 
 const styles = StyleSheet.create({
     header: {
-        height: 142,
+        height: height / 5,
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'center',

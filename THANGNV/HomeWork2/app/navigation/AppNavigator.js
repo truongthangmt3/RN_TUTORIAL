@@ -2,16 +2,21 @@ import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+
 import AuthLoadingScreen from '../screens/auth/AuthLoadingScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen';
 import CheckForgotPasswordScreen from '../screens/auth/CheckForgotPasswordScreen';
+
 import HomeScreen from '../screens/HomeScreen';
-import UserScreen from '../screens/user/UserScreen';
-import NotificationScreen from '../screens/NotificationScreen';
 import CustomerScreen from '../screens/CustomerScreen';
+import NotificationScreen from '../screens/NotificationScreen';
+import UserScreen from '../screens/user/UserScreen';
+
 import UserInfo from '@app/screens/user/stackScreen/UserInfo';
+
+
 import { SCREEN_ROUTER } from '@constant';
 import R from '@R';
 import * as theme from "@theme";
@@ -34,6 +39,8 @@ const Auth = createStackNavigator({
 
 const User = createStackNavigator({
     [SCREEN_ROUTER.USER_INFO]: UserInfo,
+}, {
+    headerMode: 'none'
 })
 
 const tabbarIcons = {
@@ -120,7 +127,8 @@ export default createAppContainer(
     createSwitchNavigator({
         [SCREEN_ROUTER.AUTH_LOADING]: AuthLoadingScreen,
         [SCREEN_ROUTER.AUTH]: Auth,
-        [SCREEN_ROUTER.MAIN]: Main
+        [SCREEN_ROUTER.MAIN]: Main,
+        [SCREEN_ROUTER.USER]: User,
     },
         {
             initialRouteName: SCREEN_ROUTER.AUTH_LOADING

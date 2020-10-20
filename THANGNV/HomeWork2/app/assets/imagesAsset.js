@@ -1,5 +1,7 @@
 const images = {
     
+    ic_back: require("./images/ic_back.png"),
+    ic_back_white: require("./images/ic_back_white.png"),
     ic_customer: require("./images/ic_customer.png"),
     ic_edit: require("./images/ic_edit.png"),
     ic_facebook: require("./images/ic_facebook.png"),
