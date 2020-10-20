@@ -5,6 +5,7 @@ import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs'
 import AuthLoadingScreen from '../screens/auth/AuthLoadingScreen'
 import LoginScreen from '../screens/auth/LoginScreen'
 import RegisterScreen from '../screens/auth/RegisterScreen'
+import ProductScreen from '@screen/ProductScreen'
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import HomeScreen from '@screen/HomeScreen'
 import UserScreen from '../screens/UserScreen'
@@ -49,6 +50,9 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 const Main = createBottomTabNavigator(
     {
+        Product: {
+            screen: ProductScreen,
+        },
         [SCREEN_ROUTER.HOME]: {
             screen: HomeScreen,
             title: R.strings.home,
@@ -87,7 +91,7 @@ const Main = createBottomTabNavigator(
                 />
             );
         },
-        initialRouteName: 'User'
+        initialRouteName: 'Product'
     }
 
 )
