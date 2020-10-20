@@ -5,10 +5,11 @@ import NavigationUtil from '../../navigation/NavigationUtil';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import reactotron from '@app/debug/ReactotronConfig';
-import { requestLogin } from '@api'
+
 import R from '@R';
 import { SCREEN_ROUTER } from '@app/constants/Constant';
 import AsyncStorage from '@react-native-community/async-storage';
+import { requestLogin } from '@api'
 export default class LoginScreen extends Component {
     state = {
         isLoading: false,

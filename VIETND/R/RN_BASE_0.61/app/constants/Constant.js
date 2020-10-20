@@ -8,7 +8,9 @@ const SCREEN_ROUTER = {
   REGISTER: "Register",
   USER: 'User',
   NOTIFICATION: 'notification',
-  CARE: 'care'
+  CARE: 'care',
+  UPDATE: 'Update',
+  UPDATEUSERINFO: "Updateuserinfo"
 };
 
 export { SCREEN_ROUTER };
