@@ -2,7 +2,10 @@ import {
   GET_USER,
   GET_INCREASE,
   GET_DECREASE,
-  CALCULATION
+  CALCULATION,
+  GET_HOME,
+  GET_HOME_SUCCESS,
+  GET_HOME_FAIL
 } from "./type";
 
 export const getUserInfoAction = () => ({
@@ -23,3 +26,16 @@ export const calculation = data => ({
   type: CALCULATION,
   payload: data
 });
+export const getHome = () => ({
+  type: GET_HOME,
+  payload: {}
+});
+export const getHomeSucces = () => ({
+  type: GET_HOME_SUCCESS,
+  payload: {}
+});
+export const getHomeFail = () => ({
+  type: GET_HOME_FAIL,
+  payload: {}
+});
+

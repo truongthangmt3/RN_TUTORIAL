@@ -63,5 +63,5 @@ export const requestRegister = payload => {
 };
 
 export const requestHomeData = () => {
-  return handleResult(getAxios.get(`api/GetHome`));
+  return handleResult(getAxios.get(`/GetHome`));
 };

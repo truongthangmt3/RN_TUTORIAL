@@ -34,7 +34,9 @@ class UserScreen extends Component {
           <View style={styles.v_userinfor}>
             <Text style={styles.t_username}>{name}</Text>
             <Text style={styles.t_phonenumber}>0987654321</Text>
-            <TouchableOpacity style={styles.v_chinhsua}>
+            <TouchableOpacity
+              onPress={() => { NavigationUtil.navigate(SCREEN_ROUTER.UPDATE_USER_INFO) }}
+              style={styles.v_chinhsua}>
               <Text style={styles.t_chinhsua}>Chỉnh sửa</Text>
             </TouchableOpacity>
           </View>

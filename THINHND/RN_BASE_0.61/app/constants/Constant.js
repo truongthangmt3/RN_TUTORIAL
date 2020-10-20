@@ -1,4 +1,5 @@
 const SCREEN_ROUTER = {
+  APP: 'App',
   MAIN: "Main",
   AUTH: "Auth",
   HOME: "Home",
@@ -8,7 +9,8 @@ const SCREEN_ROUTER = {
   REGISTER: "Register",
   USER: "User",
   CUSTOMER_SCREEN: "customer_screen",
-  NOTIFY_SCREEN: "notify_screen"
+  NOTIFY_SCREEN: "notify_screen",
+  UPDATE_USER_INFO: "UpdateUserInfo"
 };
 
 export { SCREEN_ROUTER };

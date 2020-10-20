@@ -22,19 +22,45 @@ export default function (state = initialState, action) {
     //     default:
     //         return state;
     // }
-    if (action.type == CALCULATION) {
-        let tmpData;
-        if (action.payload.calculation == 0) {
-            tmpData = Number(action.payload.firstNumber) + Number(action.payload.secondNumber);
-        }
-        if (action.payload.calculation == 1) {
-            tmpData = Number(action.payload.firstNumber) - Number(action.payload.secondNumber);
-        }
 
-        return {
-            ...state,
-            data: tmpData
-        };
+    // if (action.type == CALCULATION) {
+    //     let tmpData;
+    //     if (action.payload.calculation == 0) {
+    //         tmpData = Number(action.payload.firstNumber) + Number(action.payload.secondNumber);
+    //     }
+    //     if (action.payload.calculation == 1) {
+    //         tmpData = Number(action.payload.firstNumber) - Number(action.payload.secondNumber);
+    //     }
+
+    //     return {
+    //         ...state,
+    //         data: tmpData
+    //     };
+    // }
+    // return state;
+    let tmpData;
+    switch (action.type) {
+        case GET_INCREASE:
+            return {
+                ...state,
+                isLoading: true,
+                data: state.data + 1
+            }
+        case GET_DECREASE:
+            return {
+                ...state,
+                isLoading: true,
+                data: state.data - 1
+            }
+        case CALCULATION: {
+            if (action.payload.calculation == 0) {
+                tmpData =
+                    Number(action.payload.firstNumber) +
+                    Number(action.payload.secondNumber);
+            }
+            return { ...state, data: tmpData };
+        }
     }
     return state;
+
 }
