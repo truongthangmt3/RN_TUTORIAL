@@ -1,28 +1,19 @@
 import {
   GET_USER,
-  GET_INCREASE,
-  GET_REDUCTION,
-  GET_MULTIPLY,
-  GET_SHARE
+  GET_HOME,
+  CALCULATION,
 } from "./type";
 
 export const getUserInfo = (data) => ({
   type: GET_USER,
   payload: data
 });
-export const increase = (data) => ({
-  type: GET_INCREASE,
+export const getHome = (data) => ({
+  type: GET_HOME,
   payload: data
 });
-export const reduction = (data) => ({
-  type: GET_REDUCTION,
+export const calculation = (data) => ({
+  type: CALCULATION,
   payload: data
 });
-export const multiply = (data) => ({
-  type: GET_MULTIPLY,
-  payload: data
-});
-export const share = (data) => ({
-  type: GET_SHARE,
-  payload: data
-})
+

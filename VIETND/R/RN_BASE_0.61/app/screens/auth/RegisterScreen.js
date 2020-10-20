@@ -5,8 +5,8 @@ import NavigationUtil from '../../navigation/NavigationUtil';
 import { GoogleSignin, statusCodes } from '@react-native-community/google-signin';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import reactotron from '@app/debug/ReactotronConfig';
-// import { requestLogin } from '@R';
-import { requestLogin, requestRegister } from '@api';
+
+import { requestRegister } from '@api';
 import R from '@R'
 import { SCREEN_ROUTER } from '@app/constants/Constant';
 
@@ -15,7 +15,7 @@ class RegisterScreen extends Component {
         isLoading: false,
         error: null,
         data: {},
-        phone: '',
+        phoneNumber: '',
         password: '',
     };
     render() {
@@ -37,43 +37,24 @@ class RegisterScreen extends Component {
                                 <Text style={styles.inputTitle}>Số điện thoại</Text>
                                 <TextInput
                                     style={styles.text_herder}
-                                />
-                            </View>
-                            <View style={styles.herder_email}>
-                                <Text style={styles.inputTitle}>Email</Text>
-                                <TextInput
-                                    style={styles.text_herder}
-                                />
-                            </View>
-                            <View style={styles.herder_email}>
-                                <Text style={styles.inputTitle}>Name</Text>
-                                <TextInput
-                                    style={styles.text_herder}
-                                />
-                            </View>
-                            <View style={styles.herder_email}>
-                                <View style={{ flexDirection: 'row', marginTop: 15 }}>
-                                    <Text style={styles.inputTitle}>Tính/Thành phố</Text>
-                                    <Image
-                                        source={R.images.ic_dow}
-                                        style={{ marginTop: 15, marginRight: 10, height: 12, width: 16 }}
-                                    />
-                                </View>
-                                <TextInput
-                                    style={styles.text_herder}
+                                    onChangeText={(textRegister) => {
+                                        this.setState({
+                                            phoneNumber: textRegister
+                                        })
+                                    }}
                                 />
                             </View>
 
-                            <View style={styles.herder_pass}>
-                                <Text style={styles.inputTitle}>Pass</Text>
-                                <TextInput style={styles.text_herder}
-                                    secureTextEntry={true}
-                                />
-                            </View>
                             <View style={styles.herder_XD_pass}>
                                 <Text style={styles.inputTitle}>Xác nhận mật khẩu</Text>
                                 <TextInput style={styles.text_herder}
                                     secureTextEntry={true}
+                                    onChangeText={(textRegister) => {
+                                        this.setState({
+                                            password: textRegister
+
+                                        })
+                                    }}
                                 />
                             </View>
 
@@ -81,10 +62,21 @@ class RegisterScreen extends Component {
 
                         </View>
                         <TouchableOpacity style={styles.button_title}
-                            onPress={() => {
-                                NavigationUtil.navigate(SCREEN_ROUTER.FORGOT_PASS)
+                            onPress={async () => {
+                                try {
+                                    result = await requestRegister({
+                                        "phone": this.state.phoneNumber,
+                                        "password": this.state.password,
+                                        "device_id": ""
+                                    })
+                                    reactotron.log(result);
+                                    alert(JSON.stringify(result))
+                                    NavigationUtil.navigate(SCREEN_ROUTER.LOGIN)
+                                } catch (error) {
 
-                            }}>
+                                }
+                            }}
+                        >
 
                             <Text style={styles.button_text} >Đăng kí</Text>
                             <View style={styles.button_next}>
@@ -96,8 +88,8 @@ class RegisterScreen extends Component {
                         </TouchableOpacity>
 
                     </View>
-                </ScrollView >
-            </SafeAreaView >
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 }
@@ -116,8 +108,8 @@ const styles = StyleSheet.create({
     },
     herder: {
         width: 350,
-        height: 390,
-        marginTop: 20,
+        height: 130,
+        marginTop: 100,
         marginHorizontal: 20,
         borderRadius: 18,
         backgroundColor: '#fff',
@@ -204,3 +196,42 @@ const styles = StyleSheet.create({
 });
 
 export default RegisterScreen;
+
+
+{/* <View style={styles.herder_email}>
+                                <Text style={styles.inputTitle}>Email</Text>
+                                <TextInput
+                                    style={styles.text_herder}
+                                />
+                            </View> */}
+{/* <View style={styles.herder_email}>
+                                <Text style={styles.inputTitle}>Name</Text>
+                                <TextInput
+                                    style={styles.text_herder}
+                                />
+                            </View> */}
+{/* <View style={styles.herder_email}>
+                                <View style={{ flexDirection: 'row', marginTop: 15 }}>
+                                    <Text style={styles.inputTitle}>Tính/Thành phố</Text>
+                                    <Image
+                                        source={R.images.ic_dow}
+                                        style={{ marginTop: 15, marginRight: 10, height: 12, width: 16 }}
+                                    />
+                                </View>
+                                <TextInput
+                                    style={styles.text_herder}
+                                />
+                            </View> */}
+
+{/* <View style={styles.herder_pass}>
+                                <Text style={styles.inputTitle}>Mật khẩu</Text>
+                                <TextInput style={styles.text_herder}
+                                    secureTextEntry={true}
+                                    onChangeText={(textRegister) => {
+                                        this.setState({
+                                            password: textRegister
+
+                                        })
+                                    }}
+                                />
+                            </View> */}

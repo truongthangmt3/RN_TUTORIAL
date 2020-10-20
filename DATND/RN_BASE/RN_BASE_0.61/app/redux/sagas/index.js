@@ -1,7 +1,9 @@
 import {
-  watchGetUser,
+  watchGetUpdateUser,
+  watchGetProduct
 } from "./NetworkSaga";
 
 export default function* rootSaga() {
-  yield watchGetUser;
+  yield watchGetUpdateUser;
+  yield watchGetProduct;
 }

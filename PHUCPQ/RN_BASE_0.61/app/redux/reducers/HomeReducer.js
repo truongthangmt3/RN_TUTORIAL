@@ -1,28 +1,31 @@
-import { GET_INCREASE, GET_REDUCTION, GET_MULTIPLY, GET_SHARE } from "../actions/type";
+import { GET_HOME, CALCULATION } from "../actions/type";
 
 const initialState = {
-    data: 1,
+    data: 0,
     isLoading: false,
     error: null
 };
 
 export default function (state = initialState, action) {
-    switch (action.type) {
-        case GET_INCREASE: {
-            return {
-                ...state,
-                isLoading: true,
-                data: state.data + 1
-            };
+    if (action.type == CALCULATION) {
+        let tmpData;
+        if (action.payload.calculation == 0) {
+            tmpData = Number(action.payload.firstNumber) + Number(action.payload.secondNumber);
         }
-        case GET_REDUCTION: {
-            return {
-                ...state,
-                isLoading: false,
-                data: state.data - 1
-            };
+        if (action.payload.calculation == 1) {
+            tmpData = Number(action.payload.firstNumber) - Number(action.payload.secondNumber);
         }
-        default:
-            return state;
+        if (action.payload.calculation == 2) {
+            tmpData = Number(action.payload.firstNumber) * Number(action.payload.secondNumber);
+        }
+        if (action.payload.calculation == 3) {
+            tmpData = Number(action.payload.firstNumber) / Number(action.payload.secondNumber);
+        }
+
+        return {
+            ...state,
+            data: tmpData
+        };
     }
+    return state;
 }
