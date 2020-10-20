@@ -6,7 +6,7 @@
  * @flow
  */
 
-import DropdownAlertUtil from '@app/components/DropdownAlertUtil';
+//import DropdownAlertUtil from '@app/components/DropdownAlertUtil';
 import React, { Component } from 'react';
 import codePush from "react-native-code-push";
 import DropdownAlert from 'react-native-dropdownalert';
@@ -24,10 +24,6 @@ class App extends Component {
       <Provider store={store}>
         <AppNavigator
           ref={navigatorRef => NavigationUtil.setTopLevelNavigator(navigatorRef)}
-        />
-        <DropdownAlert 
-         ref={alertRef => DropdownAlertUtil.setTopDropdownAlert(alertRef)}
-         onTap = {DropdownAlertUtil.onTap}
         />
       </Provider>
     )

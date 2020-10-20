@@ -1,39 +1,42 @@
 import React, { Component } from 'react'
 import {
-    View,
-    Text,
+    Image,
     SafeAreaView,
-    StatusBar,
-    ActivityIndicator
 } from 'react-native'
-import NavigationUtil from '../../navigation/NavigationUtil'
-import i18 from '@i18';
-
-// import { connect } from 'react-redux'
+import NavigationUtil from '@app/navigation/NavigationUtil';
+import images from '@app/assets/imagesAsset';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class AuthLoadingScreen extends Component {
 
-    componentDidMount() {
+    componentDidMount = async () => {
         // load something and check login
-        setTimeout(() => {
+        try {
+            const token = await AsyncStorage.getItem("token")
+            if (token && token.length > 0) {
+                NavigationUtil.navigate("Home");
+            } else {
+                NavigationUtil.navigate("Login");
+            }
+        } catch (error) {
             NavigationUtil.navigate("Login");
-        }, 200);
-
+        }
     }
 
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <View>
-                    <ActivityIndicator />
-                    <Text>{i18.t('user')}</Text>
-                </View>
+            <SafeAreaView style={{
+                flex: 1,
+                justifyContent: 'center',
+            }}>
+                <Image style={{
+                    resizeMode: 'contain',
+                    width: 374,
+                    alignSelf: 'center'
+                }} source={images.img_flashscreen} />
             </SafeAreaView>
         )
     }
-
-
-
 }
 
 const mapStateToProps = (state) => ({

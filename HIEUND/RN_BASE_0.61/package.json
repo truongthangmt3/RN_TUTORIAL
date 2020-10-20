@@ -11,7 +11,7 @@
     "iosdevice": "react-native run-ios --device \"6S\"",
     "lint": "eslint .",
     "reverse": "adb reverse tcp:9090 tcp:9090; adb reverse tcp:19001 tcp:19001;",
-    "pod":"cd ios && pod install && cd .."
+    "pod": "cd ios && pod install && cd .."
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
@@ -20,14 +20,16 @@
     "react": "16.9.0",
     "react-i18next": "^9.0.10",
     "react-native": "0.61.2",
+    "react-native-actionsheet": "^2.4.2",
     "react-native-code-push": "^5.7.0",
     "react-native-dropdownalert": "^4.2.0",
-    "react-native-elements": "^1.2.7",
+    "react-native-elements": "^2.3.2",
     "react-native-fbsdk": "^1.0.0",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-i18n": "^2.0.15",
     "react-native-iap": "^4.2.0",
     "react-native-image-picker": "^1.1.0",
+    "react-native-indicators": "^0.17.0",
     "react-native-onesignal": "^3.4.2",
     "react-native-reanimated": "^1.3.0",
     "react-native-screens": "^1.0.0-alpha.23",

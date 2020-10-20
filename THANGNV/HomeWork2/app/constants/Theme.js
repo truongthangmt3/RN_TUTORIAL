@@ -2,7 +2,6 @@ import { Dimensions, Platform, StatusBar, StyleSheet } from "react-native";
 const dimension = ({ width, height } = Dimensions.get("window"));
 
 const colors = {
-
 	primary: "#f3f3f3",
 	primaryDark: "#125183",
 	primaryDark1: "#2E384D",
@@ -15,7 +14,6 @@ const colors = {
 	indicator: "#24277e",
 	borderTopColor: "#dedede",
 };
-
 
 const sizes = {
 	font: 15,
@@ -31,7 +29,7 @@ const sizes = {
 	base: 16,
 	font: 14,
 	border: 15,
-	padding: 25,
+	//padding: 25,
 };
 
 const fonts = {
@@ -66,11 +64,6 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.primary,
 		justifyContent: "center",
 		alignItems: "center",
-	},
-
-	containter: {
-		flex: 1,
-		backgroundColor: colors.backgroundColor,
 	},
 
 	menu: {
