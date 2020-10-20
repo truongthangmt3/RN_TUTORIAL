@@ -1,6 +1,6 @@
 
 import {
-  GET_TRU, GET_HOME, CALCULATION, GET_PRODUCT, GET_USER_SUCCESS, GET_USER_FAIL,
+  GET_TRU, GET_HOME, CALCULATION, GET_PRODUCT, GET_USER_SUCCESS, GET_USER_FAIL, GET_USER_INFO, GET_USERINFO_SUCCESS, GET_USERINFO_FAIL,
 } from "./type";
 
 export const getTruInfoAction = (data) => ({
@@ -27,7 +27,18 @@ export const getProductFailure = (data) => ({
   type: GET_USER_FAIL,
   payload: data,
 });
-
+export const getUserInfo = (data) => ({
+  type: GET_USER_INFO,
+  payload: data,
+});
+export const getUserInfoSuccess = (data) => ({
+  type: GET_USERINFO_SUCCESS,
+  payload: data,
+});
+export const getUserInfoFailure = (data) => ({
+  type: GET_USERINFO_FAIL,
+  payload: data,
+});
 
 
 
