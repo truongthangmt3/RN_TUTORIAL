@@ -7,7 +7,11 @@ import LoginScreen from '../screens/auth/LoginScreen'
 import RegisterScreen from '../screens/auth/RegisterScreen'
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import HomeScreen from '@screen/HomeScreen'
+import CareScreen from '@screen/CareScreen'
 import UserScreen from '../screens/UserScreen'
+import NotifiScreen from '@screen/NotifiScreen';
+import UpdateUserScreen from '@screen/UpdateUserScreen';
+
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R';
 import * as theme from "@theme";
@@ -20,12 +24,17 @@ const TabBarComponent = props => <BottomTabBar {...props} />;
 const Auth = createStackNavigator({
     [SCREEN_ROUTER.LOGIN]: LoginScreen,
     [SCREEN_ROUTER.REGISTER]: RegisterScreen,
-    [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen
+    [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen,
+    [SCREEN_ROUTER.UPDATE_USER_INFO]: UpdateUserScreen
+}, {
+    headerMode: 'none',
 })
 
 
 const tabbarIcons = {
-    [SCREEN_ROUTER.HOME]: R.images.ic_home,
+    [SCREEN_ROUTER.HOME]: R.images.Ic_home,
+    [SCREEN_ROUTER.CARE]: R.images.ic_user,
+    [SCREEN_ROUTER.NOTIFY]: R.images.ic_notifications,
     [SCREEN_ROUTER.USER]: R.images.ic_user,
 };
 
@@ -49,6 +58,20 @@ const Main = createBottomTabNavigator(
             title: R.strings.home,
             navigationOptions: {
                 tabBarLabel: R.strings.home,
+            },
+        },
+        [SCREEN_ROUTER.CARE]: {
+            screen: CareScreen,
+            title: R.strings.care,
+            navigationOptions: {
+                tabBarLabel: R.strings.care,
+            },
+        },
+        [SCREEN_ROUTER.NOTIFY]: {
+            screen: NotifiScreen,
+            title: R.strings.notification,
+            navigationOptions: {
+                tabBarLabel: R.strings.notification,
             },
         },
         [SCREEN_ROUTER.USER]: {
@@ -92,10 +115,11 @@ export default createAppContainer(
     createSwitchNavigator({
         [SCREEN_ROUTER.AUTH_LOADING]: AuthLoadingScreen,
         [SCREEN_ROUTER.AUTH]: Auth,
-        [SCREEN_ROUTER.MAIN]: Main
+        [SCREEN_ROUTER.MAIN]: Main,
+        [SCREEN_ROUTER.LOGIN]: LoginScreen
     },
         {
-            initialRouteName: SCREEN_ROUTER.MAIN
+            initialRouteName: SCREEN_ROUTER.AUTH_LOADING
         }
     )
 )

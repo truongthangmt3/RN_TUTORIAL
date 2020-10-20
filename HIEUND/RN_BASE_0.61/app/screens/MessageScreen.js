@@ -1,106 +1,187 @@
-import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, TextInput, StyleSheet, Dimensions } from 'react-native';
-import { getINCREMENTAL, getDECREMENTAL, getSQUARE, getSQRT, getRESET } from '@action';
-import Input from '@app/components/Input'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  StyleSheet,
+  Dimensions
+} from "react-native";
+import {
+  getINCREMENTAL,
+  getDECREMENTAL,
+  getSQUARE,
+  getSQRT,
+  getRESET,
+  plus,
+  subtract,
+  multiply,
+  divide,
+  calculation
+} from "@action";
+import Input from "@app/components/Input";
+import { connect } from "react-redux";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+const CALCULATION = {
+  PLUS: 0,
+  SUBTRACT: 1,
+  MULTIPLY: 2,
+  DIVIDE: 3
+};
 class MessageScreen extends Component {
+  state = {
+    firstNumber: 0,
+    secondNumber: 0,
+    calculation: null
+  };
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
         <Text>{JSON.stringify(this.props.messageReducer.data)}</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-around', width: '100%' }} >
-          <TouchableOpacity onPress={() => { this.props.getDECREMENTAL() }} >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            width: "100%"
+          }}
+        >
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.props.getDECREMENTAL();
+            }}
+          >
             <Text>DECREMENT</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => { this.props.getINCREMENTAL() }}>
+            style={styles.button}
+            onPress={() => {
+              this.props.getINCREMENTAL();
+            }}
+          >
             <Text>INCREMENT</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => { this.props.getSQUARE() }}>
+            style={styles.button}
+            onPress={() => {
+              this.props.getSQUARE();
+            }}
+          >
             <Text>SQUARE</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => { this.props.getSQRT() }}>
+            style={styles.button}
+            onPress={() => {
+              this.props.getSQRT();
+            }}
+          >
             <Text>SQRT</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity
-          onPress={() => { this.props.getRESET() }}>
+          style={styles.button}
+          onPress={() => {
+            this.props.getRESET();
+          }}
+        >
           <Text>RESET</Text>
         </TouchableOpacity>
-        <TextInput
-          style={styles.text_input}
-          placeholder="Nhập a"
-        // onChangeText={text => this.setState({ name: text })}
-        />
-        <TextInput
-          style={styles.text_input}
-          placeholder="Nhập a"
-        // onChangeText={text => this.setState({ name: text })}
-        />
+        <View style={{ marginTop: 50 }}>
+          <TextInput
+            style={styles.text_input}
+            placeholder="Nhập a"
+            onChangeText={newText => {
+              this.setState({
+                firstNumber: newText
+              });
+            }}
+          />
+          <TextInput
+            style={styles.text_input}
+            placeholder="Nhập b"
+            onChangeText={newText => {
+              this.setState({
+                secondNumber: newText
+              });
+            }}
+          />
+          <View style={{ flexDirection: "row" }}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                this.setState(
+                  {
+                    calculation: CALCULATION.PLUS
+                  },
+                  () => {
+                    this.props.calculation(this.state);
+                  }
+                );
+              }}
+            >
+              <Text>PLUS</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => {}}>
+              <Text>SUBTRACT</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => {}}>
+              <Text>MULTIPLE</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={() => {}}>
+              <Text>DIVIDE</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <Text>{this.props.messageReducer.data}</Text>
       </View>
     );
   }
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   messageReducer: state.messageReducer
-})
+});
 
 const mapDispatchToProps = {
   getINCREMENTAL,
   getDECREMENTAL,
   getSQUARE,
   getSQRT,
-  getRESET
-}
+  getRESET,
+  plus,
+  subtract,
+  multiply,
+  divide,
+  calculation
+};
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#69AAFF"
-  },
-  add_news: {
-    borderColor: "red",
-    width: windowWidth * 0.35,
-    height: windowHeight * 0.05,
-    marginHorizontal: "35%",
-    borderRadius: 30,
-    backgroundColor: "#69AAFF",
+  button: {
+    borderWidth: 1,
+    height: 30,
+    width: 100,
+    alignItems: "center",
     justifyContent: "center",
-    alignItems: "center"
-  },
-  list_post: {
-    // marginVertical: "3%"
-    backgroundColor: "white"
-  },
-  header: {
-    flexDirection: "row",
-    marginVertical: 10,
-    marginHorizontal: 5,
-    justifyContent: "space-between"
+    borderRadius: 30
   },
   text_input: {
     borderWidth: 0.3,
-    height: windowHeight * 0.05,
-    width: "30%",
+    height: 50,
+    width: windowWidth - 50,
     borderRadius: 30,
     marginHorizontal: "1%",
     backgroundColor: "white",
-    paddingHorizontal: 10
-  },
-  items: {
-    borderWidth: 0.5,
-    borderRadius: 7,
-    borderColor: "black",
-    marginLeft: 10,
-    height: windowHeight * 0.04,
-    justifyContent: "center",
-    alignItems: "center",
-    paddingHorizontal: 5,
-    marginVertical: 5
+    paddingHorizontal: 10,
+    marginBottom: 20
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MessageScreen)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MessageScreen);

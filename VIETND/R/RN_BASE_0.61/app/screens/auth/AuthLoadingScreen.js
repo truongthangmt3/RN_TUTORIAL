@@ -6,20 +6,33 @@ import {
     StatusBar,
     ActivityIndicator
 } from 'react-native'
-import NavigationUtil from '../../navigation/NavigationUtil'
+import NavigationUtil from '../../navigation/NavigationUtil';
 import i18 from '@i18';
+import AsyncStorage from '@react-native-community/async-storage';
 
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 export default class AuthLoadingScreen extends Component {
 
-    componentDidMount() {
+    componentDidMount = async () => {
         // load something and check login
-        setTimeout(() => {
-            NavigationUtil.navigate("Login");
-        }, 200);
+        // setTimeout(() => {
+        //     NavigationUtil.navigate("Login");
+        // }, 200);
+
+        try {
+            const token = await AsyncStorage.getItem("token")
+            if (token && token.length > 0) {
+                NavigationUtil.navigate(SCREEN_ROUTER.MAIN);
+            } else {
+                NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
+            }
+        } catch (error) {
+            NavigationUtil.navigate(SCREEN_ROUTER.LOGIN);
+        }
 
     }
+
 
     render() {
         return (

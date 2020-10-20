@@ -14,7 +14,7 @@ import RegistScreen from '../sceens/Registration';
 import SplashScreen from '../sceens/SplashScreen'
 import ListPost from '../sceens/ListPostScreen'
 import NotifyScreen from '../sceens/NotifyScreen';
-import KhScreen from '../sceens/KhScreen';
+import CareScreen from '../sceens/CareScreen';
 import { Image } from 'react-native'
 
 
@@ -28,7 +28,7 @@ const tabNav = createBottomTabNavigator({
         }
     },
     [SCREEN_ROUTE.KH]: {
-        screen: KhScreen,
+        screen: CareScreen,
         navigationOptions: {
             label: "User"
         }

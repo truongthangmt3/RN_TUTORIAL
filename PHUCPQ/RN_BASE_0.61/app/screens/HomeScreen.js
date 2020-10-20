@@ -2,9 +2,36 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { increase, reduction, multiply, share } from '@action';
+import { getHome, calculation } from '@action';
+
+const CALCULATION = {
+    PLUS: 0,
+    SUBTRACT: 1,
+    MULTIPLY: 2,
+    DIVIDE: 3
+};
 
 export class HomeScreen extends Component {
+    state = {
+        firstNumber: 0,
+        secondNumber: 0,
+        calculation: CALCULATION.PLUS
+    };
+    state = {
+        firstNumber: 0,
+        secondNumber: 0,
+        calculation: CALCULATION.SUBTRACT
+    };
+    state = {
+        firstNumber: 0,
+        secondNumber: 0,
+        calculation: CALCULATION.MULTIPLY
+    };
+    state = {
+        firstNumber: 0,
+        secondNumber: 0,
+        calculation: CALCULATION.DIVIDE
+    };
     render() {
         return (
             <View style={{
@@ -12,45 +39,73 @@ export class HomeScreen extends Component {
                 justifyContent: 'center',
                 alignContent: 'center'
             }}>
-                <TextInput style={{ backgroundColor: 'pink' }}>
+                <TextInput
+                    style={{
+                        width: '90%',
+                        height: 60,
+                        backgroundColor: 'gray'
+                    }}
+                    onChangeText={(newText) => {
+                        this.setState({
+                            firstNumber: newText
+                        });
+                    }}>
 
                 </TextInput>
-                <TextInput style={{ backgroundColor: 'red' }}>
+                <TextInput style={{
+                    marginTop: 5,
+                    width: '90%',
+                    height: 60,
+                    backgroundColor: 'gray'
+                }}
+                    onChangeText={(newText) => {
+                        this.setState({
+                            secondNumber: newText
+                        });
+                    }}>
 
                 </TextInput>
-                <Text>
-                    Kết quả :
-                    {this.props.userState.data}  </Text>
+                <TextInput>
+                    {this.props.userState.data}
+                </TextInput>
                 <TouchableOpacity onPress={() => {
-                    this.props.increase();
+                    this.props.calculation(
+                        this.state
+                    );
                 }}>
                     <Text>
                         Cộng
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    this.props.reduction();
+                    this.props.calculation(
+                        this.state
+                    );
                 }}>
                     <Text>
-                        Trừ
+                        trừ
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    this.props.multiply();
+                    this.props.calculation(
+                        this.state
+                    );
                 }}>
                     <Text>
                         Nhân
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => {
-                    this.props.share();
+                    this.props.calculation(
+                        this.state
+                    );
                 }}>
                     <Text>
                         Chia
                     </Text>
                 </TouchableOpacity>
             </View>
-        )
+        );
     }
 }
 
@@ -59,10 +114,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    increase,
-    reduction,
-    multiply,
-    share
+    getHome,
+    calculation
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

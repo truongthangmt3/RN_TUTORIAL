@@ -1,33 +1,52 @@
-import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL } from "../actions/type";
+
+import {
+  GET_USER,
+  CACULATION,
+  GET_UPDATEUSER,
+  GET_UPDATEUSER_SUCCESS,
+  GET_UPDATEUSER_FAIL
+} from "../actions/type";
 
 const initialState = {
-  data: {},
-  isLoading: true,
+  data: 1,
+  isLoading: false,
   error: null
 };
 
-export default function(state = initialState, action) {
+
+export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER: {
-      return { ...state, isLoading: true };
-    }
-    case GET_USER_SUCCESS: {
+    case GET_UPDATEUSER:
       return {
         ...state,
-        isLoading: false,
-        error: null,
-        data: action.payload
-      };
-    }
-    case GET_USER_FAIL: {
-     
+        isLoading: true,
+
+      }
+    case GET_UPDATEUSER_SUCCESS:
       return {
         ...state,
-        error: action.payload,
-        isLoading: false,
-      };
-    }
+        isLoading: true,
+        
+
+      }
+    case GET_UPDATEUSER_FAIL:
+      return {
+        ...state,
+        isLoading: true,
+
+      }
+
+
+
+
     default:
       return state;
   }
 }
+
+
+//1 tao reducer 
+//2 
+
+
+

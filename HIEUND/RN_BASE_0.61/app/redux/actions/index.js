@@ -3,35 +3,62 @@ import {
   GET_NOTIFICATIONS,
   INCREMENT,
   DECREMENT,
-  SQUARE, SQRT, RESET
+  SQUARE,
+  SQRT,
+  RESET,
+  PLUS,
+  SUBTRACT,
+  MULTIPLY,
+  DIVIDE,
+  CALCULATION
 } from "./type";
 
 export const getUserInfoAction = () => ({
   type: GET_USER,
   payload: {}
 });
-export const getNotifications = (data) => ({
+export const getNotifications = data => ({
   type: GET_NOTIFICATIONS,
   payload: data
 });
-export const getINCREMENTAL = (data) => ({
+export const getINCREMENTAL = data => ({
   type: INCREMENT,
-  payload: data,
+  payload: data
 });
-export const getDECREMENTAL = (data) => ({
+export const getDECREMENTAL = data => ({
   type: DECREMENT,
-  payload: data,
+  payload: data
 });
-export const getSQUARE = (data) => ({
+export const getSQUARE = data => ({
   type: SQUARE,
-  payload: data,
+  payload: data
 });
-export const getSQRT = (data) => ({
+export const getSQRT = data => ({
   type: SQRT,
-  payload: data,
+  payload: data
 });
-export const getRESET = (data) => ({
+export const getRESET = data => ({
   type: RESET,
-  payload: data,
-})
+  payload: data
+});
+export const plus = data => ({
+  type: PLUS,
+  payload: data
+});
+export const subtract = data => ({
+  type: SUBTRACT,
+  payload: data
+});
+export const multiply = data => ({
+  type: MULTIPLY,
+  payload: data
+});
+export const divide = data => ({
+  type: DIVIDE,
+  payload: data
+});
 
+export const calculation = data => ({
+  type: CALCULATION,
+  payload: data
+});

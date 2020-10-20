@@ -16,6 +16,8 @@ import Reactotron from 'reactotron-react-native';
 import AppNavigator from './app/navigation/AppNavigator';
 import NavigationUtil from './app/navigation/NavigationUtil';
 import store from "./app/redux/store";
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 class App extends Component {
 
@@ -25,9 +27,9 @@ class App extends Component {
         <AppNavigator
           ref={navigatorRef => NavigationUtil.setTopLevelNavigator(navigatorRef)}
         />
-        <DropdownAlert 
-         ref={alertRef => DropdownAlertUtil.setTopDropdownAlert(alertRef)}
-         onTap = {DropdownAlertUtil.onTap}
+        <DropdownAlert
+          ref={alertRef => DropdownAlertUtil.setTopDropdownAlert(alertRef)}
+          onTap={DropdownAlertUtil.onTap}
         />
       </Provider>
     )

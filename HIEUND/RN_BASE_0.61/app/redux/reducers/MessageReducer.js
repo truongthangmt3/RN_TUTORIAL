@@ -1,4 +1,15 @@
-import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL, GET_NOTIFICATIONS, INCREMENT, DECREMENT, SQUARE, SQRT, RESET } from "../actions/type";
+import {
+  INCREMENT,
+  DECREMENT,
+  SQUARE,
+  SQRT,
+  RESET,
+  PLUS,
+  SUBTRACT,
+  MULTIPLY,
+  DIVIDE,
+  CALCULATION
+} from "../actions/type";
 
 const initialState = {
   data: 1,
@@ -6,24 +17,17 @@ const initialState = {
   error: null
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
+  let tmpData;
   switch (action.type) {
-    case INCREMENT: {
-      return { ...state, data: state.data + 1 }
-    }
-    case DECREMENT: {
-      return { ...state, data: state.data - 1 }
-    }
-    case SQUARE: {
-      return { ...state, data: state.data * state.data }
-    }
-    case SQRT: {
-      return { ...state, data: Math.sqrt(state.data) }
-    }
-    case RESET: {
-      return { ...state, data: state.data }
+    case CALCULATION: {
+      if (action.payload.calculation == 0) {
+        tmpData =
+          Number(action.payload.firstNumber) +
+          Number(action.payload.secondNumber);
+      }
+      return { ...state, data: tmpData };
     }
   }
   return state;
 }
-
