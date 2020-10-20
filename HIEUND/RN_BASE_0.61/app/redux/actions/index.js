@@ -6,17 +6,24 @@ import {
   SQUARE,
   SQRT,
   RESET,
-  PLUS,
-  SUBTRACT,
-  MULTIPLY,
-  DIVIDE,
-  CALCULATION
+  GET_PRODUCT,
+  CALCULATION,
+  GET_USER_SUCCESS,
+  GET_USER_INFO
 } from "./type";
 
-export const getUserInfoAction = () => ({
+export const getUserInfoAction = (data) => ({
   type: GET_USER,
-  payload: {}
+  payload: data
 });
+export const updateUserInfo = (data) => ({
+  type: GET_USER_INFO,
+  payload: data
+});
+export const getUserInfo = data => ({
+  type: GET_USER_SUCCESS,
+  payload: data
+})
 export const getNotifications = data => ({
   type: GET_NOTIFICATIONS,
   payload: data
@@ -41,24 +48,19 @@ export const getRESET = data => ({
   type: RESET,
   payload: data
 });
-export const plus = data => ({
-  type: PLUS,
-  payload: data
-});
-export const subtract = data => ({
-  type: SUBTRACT,
-  payload: data
-});
-export const multiply = data => ({
-  type: MULTIPLY,
-  payload: data
-});
-export const divide = data => ({
-  type: DIVIDE,
-  payload: data
-});
-
 export const calculation = data => ({
   type: CALCULATION,
   payload: data
 });
+export const getProduct = data => ({
+  type: GET_PRODUCT,
+  payload: data
+});
+// export const GET_PRODUCT_SUCCESS = data => ({
+//   type: GET_PRODUCT_SUCCESS,
+//   payload: data
+// });
+// export const GET_PRODUCT_FAIL = data => ({
+//   type: GET_PRODUCT_FAIL,
+//   payload: data
+// })
