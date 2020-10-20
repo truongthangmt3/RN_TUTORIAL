@@ -2,7 +2,7 @@ import { put, takeEvery, call } from 'redux-saga/effects';
 import { AsyncStorage } from 'react-native';
 import { GET_USER, GET_PRODUCT, GET_PRODUCT_SUCCESS, GET_PRODUCT_FAIL } from '../actions/type';
 
-import * as API from '../../constants/Api';
+import * as API from '@api';
 
 export function* getUserInfor(payload) {
   // try {
@@ -14,12 +14,12 @@ export function* getUserInfor(payload) {
 }
 
 export function* getProduct(payload) {
-  try {
-    const response = yield call(API.requestHomeData, payload);
-    yield put({ type: GET_PRODUCT_SUCCESS, payload: response });
-  } catch (error) {
-    yield put({ type: GET_PRODUCT_FAIL, payload: error });
-  }
+  // try {
+  //   const response = yield call(API.requestHomeData, payload);
+  //   yield put({ type: GET_PRODUCT_SUCCESS, payload: response });
+  // } catch (error) {
+  //   yield put({ type: GET_PRODUCT_FAIL, payload: error });
+  // }
 }
 
 export const watchGetUser = takeEvery(GET_USER, getUserInfor);
