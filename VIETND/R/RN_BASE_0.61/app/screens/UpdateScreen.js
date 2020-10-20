@@ -9,6 +9,7 @@ import { updateRegister } from '@api';
 import { getUserInfo } from '@action';
 import { SCREEN_ROUTER } from '@constant'
 import NavigationUtil from '../navigation/NavigationUtil';
+import { showMessage } from "react-native-flash-message";
 
 export class UpdateScreen extends Component {
     state = {
@@ -187,7 +188,7 @@ export class UpdateScreen extends Component {
 
 
                 </ScrollView>
-            </SafeAreaView>
+            </SafeAreaView >
         );
     }
 }
