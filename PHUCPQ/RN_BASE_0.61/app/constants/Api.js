@@ -63,11 +63,7 @@ export const requestRegister = payload => {
 
 export const requestHomeData = (deviceID = "") => {
   return handleResult(
-<<<<<<< HEAD
     getAxios.get(`/GetHomeScreen`)
-=======
-    getAxios.get('/GetHome')
->>>>>>> 881155d08d743231d9bf5408ac180084e25b9e8c
   );
 };
 
