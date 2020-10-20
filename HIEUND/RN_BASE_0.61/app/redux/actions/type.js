@@ -14,3 +14,4 @@ export const GET_PRODUCT = "windsoft/getProduct";
 export const CALCULATION = "windsoft/calculation";
 export const GET_PRODUCT_SUCCESS = "windsoft/getProductSuccess";
 export const GET_PRODUCT_FAIL = "windsoft/getProductFail";
+export const GET_USER_INFO = "windsoft/getUserInfo";

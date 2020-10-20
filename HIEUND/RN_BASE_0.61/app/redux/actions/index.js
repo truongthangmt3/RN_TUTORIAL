@@ -7,13 +7,23 @@ import {
   SQRT,
   RESET,
   GET_PRODUCT,
-  CALCULATION
+  CALCULATION,
+  GET_USER_SUCCESS,
+  GET_USER_INFO
 } from "./type";
 
-export const getUserInfoAction = () => ({
+export const getUserInfoAction = (data) => ({
   type: GET_USER,
-  payload: {}
+  payload: data
 });
+export const updateUserInfo = (data) => ({
+  type: GET_USER_INFO,
+  payload: data
+});
+export const getUserInfo = data => ({
+  type: GET_USER_SUCCESS,
+  payload: data
+})
 export const getNotifications = data => ({
   type: GET_NOTIFICATIONS,
   payload: data
