@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { getHome, calculation, getProduct } from '@action';
+import { getHome, calculation, getProduct, getUserInfo } from '@action';
 
 const CALCULATION = {
     PLUS: 0,
@@ -104,7 +104,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getHome,
     calculation,
-    getProduct
+    getProduct,
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

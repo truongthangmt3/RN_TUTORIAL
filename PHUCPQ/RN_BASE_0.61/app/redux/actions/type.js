@@ -10,3 +10,4 @@ export const CALCULATION = 'utruck/caculation';
 export const GET_PRODUCT = 'windsoft/getProduct';
 export const GET_PRODUCT_SUCCESS = 'windsoft/getProductSuccess';
 export const GET_PRODUCT_FAIL = 'windsoft/getProductFail';
+export const UPDATE_USER_INFO = 'windsoft/updateUserInfo';

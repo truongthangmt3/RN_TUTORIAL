@@ -1,4 +1,4 @@
-import { GET_USER } from "../actions/type";
+import { GET_USER, GET_USER_SUCCESS, GET_USER_FAIL } from "../actions/type";
 
 const initialState = {
   data: {},
@@ -8,15 +8,26 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_USER: {
+    case GET_USER:
       return {
         ...state,
         isLoading: true,
-        data: action.payload
       };
-    }
-
+    case GET_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        data: action.payload.data
+      };
+    case GET_USER_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        data: null,
+        error: action.payload.error,
+      };
     default:
-      return state;
+      break;
   }
+  return state;
 }
