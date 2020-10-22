@@ -52,29 +52,19 @@ function handleResult(api) {
 
 export const requestLogin = payload => {
   return handleResult(
-    getAxios.post('Login', payload)
+    getAxios.post("Login", payload)
   );
 };
 export const requestRegister = payload => {
   return handleResult(
-    getAxios.post('Register', payload)
+    getAxios.post("Register", payload)
   );
 };
 
-export const requestHomeData = payload => {
+export const requestHomeData = (deviceID = "") => {
   return handleResult(
-    getAxios.get(`/GetHome`, payload)
+    getAxios.get(`api/Service/GetHomeScreen?deviceID=${deviceID}`)
   );
 };
 
-export const requestUser = (payload) => {
-  return handleResult(
-    getAxios.get('/GetUserInfo', payload)
-  );
-};
-export const UpdateUser = payload => {
-  return handleResult(
-    getAxios.post('/UpdateUser', payload)
-  );
-};
 

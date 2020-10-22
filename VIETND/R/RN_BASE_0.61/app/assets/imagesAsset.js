@@ -2,11 +2,9 @@ const images = {
     
     ic_HD: require("./images/ic_HD.png"),
     ic_Rectangle: require("./images/ic_Rectangle.png"),
-    ic_back: require("./images/ic_back.png"),
     ic_book: require("./images/ic_book.png"),
     ic_care: require("./images/ic_care.png"),
     ic_dow: require("./images/ic_dow.png"),
-    ic_edit: require("./images/ic_edit.png"),
     ic_home: require("./images/ic_home.png"),
     ic_list: require("./images/ic_list.png"),
     ic_location: require("./images/ic_location.png"),

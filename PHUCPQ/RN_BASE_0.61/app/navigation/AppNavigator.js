@@ -5,11 +5,9 @@ import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs'
 import AuthLoadingScreen from '../screens/auth/AuthLoadingScreen'
 import LoginScreen from '../screens/auth/LoginScreen'
 import RegisterScreen from '../screens/auth/RegisterScreen'
-import ProductScreen from '@screen/ProductScreen'
 import ForgotPasswordScreen from '../screens/auth/ForgotPasswordScreen'
 import HomeScreen from '@screen/HomeScreen'
 import UserScreen from '../screens/UserScreen'
-import UpdateUserinfoScreen from '../screens/UpdateUserinfoScreen'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R';
 import * as theme from "@theme";
@@ -51,9 +49,6 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 const Main = createBottomTabNavigator(
     {
-        Product: {
-            screen: ProductScreen,
-        },
         [SCREEN_ROUTER.HOME]: {
             screen: HomeScreen,
             title: R.strings.home,
@@ -69,7 +64,6 @@ const Main = createBottomTabNavigator(
             },
         },
     },
-
     {
         defaultNavigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) => getTabBarIcon(navigation, focused, tintColor),
@@ -93,23 +87,17 @@ const Main = createBottomTabNavigator(
                 />
             );
         },
-        initialRouteName: 'Product'
+        initialRouteName: 'User'
     }
 
 )
-const App = createStackNavigator({
-    Main,
-    [SCREEN_ROUTER.UPDATE_USER_INFO]: UpdateUserinfoScreen
-},
-    {
-        headerMode: 'none'
-    })
+
 
 export default createAppContainer(
     createSwitchNavigator({
         [SCREEN_ROUTER.AUTH_LOADING]: AuthLoadingScreen,
         [SCREEN_ROUTER.AUTH]: Auth,
-        [SCREEN_ROUTER.APP]: App,
+        [SCREEN_ROUTER.MAIN]: Main,
     },
         {
             initialRouteName: SCREEN_ROUTER.AuthLoadingScreen

@@ -1,6 +1,6 @@
-import { GET_PRODUCT, GET_PRODUCT_FAIL, GET_PRODUCT_SUCCESS } from '../actions/type'
+import { GET_PRODUCT, GET_USER_SUCCESS, GET_USER_FAIL } from '../actions/type'
 const initialState = {
-  data: 1,
+  data: {},
   isLoading: true,
   error: null
 };
@@ -12,18 +12,17 @@ export default function (state = initialState, action) {
         ...state,
         isLoading: true,
       };
-    case GET_PRODUCT_SUCCESS:
+    case GET_USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
         data: action.payload.data
       };
-    case GET_PRODUCT_FAIL:
+    case GET_USER_FAIL:
       return {
         ...state,
         isLoading: false,
-        data: null,
-        error: action.payload.error
+        data: action.payload.error
       }
 
 

@@ -10,8 +10,6 @@ import HomeScreen from '@screen/HomeScreen'
 import UserScreen from '../screens/UserScreen'
 import Notification from '@screen/Notification'
 import CareScreen from '@screen/CareScreen'
-import UpdateScreen from '@screen/UpdateScreen'
-import UserInfo from '@screen/UserInfo'
 import { SCREEN_ROUTER } from '@constant'
 import R from '@R';
 import * as theme from "@theme";
@@ -29,11 +27,10 @@ const Auth = createStackNavigator({
 
 
 const tabbarIcons = {
-    [SCREEN_ROUTER.UPDATEUSERINFO]: R.images.ic_home,
+    [SCREEN_ROUTER.HOME]: R.images.ic_home,
     [SCREEN_ROUTER.USER]: R.images.ic_user,
     [SCREEN_ROUTER.NOTIFICATION]: R.images.ic_notifications,
     [SCREEN_ROUTER.CARE]: R.images.ic_care,
-    [SCREEN_ROUTER.UPDATE]: R.images.ic_user2,
 
 };
 
@@ -52,8 +49,8 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 
 const Main = createBottomTabNavigator(
     {
-        [SCREEN_ROUTER.UPDATEUSERINFO]: {
-            screen: UserInfo,
+        [SCREEN_ROUTER.HOME]: {
+            screen: HomeScreen,
             title: R.strings.home,
             navigationOptions: {
                 tabBarLabel: R.strings.home,
@@ -64,13 +61,6 @@ const Main = createBottomTabNavigator(
             title: R.strings.care,
             navigationOptions: {
                 tabBarLabel: R.strings.care,
-            },
-        },
-        [SCREEN_ROUTER.UPDATE]: {
-            screen: UpdateScreen,
-            title: R.strings.user,
-            navigationOptions: {
-                tabBarLabel: R.strings.user,
             },
         },
         [SCREEN_ROUTER.NOTIFICATION]: {

@@ -13,8 +13,8 @@ export default class LoginScreen extends Component {
         isLoading: false,
         error: null,
         data: {},
-        phoneNumber: "0328044883",
-        password: "phuc13031999"
+        phoneNumber: "0975545828",
+        password: "123456"
     }
     render() {
         return (

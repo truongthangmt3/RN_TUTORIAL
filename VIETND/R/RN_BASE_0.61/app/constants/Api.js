@@ -57,25 +57,15 @@ export const requestLogin = payload => {
     getAxios.post("Login", payload)
   );
 
-};
-export const requestRegister = payload => {
+}; export const requestRegister = payload => {
   return handleResult(
     getAxios.post("Register", payload)
   );
 };
-export const updateRegister = payload => {
-  return handleResult(
-    getAxios.post("UpdateUser", payload)
-  );
-};
-export const updateUserInfo = payload => {
-  return handleResult(
-    getAxios.get(`/GetUserInfo`)
-  );
-};
+
 export const requestHomeData = () => {
   return handleResult(
-    getAxios.get(`/GetHome`)
+    getAxios.get(`/api/GetHome`)
   );
 };
 

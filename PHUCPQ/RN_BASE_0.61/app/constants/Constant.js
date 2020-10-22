@@ -8,7 +8,6 @@ const SCREEN_ROUTER = {
   REGISTER: "Register",
   USER: 'User',
   UPDATE_USER_INFO: "UpdateUserInfo",
-  APP: "App",
 };
 
 export { SCREEN_ROUTER };
