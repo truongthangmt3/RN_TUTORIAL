@@ -9,21 +9,22 @@ import {
   GET_PRODUCT,
   CALCULATION,
   GET_USER_SUCCESS,
-  GET_USER_INFO
-} from "./type";
+  GET_USER_INFO,
+  UPDATE_USER_INFO
+} from './type';
 
-export const getUserInfoAction = (data) => ({
-  type: GET_USER,
-  payload: data
-});
-export const updateUserInfo = (data) => ({
+export const getUserInfoAction = data => ({
   type: GET_USER_INFO,
   payload: data
 });
+// export const updateUserInfo = (data) => ({
+//   type: GET_USER_INFO,
+//   payload: data
+// });
 export const getUserInfo = data => ({
-  type: GET_USER_SUCCESS,
+  type: GET_USER_INFO,
   payload: data
-})
+});
 export const getNotifications = data => ({
   type: GET_NOTIFICATIONS,
   payload: data
@@ -56,6 +57,11 @@ export const getProduct = data => ({
   type: GET_PRODUCT,
   payload: data
 });
+export const updateUserInfo = data => ({
+  type: UPDATE_USER_INFO,
+  payload: data
+});
+
 // export const GET_PRODUCT_SUCCESS = data => ({
 //   type: GET_PRODUCT_SUCCESS,
 //   payload: data
