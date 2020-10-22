@@ -5,7 +5,8 @@ import {
   CALCULATION,
   GET_HOME,
   GET_HOME_SUCCESS,
-  GET_HOME_FAIL
+  GET_HOME_FAIL,
+  UPDATE_USER
 } from "./type";
 
 export const getUserInfoAction = () => ({
@@ -38,4 +39,12 @@ export const getHomeFail = () => ({
   type: GET_HOME_FAIL,
   payload: {}
 });
+export const getUserInfo = () => ({
+  type: GET_USER,
+  payload: {}
+});
+export const updateUserInfo = (data) => ({
+  type: UPDATE_USER,
+  payload: data
+})
 

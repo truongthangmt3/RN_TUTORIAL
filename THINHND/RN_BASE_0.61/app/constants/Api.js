@@ -65,3 +65,15 @@ export const requestRegister = payload => {
 export const requestHomeData = () => {
   return handleResult(getAxios.get(`/GetHome`));
 };
+export const getUserInfo = () => {
+  return handleResult(getAxios.get(`/GetUserInfo`));
+};
+export const updateUserInfo = payload => {
+  return handleResult(
+    getAxios.post("/UpdateUser", payload)
+  );
+}
+
+
+
+

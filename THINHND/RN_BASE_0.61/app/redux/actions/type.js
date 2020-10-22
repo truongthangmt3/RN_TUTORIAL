@@ -2,6 +2,7 @@
 export const RESET = 'windsoft/reset';
 
 export const GET_USER = 'windsoft/getUser';
+export const UPDATE_USER = 'windsoft/updateUser';
 export const GET_USER_SUCCESS = 'windsoft/getUserSucces';
 export const GET_USER_FAIL = 'windsoft/getUserFail';
 export const GET_INCREASE = 'windsoft/getIncrease';

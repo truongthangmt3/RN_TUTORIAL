@@ -7,6 +7,7 @@ import {
   GET_HOME,
   GET_HOME_SUCCESS,
   GET_HOME_FAIL,
+  UPDATE_USER,
 } from "../actions/type";
 
 import * as API from "../../constants/Api";
@@ -19,5 +20,14 @@ export function* getHomeData(payload) {
     yield put({ type: GET_HOME_FAIL, payload: err });
   }
 }
+
+export function* updateUserData(payload) {
+  try {
+    const response = yield call(API.updateUserInfo, payload.payload);
+    yield put({ type: UPDATE_USER, payload: response });
+  } catch (err) {
+  }
+}
 export const watchGetHome = takeEvery(GET_HOME, getHomeData);
+export const watchUpdateUser = takeEvery(UPDATE_USER, updateUserData);
 

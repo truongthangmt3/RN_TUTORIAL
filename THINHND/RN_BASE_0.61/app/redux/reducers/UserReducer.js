@@ -6,7 +6,7 @@ const initialState = {
   error: null
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_USER: {
       return { ...state, isLoading: true };
@@ -16,15 +16,16 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
         error: null,
-        data: action.payload
+        data: action.payload.data
       };
     }
     case GET_USER_FAIL: {
-     
+
       return {
         ...state,
-        error: action.payload,
         isLoading: false,
+        data: null,
+        error: action.payload.error,
       };
     }
     default:
