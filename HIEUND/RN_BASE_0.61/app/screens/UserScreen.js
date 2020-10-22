@@ -1,54 +1,31 @@
-import React, { Component } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  SafeAreaView,
-  Dimensions,
-  Image
-} from "react-native";
-import { Avatar, Accessory } from "react-native-elements";
-import UserOptions from "@component/UserOptions";
+import React, { Component } from 'react';
+import { Text, View, TouchableOpacity, SafeAreaView, Dimensions, Image, StyleSheet } from 'react-native';
+import { Avatar, Accessory } from 'react-native-elements';
+import UserOptions from '@component/UserOptions';
 import AsyncStorage from '@react-native-community/async-storage';
 import NavigationUtil from '../navigation/NavigationUtil';
-const windowWidth = Dimensions.get("window").width; //414
-const windowHeight = Dimensions.get("window").height; //896
-import R from "@R";
-import { connect } from 'react-redux'
-import {getUserInfoAction}from '@action'
+const windowWidth = Dimensions.get('window').width; //414
+const windowHeight = Dimensions.get('window').height; //896
+import R from '@R';
+import { connect } from 'react-redux';
+import { getUserInfoAction } from '@action';
+import { SCREEN_ROUTER } from '@app/constants/Constant';
+import Loading from '@component/Loading';
 export class UserScreen extends Component {
-  // state = {
-  //   isLoading: true,
-  //   isError:false,
-  // };
-  // componentDidMount = async () => {
-  //   try {
-  //     this.setState(
-  //       {
-  //         isLoading: false,
-  //         isError: false,
-  //       },
-  //     );
-  //   } catch (error) {
-  //     this.setState({
-  //       isLoading: false,
-  //       isError: true,
-  //     });
-  //   }
-  // };
-  componentDidMount(){
-    alert(JSON.stringify(this.props.userState))
+  componentDidMount() {
+    // alert(JSON.stringify(this.props.userState));
+    this.props.getUserInfoAction();
   }
   render() {
-    // const { isLoading, isError} = this.state;
+    if (this.props.userState.isLoading) return <Loading />;
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#69AAFF" }}>
-        <View style={{ flex: 1, backgroundColor: "#F5F6F8" }}>
+      <SafeAreaView style={styles.container}>
+        <View style={{ flex: 1, backgroundColor: '#dddddd' }}>
           <View
             style={{
-              flexDirection: "row",
-              backgroundColor: "#FFFFFF",
-              shadowColor: "#000",
+              flexDirection: 'row',
+              backgroundColor: 'white',
+              shadowColor: '#000',
               shadowOffset: {
                 width: 0,
                 height: 1
@@ -69,40 +46,39 @@ export class UserScreen extends Component {
                 size={120}
                 titleStyle={{
                   fontSize: 36,
-                  color: "#B8CB85",
-                  fontWeight: "bold"
+                  color: '#B8CB85',
+                  fontWeight: 'bold'
                 }}
                 rounded
                 title="VN"
                 overlayContainerStyle={{
-                  backgroundColor: "#E2E6B7"
+                  backgroundColor: '#E2E6B7'
                 }}
                 activeOpacity={0.7}
               />
             </View>
             <View
               style={{
-                flexDirection: "column",
-                marginLeft: "5%",
-                marginTop: "8%"
+                flexDirection: 'column',
+                marginLeft: '5%',
+                marginTop: '8%'
               }}
             >
-              <Text
-                style={{ fontSize: 21, fontWeight: "bold", marginBottom: "5%" }}
-              >
-                Trần Văn Kim Cương
+              <Text style={{ fontSize: 21, fontWeight: 'bold', marginBottom: '5%' }}>
+                {this.props.userState.data.fullname}
               </Text>
-              <Text style={{ fontSize: 15, marginBottom: "10%" }}>
-                039741253
-              </Text>
+              <Text style={{ fontSize: 15, marginBottom: '10%' }}>039741253</Text>
               <TouchableOpacity
+                onPress={() => {
+                  NavigationUtil.navigate(SCREEN_ROUTER.UPDATE_USER_INFO_SCREEN, { data: this.props.userState.data });
+                }}
                 style={{
                   width: windowWidth * 0.3,
                   height: windowHeight * 0.033,
                   borderWidth: 1,
-                  borderColor: "#727C8E",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  borderColor: '#727C8E',
+                  justifyContent: 'center',
+                  alignItems: 'center',
                   borderRadius: 24
                 }}
               >
@@ -112,38 +88,50 @@ export class UserScreen extends Component {
           </View>
           <View
             style={{
-              backgroundColor: "white",
-              marginTop: windowHeight * 0.007
+              backgroundColor: 'white',
+              marginTop: windowHeight * 0.007,
+              paddingBottom: 10
             }}
           >
-            <UserOptions label="Tin mua của bạn" img={R.images.icon_buynews} />
-            <UserOptions label="Thông tin cá nhân" img={R.images.icon_user} />
+            <UserOptions label="Tin mua của bạn" img={R.images.icon_buynews} underline />
             <UserOptions
-              label="Danh mục của tôi"
-              img={R.images.icon_awesome_list_ul}
+              label="Thông tin cá nhân"
+              img={R.images.icon_user}
+              underline
+              onPress={() => {
+                NavigationUtil.navigate(SCREEN_ROUTER.USER_INFO_SCREEN);
+              }}
             />
+            <UserOptions label="Danh mục của tôi" img={R.images.icon_awesome_list_ul} underline />
+            <UserOptions label="Đổi mật khẩu" img={R.images.icon_feather_lock} underline />
+            <UserOptions label="Hướng dẫn sử dụng" img={R.images.icon_recipe} underline />
             <UserOptions
-              label="Đổi mật khẩu"
-              img={R.images.icon_feather_lock}
+              label="Đăng xuất"
+              img={R.images.icon_log_out}
+              onPress={async () => {
+                await AsyncStorage.setItem('token', '');
+                NavigationUtil.navigate('login');
+              }}
             />
-            <UserOptions label="Hướng dẫn sử dụng" img={R.images.icon_recipe} />
-            <UserOptions label="Đăng xuất" img={R.images.icon_log_out} onPress={
-              async () => { 
-                await AsyncStorage.setItem("token","")
-                NavigationUtil.navigate("login")
-            }} />
           </View>
+          <Text>{JSON.stringify(this.props.userState)}</Text>
         </View>
       </SafeAreaView>
     );
   }
 }
-const mapStateToProps = (state) => ({
-  userState:state.userReducer
-})
+const mapStateToProps = state => ({
+  userState: state.userReducer
+});
 
 const mapDispatchToProps = {
   getUserInfoAction
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserScreen)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserScreen);
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#69AAFF' }
+});

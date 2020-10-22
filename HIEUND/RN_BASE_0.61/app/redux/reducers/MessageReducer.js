@@ -1,14 +1,5 @@
 import {
-  INCREMENT,
-  DECREMENT,
-  SQUARE,
-  SQRT,
-  RESET,
-  PLUS,
-  SUBTRACT,
-  MULTIPLY,
-  DIVIDE,
-  CALCULATION
+  CALCULATION, GET_PRODUCT, GET_PRODUCT_SUCCESS, GET_PRODUCT_FAIL
 } from "../actions/type";
 
 const initialState = {
@@ -17,16 +8,28 @@ const initialState = {
   error: null
 };
 
-export default function(state = initialState, action) {
-  let tmpData;
+export default function (state = initialState, action) {
   switch (action.type) {
-    case CALCULATION: {
-      if (action.payload.calculation == 0) {
-        tmpData =
-          Number(action.payload.firstNumber) +
-          Number(action.payload.secondNumber);
+    case GET_PRODUCT: {
+      return {
+        ...state,
+        isLoading: true
       }
-      return { ...state, data: tmpData };
+    }
+    case GET_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        data: action.payload.data
+      }
+    }
+    case GET_PRODUCT_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+        data: null
+      }
     }
   }
   return state;

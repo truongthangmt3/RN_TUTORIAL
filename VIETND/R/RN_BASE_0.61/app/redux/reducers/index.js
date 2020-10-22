@@ -3,12 +3,14 @@ import UserReducer from "./UserReducer";
 import HomeReducer from "./HomeReducer";
 import CareReducer from "./CareReducer";
 import ProductReducer from "./NotificationReducer";
+import UpdateReducer from "./UpdateReducer";
 import { RESET } from "../actions/type";
 appReducer = combineReducers({
   userReducer: UserReducer,
   homeReducer: HomeReducer,
   careReducer: CareReducer,
   productReducer: ProductReducer,
+  updateReducer: UpdateReducer
 });
 
 const initialState = appReducer({}, {})

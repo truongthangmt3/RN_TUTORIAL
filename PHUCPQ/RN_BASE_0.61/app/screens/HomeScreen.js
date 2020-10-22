@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { getHome, calculation } from '@action';
+import { getHome, calculation, getProduct, getUserInfo } from '@action';
 
 const CALCULATION = {
     PLUS: 0,
@@ -17,21 +17,9 @@ export class HomeScreen extends Component {
         secondNumber: 0,
         calculation: CALCULATION.PLUS
     };
-    state = {
-        firstNumber: 0,
-        secondNumber: 0,
-        calculation: CALCULATION.SUBTRACT
-    };
-    state = {
-        firstNumber: 0,
-        secondNumber: 0,
-        calculation: CALCULATION.MULTIPLY
-    };
-    state = {
-        firstNumber: 0,
-        secondNumber: 0,
-        calculation: CALCULATION.DIVIDE
-    };
+    componentDidMount() {
+        this.props.getProduct();
+    }
     render() {
         return (
             <View style={{
@@ -115,7 +103,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     getHome,
-    calculation
+    calculation,
+    getProduct,
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

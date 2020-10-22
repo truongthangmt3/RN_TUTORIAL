@@ -1,8 +1,8 @@
 import {
-  watchGetUser, watchGetProduct
+  watchGetUserInfo, watchGetProduct
 } from "./NetworkSaga";
 
 export default function* rootSaga() {
-  yield watchGetUser;
+  yield watchGetUserInfo;
   yield watchGetProduct;
 }
