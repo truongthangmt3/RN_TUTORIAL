@@ -74,7 +74,7 @@ const bottomNavigator = bottomRouter =>
 const createStack = stackScreen =>
     createStackNavigator(stackScreen, {
         defaultNavigationOptions: {
-            //header: null
+            header: null
         }
     });
 

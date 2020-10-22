@@ -10,7 +10,8 @@ const SCREEN_ROUTER = {
   USER: "User",
   CUSTOMER_SCREEN: "customer_screen",
   NOTIFY_SCREEN: "notify_screen",
-  UPDATE_USER_INFO: "UpdateUserInfo"
+  UPDATE_USER_INFO: "UpdateUserInfo",
+  USER_INFO_SCREEN: "UserInfoScreen"
 };
 
 export { SCREEN_ROUTER };

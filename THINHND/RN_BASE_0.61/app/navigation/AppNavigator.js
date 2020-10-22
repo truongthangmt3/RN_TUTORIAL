@@ -26,9 +26,6 @@ const Auth = createStackNavigator({
   [SCREEN_ROUTER.REGISTER]: RegisterScreen,
   [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen,
 },
-
-
-
   // {
   //   headerMode: 'none'
   // }
@@ -125,6 +122,18 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
 //       );
 //     },
 //     initialRouteName: "User"
+//   }
+// );
+
+// const App = createStackNavigator(
+//   {
+//     [SCREEN_ROUTER.MAIN]: Main,
+//     [SCREEN_ROUTER.UPDATE_USER_INFO]: UpdateUserInfoScreen,
+//     [SCREEN_ROUTER.USER_INFO_SCREEN]: UserInfoScreen,
+//     [SCREEN_ROUTER.UPDATE_USER_INFO_SCREEN]: UpdateUserInfoScreen
+//   },
+//   {
+//     headerMode: 'none'
 //   }
 // );
 

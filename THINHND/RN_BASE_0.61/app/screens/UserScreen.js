@@ -8,89 +8,117 @@ import {
   StyleSheet,
   TouchableOpacity,
   SafeAreaView,
-  Image
+  Image,
+  ScrollView,
+  RefreshControl
 } from "react-native";
 import NavigationUtil from "../navigation/NavigationUtil";
 import { SCREEN_ROUTER } from "../constants/Constant";
 import AsyncStorage from "@react-native-community/async-storage"
 import R from "@R";
+import { getUserInfoAction } from '@action';
+import Loading from "@app/components/Loading";
 
 class UserScreen extends Component {
 
   componentDidMount() {
-    alert(JSON.stringify(this.props.userState))
+    this.props.getUserInfoAction();
+    // alert(JSON.stringify(this.props.userState.data));
   }
   render() {
+    const { data, isLoading } = this.props.userState;
     var name = "Nguyễn Đức Thịnh";
-    // let shortname = this._func_getshortname(name);
+    //alert(JSON.stringify(this.props.userState));
+    let shortname = this._func_getshortname(name);
+    // if (isLoading) {
+    //   return (
+    //     <Loading />
+    //   )
+    // }
     return (
       <SafeAreaView style={styles.container}>
-        <View style={styles.v_blockinfor}>
-          <View style={styles.v_icshortname}>
-            <Text style={styles.t_shortname}>
-              {this._func_getshortname(name)}
-            </Text>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={
+                isLoading
+              }
+              onRefresh={() => {
+                // alert("onRefresh")
+                this.props.getUserInfoAction();
+              }} />
+          }>
+          <View style={styles.v_blockinfor}>
+            <View style={styles.v_icshortname}>
+              <Text style={styles.t_shortname}>
+                {this._func_getshortname(name)}
+              </Text>
+            </View>
+            <View style={styles.v_userinfor}>
+              <Text style={styles.t_username}>
+                {data.fullname}
+              </Text>
+              <Text style={styles.t_phonenumber}>{data.phone}</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  NavigationUtil.navigate(SCREEN_ROUTER.UPDATE_USER_INFO, { data: data });
+                }}
+                style={styles.v_chinhsua}>
+                <Text style={styles.t_chinhsua}>Chỉnh sửa</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.v_userinfor}>
-            <Text style={styles.t_username}>{name}</Text>
-            <Text style={styles.t_phonenumber}>0987654321</Text>
-            <TouchableOpacity
-              onPress={() => { NavigationUtil.navigate(SCREEN_ROUTER.UPDATE_USER_INFO) }}
-              style={styles.v_chinhsua}>
-              <Text style={styles.t_chinhsua}>Chỉnh sửa</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
 
-        <View style={styles.v_blockuseroption}>
-          <CustomOneOption
-            img1={R.images.ic_list}
-            label="Tin mua của bạn"
-            img2={R.images.ic_arrow}
-            action={this._func_nav_userbuyscreen}
-          />
-          <View style={styles.v_line} />
-          <CustomOneOption
-            img1={R.images.ic_user}
-            label="Thông tin cá nhân"
-            img2={R.images.ic_arrow}
-            action={this._func_nav_userinforscreen}
-          />
-          <View style={styles.v_line} />
-          <CustomOneOption
-            img1={R.images.ic_menu}
-            label="Danh mục của tôi"
-            img2={R.images.ic_arrow}
-            action={this._func_nav_mylist}
-          />
-          <View style={styles.v_line} />
-          <CustomOneOption
-            img1={R.images.ic_lock}
-            label="Đổi mật khẩu"
-            img2={R.images.ic_arrow}
-            action={this._func_nav_changepassword}
-          />
-          <View style={styles.v_line} />
-          <CustomOneOption
-            img1={R.images.ic_text}
-            label="Hướng dẫn sử dụng"
-            img2={R.images.ic_arrow}
-            action={this._func_nav_huongdansudung}
-          />
-          <View style={styles.v_line} />
-          <CustomOneOption
-            img1={R.images.ic_logout}
-            label="Đăng xuất"
-            action={this._func_nav_logout}
-          />
-        </View>
-        <View style={styles.v_emty} />
-        {/* <CustomBottomTab /> */}
+          <View style={styles.v_blockuseroption}>
+            <CustomOneOption
+              img1={R.images.ic_list}
+              label="Tin mua của bạn"
+              img2={R.images.ic_arrow}
+              action={this._func_nav_userbuyscreen}
+            />
+            <View style={styles.v_line} />
+            <CustomOneOption
+              img1={R.images.ic_user}
+              label="Thông tin cá nhân"
+              img2={R.images.ic_arrow}
+              action={this._func_nav_userinforscreen}
+            />
+            <View style={styles.v_line} />
+            <CustomOneOption
+              img1={R.images.ic_menu}
+              label="Danh mục của tôi"
+              img2={R.images.ic_arrow}
+              action={this._func_nav_mylist}
+            />
+            <View style={styles.v_line} />
+            <CustomOneOption
+              img1={R.images.ic_lock}
+              label="Đổi mật khẩu"
+              img2={R.images.ic_arrow}
+              action={this._func_nav_changepassword}
+            />
+            <View style={styles.v_line} />
+            <CustomOneOption
+              img1={R.images.ic_text}
+              label="Hướng dẫn sử dụng"
+              img2={R.images.ic_arrow}
+              action={this._func_nav_huongdansudung}
+            />
+            <View style={styles.v_line} />
+            <CustomOneOption
+              img1={R.images.ic_logout}
+              label="Đăng xuất"
+              action={this._func_nav_logout}
+            />
+          </View>
+          {/* <View style={styles.v_emty} /> */}
+          {/* <CustomBottomTab /> */}
+        </ScrollView>
       </SafeAreaView>
     );
   }
   _func_nav_userinforscreen = () => {
-    NavigationUtil.navigate(SCREEN_ROUTER.USER_INFOR_SCREEN);
+    NavigationUtil.navigate(SCREEN_ROUTER.USER_INFO_SCREEN);
   };
   _func_nav_userbuyscreen = () => {
     NavigationUtil.navigate(SCREEN_ROUTER.USER_BUY_SCREEN);
@@ -126,7 +154,7 @@ class CustomOneOption extends Component {
       <TouchableOpacity
         style={styles.v_oneoption}
         onPress={() => {
-          action();
+          action()
         }}
       >
         <Image style={styles.img_list} source={img1} />
@@ -193,7 +221,6 @@ const styles = StyleSheet.create({
     fontSize: 12
   },
   v_blockuseroption: {
-    flex: 3,
     backgroundColor: "#FFFFFF",
     marginTop: 5
   },
@@ -209,6 +236,7 @@ const styles = StyleSheet.create({
   img_list: {
     width: 15,
     height: 17,
+    paddingVertical: 30,
     resizeMode: "contain"
   },
   t_option: {
@@ -232,9 +260,10 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   userState: state.userReducer
 })
-
 const mapDispatchToProps = {
-
+  getUserInfoAction
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserScreen)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps)(UserScreen);

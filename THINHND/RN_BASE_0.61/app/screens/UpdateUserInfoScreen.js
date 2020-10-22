@@ -1,159 +1,121 @@
-
-import images from '@app/assets/imagesAsset';
-import NavigationUtil from '@app/navigation/NavigationUtil';
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import {
-    View,
-    Text,
-    Image,
-    TextInput,
-    StyleSheet,
-    SafeAreaView,
-    TouchableOpacity,
-} from 'react-native';
-import { updateUserInfo } from '@action'
-
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import NavigationUtil from '@app/navigation/NavigationUtil';
+import { SCREEN_ROUTER } from '@app/constants/Constant';
+import { Header } from 'react-native-elements';
+import CustomHeader from '@app/components/CustomHeader';
+import UpdateUserInfoOptions from '@app/components/UpdateUserInfoOptions';
+import { getUserInfoAction } from '@action';
+import * as API from '@api';
 export class UpdateUserInfoScreen extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         name: "",
-    //         phone: "",
-    //     };
-    // }
-    state = {
-        name: "",
-        phone: "",
-    };
+    state = this.props.navigation.getParam('data');
+
+    componentDidMount() {
+        // alert(JSON.stringify(this.state));
+    }
     render() {
+        const { phone, fullname, email, address } = this.state
         return (
-            <SafeAreaView style={{
-                flex: 1,
-            }}>
-                <View style={{
-                    height: 56,
-                    backgroundColor: '#69AAFF',
-                    //justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                }}>
-                    <Image style={{
-                        width: 8,
-                        height: 15,
-                        marginLeft: 16,
-                        marginRight: 10
-                    }} source={images.ic_back_white} />
-                    <Text style={{ fontSize: 20, color: 'white', fontWeight: '500' }}>
-                        Cập nhật thông tin
-                    </Text>
-                </View>
-
-                <View style={styles.infoView}>
-                    <Text style={{
-                        fontSize: 14,
-                        marginBottom: 7
-                    }}>'Họ tên(*)'</Text>
-
-                    <TextInput style={{
-                        height: 46,
-                        borderRadius: 10,
-                        padding: 10,
-                        backgroundColor: '#F5F6F8'
-
-                    }}
-                        onChangeText={newText => {
-                            this.setState({
-                                name: newText
-                            });
-                        }}
-                        placeholder='Họ tên' />
-                </View>
-
-                <View style={styles.infoView}>
-                    <Text style={{
-                        fontSize: 14,
-                        marginBottom: 7
-                    }}>'Số điện thoại(*)'</Text>
-                    <TextInput style={{
-                        height: 46,
-                        borderRadius: 10,
-                        padding: 10,
-                        backgroundColor: '#F5F6F8'
-
-                    }}
-                        onChangeText={newText => {
-                            this.setState({
-                                phone: newText
-                            });
-                        }}
-                        placeholder='Số Điện Thoại' />
-                </View>
-
-
-                <TouchableOpacity
-                    onPress={() => {
-                        // alert(JSON.stringify(this.state))
-                        this.props.updateUserInfo(this.state);
-                    }}
-                    style={{
-                        height: 42,
-                        alignItems: 'center',
-                        marginHorizontal: 48,
+            <View style={{ flex: 1 }}>
+                <Header
+                    containerStyle={{
                         backgroundColor: '#69AAFF',
-                        justifyContent: 'center',
-                        borderRadius: 10
-                    }}>
-                    <Text style={{
-                        color: 'white', fontWeight: 'bold'
-                    }}>
-                        CẬP NHẬT
-                    </Text>
+                        justifyContent: 'space-around'
+                    }}
+                    placement="left"
+                    leftComponent={<CustomHeader text="Cập nhật thông tin" />}
+                />
+                <UpdateUserInfoOptions
+                    text="Họ tên"
+                    value={fullname}
+                    onChangeText={newText => {
+                        this.setState({
+                            fullname: newText
+                        });
+                    }}
+                />
+                <UpdateUserInfoOptions
+                    text="Giới tính"
+                    onChangeText={newText => {
+                        this.setState({
+                            sex: newText
+                        });
+                    }}
+                />
+                <UpdateUserInfoOptions
+                    text="Tỉnh/Thành phố"
+                    onChangeText={newText => {
+                        this.setState({
+                            city: newText
+                        });
+                    }}
+                />
+                <UpdateUserInfoOptions
+                    value={address}
+                    text="Địa chỉ"
+                    onChangeText={newText => {
+                        this.setState({
+                            address: newText
+                        });
+                    }}
+                />
+                <UpdateUserInfoOptions
+                    value={email}
+                    text="Email"
+                    onChangeText={newText => {
+                        this.setState({
+                            email: newText
+                        });
+                    }}
+                />
+                <UpdateUserInfoOptions
+                    value={phone}
+                    text="Số điện thoại"
+                    onChangeText={newText => {
+                        this.setState({
+                            phone: newText
+                        });
+                    }}
+                />
+                <TouchableOpacity
+                    style={styles.updateButton}
+                    onPress={async () => {
+                        try {
+                            await API.updateUser(this.state);
+                            NavigationUtil.goBack();
+                            this.props.getUserInfoAction();
+                        } catch (error) {
+                            // alert(error.message);
+                        }
+                    }}
+                >
+                    <Text style={{ color: 'white' }}>Cập nhật</Text>
                 </TouchableOpacity>
-                <Text>{JSON.stringify(this.props.updateUserState)}</Text>
-
-            </SafeAreaView>
+            </View>
         );
     }
 }
-
-const infoView = (
-    label,
-    placeholderText
-) => {
-    return (
-        <View style={styles.infoView}>
-            <Text style={{
-                fontSize: 14,
-                marginBottom: 7
-            }}>{label}</Text>
-            <TextInput style={{
-                height: 46,
-                borderRadius: 10,
-                padding: 10,
-                backgroundColor: '#F5F6F8'
-            }}
-                placeholder={placeholderText} />
-        </View>
-    );
-}
-
 const styles = StyleSheet.create({
-    infoView: {
-        height: 71,
-        marginVertical: 16,
-        marginHorizontal: 8,
-        //marginTop: 30,
-        backgroundColor: 'white'
+    updateButton: {
+        backgroundColor: '#69AAFF',
+        width: '75%',
+        height: 48,
+        borderRadius: 6,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 50,
+        marginTop: 80
     }
 });
-
-const mapStateToProps = (state) => ({
-    updateUserState: state.updateUserReducer
-})
+const mapStateToProps = state => ({});
 
 const mapDispatchToProps = {
-    updateUserInfo,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateUserInfoScreen)
+    getUserInfoAction
+};
 
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UpdateUserInfoScreen);

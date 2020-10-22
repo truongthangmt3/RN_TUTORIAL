@@ -11,4 +11,5 @@ export const CALCULATION = 'utruck/caculation';
 export const GET_HOME = 'windsoft/getHome';
 export const GET_HOME_SUCCESS = 'windsoft/getHomeSucces';
 export const GET_HOME_FAIL = 'windsoft/getHomeFail';
+export const GET_USER_INFO = 'windsoft/getUserInfo';
 
