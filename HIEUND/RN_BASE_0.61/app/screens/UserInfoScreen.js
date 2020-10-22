@@ -7,7 +7,7 @@ import { SCREEN_ROUTER } from '@app/constants/Constant';
 import { Header } from "react-native-elements";
 import CustomHeader from '@app/components/CustomHeader';
 import UserInfoOptions from '@app/components/UserInfoOptions'
-import {  getUserInfo } from '@action'
+import { getUserInfo } from '@action'
 export class UserInfoScreen extends Component {
     state = {
         name: "Chưa có",
@@ -17,9 +17,9 @@ export class UserInfoScreen extends Component {
         email: "Chưa có",
         phone: "Chưa có"
     }
-    componentDidMount() {
-        alert(JSON.stringify(this.props.userState))
-    }
+    // componentDidMount() {
+    //     alert(JSON.stringify(this.props.userState))
+    // }
     render() {
         return (
             <View style={{ flex: 1 }} >
