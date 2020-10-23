@@ -16,7 +16,7 @@ export class HomeScreen extends Component {
   state = {
     firstNumber: 0,
     secondNumber: 0,
-    calculation: CALCULATION.SUBTRACT
+    calculation: CALCULATION.PLUS
   };
 
   render() {

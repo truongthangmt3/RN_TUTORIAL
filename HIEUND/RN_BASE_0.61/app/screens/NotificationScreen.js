@@ -4,12 +4,12 @@ import { Header } from "react-native-elements";
 import Notifications from "@component/Notifications";
 import R from "@R";
 import { connect } from 'react-redux'
-import {getNotifications} from '@action'
+import { getNotifications } from '@action'
 
 
 export class NotificationScreen extends Component {
-  componentDidMount(){
-    alert(JSON.stringify(this.props.notificationsState))
+  componentDidMount() {
+    // alert(JSON.stringify(this.props.notificationsState))
   }
   render() {
     return (
@@ -26,7 +26,7 @@ export class NotificationScreen extends Component {
           }}
         />
         <Notifications
-          onPress={()=>{this.props.getNotifications("Notify")}}
+          onPress={() => { this.props.getNotifications("Notify") }}
           img={R.images.avt1}
           text="Yêu cầu thêm danh mục của ban đã được phê duyệt"
           time="9:20 AM"

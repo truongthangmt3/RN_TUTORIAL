@@ -1,12 +1,13 @@
 import { combineReducers } from "redux";
 import UserReducer from "./UserReducer";
 import { RESET } from "../actions/type";
-import HomeReducer from "./HomeReducer"
-
+import HomeReducer from "./HomeReducer";
+import ProductReducer from './ProductReducer';
 
 appReducer = combineReducers({
   userReducer: UserReducer,
-  homeReducer: HomeReducer
+  homeReducer: HomeReducer,
+  productReducer: ProductReducer,
 });
 
 const initialState = appReducer({}, {})

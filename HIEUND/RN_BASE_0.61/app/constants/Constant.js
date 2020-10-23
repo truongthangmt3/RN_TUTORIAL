@@ -11,7 +11,10 @@ const SCREEN_ROUTER = {
   HOME: "home",
   LIST_POST: "list_post",
   MAIN: "main",
-  MESSAGE: "message"
+  MESSAGE: "message",
+  USER_INFO_SCREEN: "UserInfoScreen",
+  USER_OPTIONS: "UserOptions",
+  UPDATE_USER_INFO_SCREEN: "UpdateUserInfoScreen"
 };
 
 export { SCREEN_ROUTER };
