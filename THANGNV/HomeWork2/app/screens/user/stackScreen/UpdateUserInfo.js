@@ -1,53 +1,69 @@
-import images from '@app/assets/imagesAsset';
-import NavigationUtil from '@app/navigation/NavigationUtil';
-import React, { Component } from 'react';
-import {
-    View,
-    Text,
-    Image,
-    TextInput,
-    StyleSheet,
-    SafeAreaView,
-    TouchableOpacity,
-} from 'react-native';
+import React, { Component } from 'react'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image, TextInput } from 'react-native'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-export default class UserInfo extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
+import R from '@R';
+import { SCREEN_ROUTER } from '@app/constants/Constant';
+import NavigationUtil from '@app/navigation/NavigationUtil';
+
+export class UserInfo extends Component {
+    static propTypes = {
+        prop: PropTypes
     }
+
+    state = {
+        name: '',
+        sex: '',
+        city: '',
+        address: '',
+        email: '',
+        phone: ''
+    };
 
     render() {
         return (
             <SafeAreaView style={{
                 flex: 1,
             }}>
-                <View style={{
-                    height: 56,
-                    backgroundColor: '#69AAFF',
-                    //justifyContent: 'center',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                }}>
+                <TouchableOpacity
+                    onPress={() => { NavigationUtil.navigate(SCREEN_ROUTER.USER) }}
+                    style={{
+                        height: 56,
+                        backgroundColor: '#69AAFF',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                    }}>
                     <Image style={{
                         width: 8,
                         height: 15,
                         marginLeft: 16,
                         marginRight: 10
-                    }} source={images.ic_back_white} />
+                    }} source={R.images.ic_back_white} />
                     <Text style={{ fontSize: 20, color: 'white', fontWeight: '500' }}>
                         Cập nhật thông tin
                     </Text>
-                </View>
+                </TouchableOpacity>
 
                 {infoView(
-                    'Họ tên(*)',
+                    'Họ tên (*)',
                     'Họ tên'
                 )}
                 {infoView(
-                    'Số điện thoại(*)',
-                    'Số Điện Thoại'
+                    'Giới tính (*)',
+                    'Giới tính'
+                )}
+                {infoView(
+                    'Tỉnh/Thành phố (*)',
+                    'Tỉnh/Thành phố'
+                )}
+                {infoView(
+                    'Địa chỉ (*)',
+                    'Địa chỉ'
+                )}
+                {infoView(
+                    'Email',
+                    'Email'
                 )}
 
                 <TouchableOpacity
@@ -76,7 +92,8 @@ export default class UserInfo extends Component {
 
 const infoView = (
     label,
-    placeholderText
+    placeholderText,
+    value
 ) => {
     return (
         <View style={styles.infoView}>
@@ -90,6 +107,7 @@ const infoView = (
                 padding: 10,
                 backgroundColor: '#F5F6F8'
             }}
+                onChangeText={value}
                 placeholder={placeholderText} />
         </View>
     );
@@ -104,3 +122,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     }
 })
+
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInfo)

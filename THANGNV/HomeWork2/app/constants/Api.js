@@ -74,3 +74,11 @@ export const requestHomeData = () => {
     getAxios.get(`/GetHome`)
   );
 };
+
+export const requestGetUserInfo = () => {
+  return handleResult(getAxios.get(`/GetUserInfo`));
+};
+
+export const updateUser = payload => {
+  return handleResult(getAxios.post('/UpdateUser', payload));
+};

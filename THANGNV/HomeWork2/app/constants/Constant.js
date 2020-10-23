@@ -10,7 +10,7 @@ const SCREEN_ROUTER = {
   CHECK_PASSWORD: "CheckPW",
   NOTIFICATION: "Notification",
   CUSTOMER: "Customer",
-  USER_INFO: "UserInfo"
+  UPDATE_USER_INFO: "UpdateUserInfo"
 };
 
 export { SCREEN_ROUTER };

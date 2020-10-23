@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import CountReducer from './CountReducer';
 import ProductReducer from './ProductReducer';
+import UserReducer from "./UserReducer";
 import { RESET } from "../actions/type";
 
 appReducer = combineReducers({
-  countReducer: CountReducer,
+  userReducer: UserReducer,
   productReducer: ProductReducer,
 });
 

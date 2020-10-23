@@ -6,6 +6,7 @@ import {
     Dimensions,
     TouchableOpacity,
     SafeAreaView,
+    ScrollView,
     Image,
 } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -23,75 +24,75 @@ export default class UserScreen extends Component {
                 flex: 1,
                 backgroundColor: '#F5F6F8'
             }}>
-
-                <View style={styles.header}>
-                    <View style={styles.userAvatar}>
-                        <Text style={{
-                            fontSize: 36, fontWeight: 'bold', color: 'blue'
-                        }}>
-                            {_func_getshortname(name)}
-                        </Text>
-                    </View>
-
-                    <View style={{
-                        flex: 1, flexDirection: 'column'
-                    }}>
-                        <Text style={{
-                            fontSize: 21, fontWeight: 'bold'
-                        }}>{name}</Text>
-                        <Text style={{
-                            marginVertical: 8, fontSize: 15
-                        }}>{phone}</Text>
-                        <TouchableOpacity style={styles.modifyButton}
-                            onPress={() => {
-                                NavigationUtil.navigate("UserInfo")
-                            }}>
+                <ScrollView>
+                    <View style={styles.header}>
+                        <View style={styles.userAvatar}>
                             <Text style={{
-                                fontSize: 12
+                                fontSize: 36, fontWeight: 'bold', color: 'blue'
                             }}>
-                                Chỉnh sửa
+                                {_func_getshortname(name)}
                             </Text>
-                        </TouchableOpacity>
+                        </View>
+
+                        <View style={{
+                            flex: 1, flexDirection: 'column'
+                        }}>
+                            <Text style={{
+                                fontSize: 21, fontWeight: 'bold'
+                            }}>{name}</Text>
+                            <Text style={{
+                                marginVertical: 8, fontSize: 15
+                            }}>{phone}</Text>
+                            <TouchableOpacity style={styles.modifyButton}
+                                onPress={() => {
+                                    NavigationUtil.navigate(SCREEN_ROUTER.UPDATE_USER_INFO)
+                                }}>
+                                <Text style={{
+                                    fontSize: 12
+                                }}>
+                                    Chỉnh sửa
+                            </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
 
-                <View style={styles.menu}>
-                    {_menu(
-                        R.images.ic_user_my_post,
-                        'Tin đăng của tôi',
-                    )}
-                    <View style={styles.line} />
-                    {_menu(
-                        R.images.ic_user_infor,
-                        'Thông tin cá nhân'
-                    )}
-                    <View style={styles.line} />
-                    {_menu(
-                        R.images.ic_user_list,
-                        'Danh mục của tôi'
-                    )}
-                    <View style={styles.line} />
-                    {_menu(
-                        R.images.ic_user_change_password,
-                        'Đổi mật khẩu'
-                    )}
-                    <View style={styles.line} />
-                    {_menu(
-                        R.images.ic_user_guide,
-                        'Hướng dẫn sử dụng'
-                    )}
-                    <View style={styles.line} />
-                    {_menu(
-                        R.images.ic_user_log_out,
-                        'Đăng xuất',
-                        async () => {
-                            const token = ""
-                            await AsyncStorage.setItem("token", token)
-                            NavigationUtil.navigate("Login")
-                        }
-                    )}
-                </View>
-
+                    <View style={styles.menu}>
+                        {_menu(
+                            R.images.ic_user_my_post,
+                            'Tin đăng của tôi',
+                        )}
+                        <View style={styles.line} />
+                        {_menu(
+                            R.images.ic_user_infor,
+                            'Thông tin cá nhân'
+                        )}
+                        <View style={styles.line} />
+                        {_menu(
+                            R.images.ic_user_list,
+                            'Danh mục của tôi'
+                        )}
+                        <View style={styles.line} />
+                        {_menu(
+                            R.images.ic_user_change_password,
+                            'Đổi mật khẩu'
+                        )}
+                        <View style={styles.line} />
+                        {_menu(
+                            R.images.ic_user_guide,
+                            'Hướng dẫn sử dụng'
+                        )}
+                        <View style={styles.line} />
+                        {_menu(
+                            R.images.ic_user_log_out,
+                            'Đăng xuất',
+                            async () => {
+                                const token = ""
+                                await AsyncStorage.setItem("token", token)
+                                NavigationUtil.navigate("Login")
+                            }
+                        )}
+                    </View>
+                </ScrollView>
             </SafeAreaView>
         )
     }

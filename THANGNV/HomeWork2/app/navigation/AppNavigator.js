@@ -14,7 +14,7 @@ import CustomerScreen from '../screens/CustomerScreen';
 import NotificationScreen from '../screens/NotificationScreen';
 import UserScreen from '../screens/user/UserScreen';
 
-import UserInfo from '@app/screens/user/stackScreen/UserInfo';
+import UpdateUserInfo from '@app/screens/user/stackScreen/UpdateUserInfo';
 
 
 import { SCREEN_ROUTER } from '@constant';
@@ -33,12 +33,6 @@ const Auth = createStackNavigator({
     [SCREEN_ROUTER.REGISTER]: RegisterScreen,
     [SCREEN_ROUTER.FORGOT_PASS]: ForgotPasswordScreen,
     [SCREEN_ROUTER.CHECK_PASSWORD]: CheckForgotPasswordScreen,
-}, {
-    headerMode: 'none'
-})
-
-const User = createStackNavigator({
-    [SCREEN_ROUTER.USER_INFO]: UserInfo,
 }, {
     headerMode: 'none'
 })
@@ -122,13 +116,18 @@ const Main = createBottomTabNavigator(
     }
 )
 
+const User = createStackNavigator({
+    Main,
+    [SCREEN_ROUTER.UPDATE_USER_INFO]: UpdateUserInfo,
+}, {
+    headerMode: 'none'
+})
 
 export default createAppContainer(
     createSwitchNavigator({
         [SCREEN_ROUTER.AUTH_LOADING]: AuthLoadingScreen,
         [SCREEN_ROUTER.AUTH]: Auth,
-        [SCREEN_ROUTER.MAIN]: Main,
-        [SCREEN_ROUTER.USER]: User,
+        [SCREEN_ROUTER.MAIN]: User,
     },
         {
             initialRouteName: SCREEN_ROUTER.AUTH_LOADING
