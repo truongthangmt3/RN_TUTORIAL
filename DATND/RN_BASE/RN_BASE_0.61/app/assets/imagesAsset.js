@@ -1,0 +1,30 @@
+const images = {
+
+    Ic_feather_lock: require("./images/Ic_feather_lock.png"),
+    Ic_home: require("./images/Ic_home.png"),
+    Ic_metro_user: require("./images/Ic_metro_user.png"),
+    ic_I: require("./images/ic_I.png"),
+    ic_arrow: require("./images/ic_arrow.png"),
+    ic_backk: require("./images/ic_backk.png"),
+    ic_bell: require("./images/ic_bell.png"),
+    ic_clock: require("./images/ic_clock.png"),
+    ic_ellipse: require("./images/ic_ellipse.png"),
+    ic_icon: require("./images/ic_icon.png"),
+    ic_list: require("./images/ic_list.png"),
+    ic_location: require("./images/ic_location.png"),
+    ic_log_out: require("./images/ic_log_out.png"),
+    ic_logo: require("./images/ic_logo.png"),
+    ic_messeg: require("./images/ic_messeg.png"),
+    ic_next: require("./images/ic_next.png"),
+    ic_notifications: require("./images/ic_notifications.png"),
+    ic_path: require("./images/ic_path.png"),
+    ic_path2: require("./images/ic_path2.png"),
+    ic_phone: require("./images/ic_phone.png"),
+    ic_phone_red: require("./images/ic_phone_red.png"),
+    ic_recipe: require("./images/ic_recipe.png"),
+    ic_user: require("./images/ic_user.png"),
+    ic_zalo: require("./images/ic_zalo.png"),
+    icon_button: require("./images/icon_button.png"),
+    img_header: require("./images/img_header.png")
+}
+export default images

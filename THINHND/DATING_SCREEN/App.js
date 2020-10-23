@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import HomeScreen from './src/screens/HomeScreen'
 import ChangePasswordScreen from './src/screens/ChangePasswordScreen'
-import UserScreen from './src/screens/UserScreen'
+import UserScreen from './src/components/UserScreen'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import AppNavigator from './src/navigation/AppNavigator';
